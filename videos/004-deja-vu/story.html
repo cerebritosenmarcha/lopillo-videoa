@@ -407,7 +407,7 @@ window.render=(t)=>{const c=TL.cues; const up=new THREE.Vector3(0,1,0); let insi
  parts.position.set(base.x,base.y-(inside?15:0),base.z); for(let i=0;i<PN;i++){const q=pb[i]; pp[i*3]=q[0]+Math.sin(t*.25+q[3]*9)*.8; pp[i*3+1]=(q[1]+t*(.25+q[3]*.4))%35; pp[i*3+2]=q[2];} pg.attributes.position.needsUpdate=true; parts.material.color.setHex(inside?0xc98aff:0xffd9a0);
  sky.position.copy(cam.position);
  ST.dv.style.opacity=(t<Tin?seg(t,Tin-.45,Tin)*.85:(t<Tex-.45?(1-seg(t,Tin,Tin+.45))*.85:(t<Tex?seg(t,Tex-.45,Tex)*.85:(1-seg(t,Tex,Tex+.45))*.85))).toFixed(3);
- bloom.enabled=!inside;
+ bloom.enabled=false; // sin resplandor: evita manchas negras (píxeles NaN) y mantiene la nitidez
  const gf=(TL.ding||[]).reduce((m,d)=>Math.max(m,1-Math.abs(t-d-.1)/.5),0); document.getElementById('gflash').style.opacity=Math.min(1,gf)*.4;
  document.getElementById('flash').style.opacity=0;
  C.render();
