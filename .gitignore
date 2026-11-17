@@ -1,0 +1,9 @@
+node_modules/
+**/frames/
+**/check_*.png
+**/*.wav
+**/video.mp4
+**/node_modules
+**/atom.png
+!assets/atom.png
+__pycache__/

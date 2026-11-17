@@ -1,0 +1,9 @@
+{
+  "name": "lopillo-videos",
+  "private": true,
+  "description": "Motor de producción de vídeos de ¡Lo Pillo!",
+  "dependencies": {
+    "three": "0.160.0",
+    "@mdi/svg": "7.4.47"
+  }
+}
