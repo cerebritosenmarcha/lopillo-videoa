@@ -7,3 +7,5 @@ node_modules/
 **/atom.png
 !assets/atom.png
 __pycache__/
+**/voz_eleven_*.mp3
+**/align_eleven_*.json
