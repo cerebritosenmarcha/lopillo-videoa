@@ -8,9 +8,10 @@ const { chromium } = require('playwright'); const fs = require('fs');
   p.on('pageerror', e => console.log('err:', e.message));
   await p.goto('http://localhost:'+(process.env.PORT||8780)+'/'+(process.env.SCENE||'scene.html')); await p.waitForFunction('window.ready===true'); await p.evaluate(() => document.fonts.ready);
   await p.evaluate(tl => setTL(tl), TL); await p.waitForFunction('window.popsReady===true');
-  const list = only ? only.map(s => Math.round(s * TL.fps)) : [...Array(TL.frames).keys()];
+  const A = Number(process.env.START||0), B = Number(process.env.END||TL.frames); // trozo de fotogramas, para renderizar en paralelo
+  const list = only ? only.map(s => Math.round(s * TL.fps)) : [...Array(TL.frames).keys()].filter(f => f >= A && f < B);
   const t0=Date.now();
-  for (const f of list) { if (!only && fs.existsSync(`frames/${String(f+1).padStart(5,"0")}.jpg`)) continue; await p.evaluate(t => render(t), f / TL.fps);
+  for (const f of list) { if (!only && fs.existsSync(`frames/${String(f+1).padStart(5,"0")}.jpg`) && f+1 < B) continue; await p.evaluate(t => render(t), f / TL.fps);
     await p.screenshot({ path: only ? `check_${f}.png` : `frames/${String(f).padStart(5,'0')}.jpg`, type: only?'png':'jpeg', quality: only?undefined:95 }); }
   console.log('ms/frame', Math.round((Date.now()-t0)/list.length));
   await b.close();
