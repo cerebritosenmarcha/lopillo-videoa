@@ -11,6 +11,8 @@ Este repositorio produce los vídeos de **¡Lo Pillo!** (Instagram @lopillocienc
 
 ## El estilo de vídeo (decidido con el dueño, no cambiar sin que lo pida)
 
+**Referencia fija de estilo y calidad: los vídeos 003, 004 y 005** (aprobados por el dueño el 17/11/2026). Todos los vídeos nuevos deben verse como ellos: misma biblioteca de escenas, misma iluminación, misma nitidez y mismo ritmo.
+
 1. **Vertical 1080×1920, 30 fps. Duración: entre 50 y 60 s por lo general, y nunca más de 1 min 5 s (65 s).** El vídeo 001 dura 75 s porque se hizo antes de esta regla.
 2. **El protagonista de la pantalla es el objeto real del que habla el narrador en ese momento.** Si dice «banco», se ve un edificio de banco; si dice «coche», un coche que circula. No formas geométricas abstractas. Cuando la frase cambia de tema, cambia la figura principal (unas 25–30 escenas por vídeo).
 3. **Cada objeto actúa** según la frase: la caja fuerte se abre vacía, los billetes salen volando, el banco se derrumba, la gente corre al cajero…
@@ -38,8 +40,8 @@ Este repositorio produce los vídeos de **¡Lo Pillo!** (Instagram @lopillocienc
 
 ## Cómo se hace un vídeo
 
-1. **Elige el tema:** el primero de la «Cola de producción» de `temas.md` que no esté en `publicados.md`. Respeta el orden; la reserva solo cuando la cola se acabe.
-2. Crea `videos/NNN-slug/` copiando de `videos/001-banco-panico/` (es la referencia de calidad).
+1. **Elige el tema:** el primero de la «Cola de producción» de `temas.md` que no esté en `publicados.md`. Respeta el orden; la reserva solo cuando la cola se acabe. La cola está ordenada por lo que más visualizaciones consigue en este tipo de vídeos (ver «Qué funciona» abajo). Si el tema que toca es de la misma familia que los dos vídeos anteriores (por ejemplo, un tercero seguido sobre sueño), salta al siguiente y deja ese para después.
+2. Crea `videos/NNN-slug/` copiando de `videos/003-alarma/` (referencia de estilo y calidad).
 3. **Investiga** y escribe `fuentes.md`.
 4. **Guion** en `tts.py` (lista `SEG`, una entrada por bloque) y ejecuta `python3 tts.py` → `voz.mp3` y `align.json`.
 5. **Plan de escenas** en `build.py` (lista `SC`: bloque, primeras palabras de la frase, nombre de escena), los `cues` de cifras, el conjunto `KEEP` de complementos y la lista `ding` (momentos del «clin» de bombilla, normalmente la revelación principal) que se guarda en `timeline.json`.
@@ -52,6 +54,21 @@ Este repositorio produce los vídeos de **¡Lo Pillo!** (Instagram @lopillocienc
    Metricool copia el vídeo a su propio almacenamiento al programarlo, así que después puedes borrar de `media` los mp4 de vídeos ya programados para que la rama no crezca.
 10. **Programa en Metricool** (ver abajo) y añade una línea a `publicados.md`.
 11. Commit y push de la carpeta del vídeo (sin `frames/` ni el mp4).
+
+## Qué funciona (para elegir y escribir temas)
+
+Revisado el 17/11/2026 con búsquedas sobre los Shorts, Reels y TikTok de curiosidades y ciencia sin cara. No hay rankings oficiales, así que se trata como orientación, y manda nuestra propia analítica en cuanto haya datos.
+- **Formatos que más se repiten entre los vídeos virales:**
+  - «¿Qué pasaría si…?» (hipótesis imposibles de física o del espacio).
+  - «¿Qué le pasa a tu cuerpo si…?».
+  - Mitos que casi todo el mundo cree.
+  - Física que parece imposible.
+  - Espacio.
+  - Datos de psicología y cerebro.
+- **Títulos que responden a una pregunta concreta** («¿Por qué…?», «¿Qué pasa si…?», «¿Cómo…?»): además del feed, se encuentran por búsqueda.
+- **Gancho en los 3 primeros segundos** y un dato sorprendente o una cifra imposible antes del segundo 10.
+- **Variedad:** no repetir la misma familia (sueño, cerebro, espacio…) más de dos días seguidos.
+- **Revisión semanal:** cuando el dueño lo pida, o en una sesión con Metricool conectado, consulta la analítica de los vídeos publicados (visualizaciones, retención, compartidos y guardados). Sube en la cola los temas parecidos a los que mejor funcionen y anota aquí lo aprendido.
 
 ## Publicación en Metricool
 

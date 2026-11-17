@@ -1,21 +1,23 @@
 # Temas
 
-## Cola de producción (en este orden; el dueño la ha elegido)
+## Cola de producción (ordenada por potencial de visualizaciones; revisada el 17/11/2026)
 
-Produce siempre el primero de esta lista que no esté en `publicados.md`.
+Produce siempre el primero de esta lista que no esté en `publicados.md`, salvo que repita la familia de los dos vídeos anteriores (en ese caso, el siguiente). Ya publicados: móvil, alarma, déjà vu, horas de sueño.
 
-1. ¿Qué le pasa a tu cuerpo cuando dejas el móvil una semana? (salud: solo lo que digan estudios, sin exagerar)
-2. ¿Por qué te despiertas siempre justo antes de que suene la alarma?
-3. ¿Qué pasa en tu cerebro cuando tienes un déjà vu?
-4. ¿Cuántas horas de sueño necesitas de verdad según tu edad? (salud: fuente oficial de recomendaciones)
-5. ¿Por qué tienes más hambre cuando duermes poco? (salud)
-6. ¿Los perros ven en blanco y negro? (mito)
-7. ¿Afeitarse hace que el pelo salga más fuerte? (mito)
-8. ¿Qué pasaría si dejaras de respirar por la nariz? (salud)
-9. ¿Qué pasaría si cayeras por un agujero que atraviesa la Tierra?
-10. ¿Por qué el mar es salado y los ríos no?
-11. ¿Cómo sabe un GPS dónde estás?
-12. ¿Qué pasa con tus datos cuando aceptas las cookies?
+1. ¿Qué pasaría si cayeras por un agujero que atraviesa la Tierra? (qué pasaría si · física)
+2. ¿Los perros ven en blanco y negro? (mito · animales)
+3. ¿Qué pasaría si la Luna desapareciera? (qué pasaría si · espacio)
+4. ¿Usamos solo el 10 % del cerebro? (mito · cerebro)
+5. ¿Por qué tienes más hambre cuando duermes poco? (cuerpo · salud)
+6. ¿Cómo puede volar un avión de 400 toneladas? (física que parece imposible)
+7. ¿Afeitarse hace que el pelo salga más fuerte? (mito · cuerpo)
+8. ¿Se ve la Muralla China desde el espacio? (mito · espacio)
+9. ¿Qué pasaría si dejaras de respirar por la nariz? (qué pasaría si · cuerpo · salud)
+10. ¿Los peces tienen memoria de 3 segundos? (mito · animales)
+11. ¿Por qué el mar es salado y los ríos no?
+12. ¿Qué le pasa a tu cuerpo si no duermes 24 horas? (cuerpo · salud)
+13. ¿Cómo sabe un GPS dónde estás?
+14. ¿Qué pasa con tus datos cuando aceptas las cookies?
 
 ## Reserva (usar solo cuando se acabe la cola)
 
@@ -28,15 +30,11 @@ Produce siempre el primero de esta lista que no esté en `publicados.md`.
 
 ## Salud (siempre con fuente y aviso)
 - ¿Hay que beber 2 litros de agua al día?
-- ¿Qué le pasa a tu cuerpo si no duermes 24 horas?
 - ¿El café es malo para la salud?
-- ¿Usamos solo el 10 % del cerebro?
 - ¿Te da un corte de digestión si te bañas después de comer?
 
 ## Ciencia y curiosidades
-- ¿Cómo puede volar un avión de 400 toneladas?
 - ¿Por qué el cielo es azul y el atardecer naranja?
-- ¿Qué pasaría si la Luna desapareciera?
 - ¿Por qué pica la cebolla al cortarla?
 - ¿Cómo funciona de verdad el wifi?
 
@@ -45,5 +43,3 @@ Produce siempre el primero de esta lista que no esté en `publicados.md`.
 
 ## Mitos
 - ¿Los rayos nunca caen dos veces en el mismo sitio?
-- ¿Los peces tienen memoria de 3 segundos?
-- ¿Se ve la Muralla China desde el espacio?
