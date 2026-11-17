@@ -1,0 +1,22 @@
+# Fuentes — 006 El hombre que saltó de espaldas (Dick Fosbury)
+
+- **Instituto y técnica:** en el Medford High School (Oregón), Fosbury no superaba 1,5 m. Probó la tijera y el rodillo ventral (*straddle*, que le imponía su entrenador), no le salía y fue modificando la tijera hasta pasar de espaldas.
+  - https://en.wikipedia.org/wiki/Dick_Fosbury
+  - https://www.psychologytoday.com/us/blog/the-mind-menagerie/201810/dick-fosbury-s-famous-flop-was-actually-great-success
+  - https://trackandfieldnews.com/dick-fosbury-high-jump-historys-revolutionary/
+- **Serrín y espuma:** antes se caía sobre arena, serrín o virutas, y por eso se caía de pie. Su instituto instaló colchones de espuma (de los primeros de Oregón), lo que hizo segura la caída de espaldas.
+  - https://en.wikipedia.org/wiki/Fosbury_Flop
+  - https://www.psychologytoday.com/us/blog/the-mind-menagerie/201810/dick-fosbury-s-famous-flop-was-actually-great-success
+- **1964, el periódico:** el Medford Mail-Tribune publicó su foto con el pie «Fosbury Flops Over Bar», de donde viene el nombre.
+  - https://en.wikipedia.org/wiki/Dick_Fosbury
+  - https://www.wfae.org/2018-10-20/dick-fosbury-turned-his-back-on-the-bar-and-made-a-flop-a-success
+- **México 1968:** oro olímpico y récord olímpico con 2,24 m.
+  - https://worldathletics.org/news/feature/dick-fosbury-flop
+  - https://www.opb.org/article/2023/03/14/high-jumper-dick-fosbury-who-revolutionized-the-sport-with-his-flop-dies-at-76/
+  - https://www.britannica.com/biography/Dick-Fosbury
+- **Múnich 1972:** 28 de los 40 saltadores ya usaban su estilo; hoy es la técnica dominante en la élite.
+  - https://en.wikipedia.org/wiki/Athletics_at_the_1972_Summer_Olympics_%E2%80%93_Men%27s_high_jump
+  - https://olympics.com/en/news/dick-fosbury-fosbury-flop-game-changing-sport-techniques
+- **No fue el único:** otros saltadores probaron técnicas parecidas; la canadiense Debbie Brill desarrolló a la vez el «Brill Bend». Fosbury fue el que se hizo famoso.
+  - https://en.wikipedia.org/wiki/Fosbury_Flop
+  - https://en.wikipedia.org/wiki/Debbie_Brill
