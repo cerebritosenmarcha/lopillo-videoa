@@ -366,6 +366,7 @@ window.render=(t)=>{const c=TL.cues; const up=new THREE.Vector3(0,1,0); let P,L,
  let dv=document.getElementById('dive'); if(!dv){dv=document.createElement('div'); dv.id='dive'; dv.style.cssText='position:absolute;inset:0;background:radial-gradient(circle at 50% 42%,rgba(60,8,22,.35),#1a0309 70%);opacity:0;pointer-events:none'; document.body.insertBefore(dv,document.getElementById('vig'));}
  dv.style.opacity=(t<Tin?seg(t,Tin-.45,Tin)*.85:(1-seg(t,Tin,Tin+.45))*.85).toFixed(3);
  const gf=(TL.ding||[]).reduce((m,d)=>Math.max(m,1-Math.abs(t-d-.1)/.5),0); document.getElementById('gflash').style.opacity=Math.min(1,gf)*.45;
+ bloom.enabled=!inside; // dentro del cuerpo, sin resplandor: un píxel suelto no se convierte en mancha
  C.render();
  const bg=BIG.find(b=>t>=c[b[0]]&&t<c[b[1]]); document.getElementById('big').innerHTML=bg?bg[2]:''; document.getElementById('big').style.transform='scale('+(1+pk*.06)+')';
  document.getElementById('hook').innerHTML=t<c.casual?'¿ANTES DE<br><b>LA ALARMA?</b>':'';
