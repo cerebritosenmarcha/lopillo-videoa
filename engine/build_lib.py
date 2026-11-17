@@ -7,12 +7,13 @@ Uso en videos/NNN-slug/build.py:
 SCENES: lista de dicts con
   seg (bloque del guion), at (primeras palabras de la frase, '' en la primera escena),
   type (icon | phone | clock | calendar | flag | mri | crowd | people | bed | brain | comments),
+  tr (transición desde la escena anterior: travel | depth | morph | stay | follow; d = distancia, fcol/fpos para follow),
   p (parámetros del tipo), big, bigAt (clave de CUES), src, cam {R,h,ly,a0,av}, hook, hero (icono a no repetir como complemento).
 CUES: {clave: (bloque, palabras)}; PUNCH y DING: listas de claves de CUES.
 """
 import json, re
 
-def make(ICON, KEEP, SCENES, CUES, PUNCH, DING, pad=0.6):
+def make(ICON, KEEP, SCENES, CUES, PUNCH, DING, pad=0.6, cut=None):
     A = json.load(open("align.json")); text = A["text"]; st = A["start"]; en = A["end"]
     segs, pos = [], 0
     for s in A["segments"]:
@@ -40,6 +41,9 @@ def make(ICON, KEEP, SCENES, CUES, PUNCH, DING, pad=0.6):
     for a, b in zip(shots, shots[1:]):
         assert b["t"] > a["t"], ("escenas fuera de orden", a, b)
     end = en[-1] + pad
+    if cut:  # versión recortada (demos)
+        end = cut; shots = [s for s in shots if s['t'] < cut]; scenes = scenes[:len(shots)]
+        pops = [p for p in pops if p['t'] < cut]; words = [w for w in words if w['t0'] < cut]
     json.dump({"fps": 30, "frames": int(end*30), "segT": segT, "words": words, "cues": cues, "punch": [cues[k] for k in PUNCH],
                "pops": pops, "shots": shots, "scenes": scenes, "ding": [cues[k] for k in DING], "end": end}, open("timeline.json", "w"), ensure_ascii=False)
     print(len(pops), "complementos;", len(shots), "escenas;", round(end, 1), "s")
