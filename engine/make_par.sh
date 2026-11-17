@@ -10,7 +10,7 @@ ln -sfn "$ROOT/node_modules" node_modules
 cp "$ROOT/assets/atom.png" atom.png
 python3 build.py
 mkdir -p frames
-pkill -f "http.server $PORT" 2>/dev/null; sleep .5; (nohup python3 -m http.server $PORT >/dev/null 2>&1 &)  # siempre un servidor nuevo en la carpeta de ESTE vídeo
+pkill -f "http.server $PORT" 2>/dev/null || true; sleep .5; (nohup python3 -m http.server $PORT >/dev/null 2>&1 &)  # siempre un servidor nuevo en la carpeta de ESTE vídeo
 sleep 1
 F=$(python3 -c "import json;print(json.load(open('timeline.json'))['frames'])")
 for i in $(seq 0 $((N-1))); do
