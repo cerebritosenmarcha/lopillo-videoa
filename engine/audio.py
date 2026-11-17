@@ -40,6 +40,6 @@ for v in [x["t"] for x in TL["shots"][1:]]: add(wh*0.7, v-0.3)
 L=int(0.7*sr); ta=np.arange(L)/sr; boom=(np.sin(2*np.pi*(70*ta+10*np.exp(-ta*12)))*np.exp(-ta*9)*0.28+np.sin(2*np.pi*1046*ta)*np.exp(-ta*28)*0.12)
 for v in TL["punch"]: add(boom, v)
 L=int(0.8*sr); ta=np.arange(L)/sr; ding=(np.sin(2*np.pi*1318*ta)+0.6*np.sin(2*np.pi*1760*ta))*np.exp(-ta*5)*0.22
-add(ding, TL["cues"]["cienmil"]); add(ding, [x["t"] for x in TL["shots"] if x["n"]=="bulb"][0]+0.2)
+for d in TL.get("ding", []): add(ding, d)  # momentos bombilla definidos en build.py
 save("sfx.wav", sfx)
 print("ok")

@@ -43,5 +43,5 @@ shots=[{"t":(0 if i==0 else cue(s,sub)),"n":n,"seg":s} for i,(s,sub,n) in enumer
 cues["otras"]=cue(2,"Las otras"); cues["llama"]=cue(3,"Eso se llama")
 punch = [cues[k] for k in ["billete","nobien","uno","svb","cayo","sesenta","sesenta2","cienmil","peligro"]]
 end = en[-1] + 0.6
-json.dump({"fps": 30, "frames": int(end*30), "segT": segT, "words": words, "cues": cues, "punch": punch, "pops": pops, "shots": shots, "end": end}, open("timeline.json","w"), ensure_ascii=False)
+json.dump({"fps": 30, "frames": int(end*30), "segT": segT, "words": words, "cues": cues, "punch": punch, "pops": pops, "shots": shots, "ding": [cues["cienmil"], [s["t"] for s in shots if s["n"]=="bulb"][0]+0.2], "end": end}, open("timeline.json","w"), ensure_ascii=False)
 print(len(pops),"pops");print(int(end*30), round(end,1), segT)

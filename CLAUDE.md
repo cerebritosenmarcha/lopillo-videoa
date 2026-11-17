@@ -42,7 +42,7 @@ Este repositorio produce los vídeos de **¡Lo Pillo!** (Instagram @lopillocienc
 2. Crea `videos/NNN-slug/` copiando de `videos/001-banco-panico/` (es la referencia de calidad).
 3. **Investiga** y escribe `fuentes.md`.
 4. **Guion** en `tts.py` (lista `SEG`, una entrada por bloque) y ejecuta `python3 tts.py` → `voz.mp3` y `align.json`.
-5. **Plan de escenas** en `build.py` (lista `SC`: bloque, primeras palabras de la frase, nombre de escena), los `cues` de cifras y el conjunto `KEEP` de complementos.
+5. **Plan de escenas** en `build.py` (lista `SC`: bloque, primeras palabras de la frase, nombre de escena), los `cues` de cifras, el conjunto `KEEP` de complementos y la lista `ding` (momentos del «clin» de bombilla, normalmente la revelación principal) que se guarda en `timeline.json`.
 6. **Escenas** en `scene.html`: reutiliza los constructores existentes (`makeBank`, `makeNote`, `makeCoin`, `human`, `makeATM`, `icon3D` con los más de 7.000 iconos de `@mdi/svg`, casas, coches…) y crea los objetos nuevos que pida el tema. Cada escena: `shot('nombre', async g=>{…})` y su `case` en `animate()`.
 7. Revisa fotogramas sueltos con `PORT=8780 node ../../engine/render.js 1.5,10,20` (crea `check_*.png`) y corrige encuadres antes del render completo.
 8. Render completo: `engine/make.sh videos/NNN-slug` → `video.mp4` (unos 30–40 min).

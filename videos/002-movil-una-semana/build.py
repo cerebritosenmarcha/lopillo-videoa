@@ -40,6 +40,6 @@ SC=[(0,"Tres días","phone_off"),(0,"y tu cerebro","brain"),(0,"lo han visto","m
 shots=[{"t":(0 if i==0 else cue(s,sub)),"n":n,"seg":s} for i,(s,sub,n) in enumerate(SC)]
 punch = [cues[k] for k in ["escaner","dossem","reward","distinto","n467","p91","diez","cuarta"]]
 end = en[-1] + 0.6
-json.dump({"fps": 30, "frames": int(end*30), "segT": segT, "words": words, "cues": cues, "punch": punch, "pops": pops, "shots": shots, "end": end}, open("timeline.json","w"), ensure_ascii=False)
+json.dump({"fps": 30, "frames": int(end*30), "segT": segT, "words": words, "cues": cues, "punch": punch, "pops": pops, "shots": shots, "ding": [cues["p91"]], "end": end}, open("timeline.json","w"), ensure_ascii=False)
 print(len(pops),"complementos;", len(shots), "escenas;", round(end,1), "s")
 for s in shots: print(round(s["t"],1), s["n"])
