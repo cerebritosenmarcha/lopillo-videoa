@@ -1,10 +1,10 @@
 import json, base64, urllib.request, sys
 SEG = [
- "Esa sensación de «esto ya lo he vivido»... no es ver el futuro. Es tu cerebro pillándose a sí mismo en un error.",
- "Se llama déjà vu, que en francés significa «ya visto». Aparece cuando algo te resulta familiar... pero sabes perfectamente que es la primera vez. Dura apenas unos segundos y llega sin avisar.",
- "Un equipo de investigadores provocó déjà vus en el laboratorio, con listas de palabras parecidas para engañar a la memoria, y miró el cerebro con un escáner. Y la zona que se encendía no era la de guardar recuerdos: era la parte frontal, la que comprueba si lo que recuerdas es verdad.",
- "O sea, el déjà vu sería como un detector de errores: tu cerebro nota una falsa señal de «esto me suena» y la revisa. También se estudia en personas con epilepsia del lóbulo temporal, donde puede aparecer al estimular esa zona. Y tranquilo: en otro estudio, tener más déjà vus no tenía nada que ver con tener peor memoria.",
- "Y un dato curioso: con la edad, se tienen menos déjà vus. ¿Cuándo tuviste el último? Te leo en comentarios. ¿Lo pillas? La próxima vez que lo sientas, es tu cerebro haciendo control de calidad.",
+ "Entras en un sitio por primera vez… y de repente: «esto ya lo he vivido». No es ver el futuro. Es tu cerebro pillándose a sí mismo en un error.",
+ "Entremos en tu cabeza. En el lóbulo temporal, junto a tus recuerdos, hay un sistema que te avisa cuando algo te resulta familiar: «esto me suena». Y una explicación es que, a veces, se dispara sin motivo.",
+ "Entonces la parte frontal, la que comprueba, busca ese recuerdo en el archivo… y no hay nada. Ese choque entre «me suena» y «es la primera vez» es lo que sientes como déjà vu.",
+ "En Escocia lo provocaron en un laboratorio. Oías: cama, almohada, noche… ¿Había alguna palabra con D? No. ¿Y «dormir»? Te suena… pero sabes que no estaba. Y en el escáner se encendió la zona frontal, la que resuelve conflictos, no la de los recuerdos.",
+ "O sea, el déjà vu es tu detector de errores funcionando. Y tranquilo: tener más déjà vus no significa tener peor memoria, y con la edad se tienen menos. ¿Cuándo tuviste el último? Te leo en comentarios. ¿Lo pillas? La próxima vez que lo sientas, es tu cerebro haciendo control de calidad.",
 ]
 text = " ".join(SEG)
 voice = json.load(open("../../assets/voces.json"))["narrador"]

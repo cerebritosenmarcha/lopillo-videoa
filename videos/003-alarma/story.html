@@ -283,6 +283,20 @@ async function buildStory(){
  const ns=new THREE.Mesh(new RoundedBoxGeometry(2.6,2.6,2.6,3,.15),M(0x6b4423,{roughness:.6})); ns.position.set(4.3,1.3,-3.2); room.add(ns);
  const ph=makePhone(); ph.scale.setScalar(.36); ph.position.set(4.3,3.85,-3.3); ph.rotation.set(-.12,-.45,0); room.add(ph); ST.ph=ph;
  ST.t659=phoneTex('6:59','',false); ST.tAl=phoneTex('7:00','ALARMA',true); ph.userData.scr.material.map=ST.t659;
+ ST.wallM=wallM; wallM.transparent=true; ST.winM=win.material; ST.winM.transparent=true;
+ // laboratorio alrededor de tu cama: 15 camas (tú incluido), dos grupos
+ ST.labBeds=[]; ST.tubes=[]; const tubeG=new THREE.CylinderGeometry(.42,.42,2.6,24,1,true), liqG=new THREE.CylinderGeometry(.34,.34,1,20); liqG.translate(0,.5,0);
+ for(let rz=0;rz<3;rz++) for(let cx=-2;cx<=2;cx++){const told=(cx+rz)%2===0; let b;
+  if(cx===0&&rz===0) b=bed; else {b=makeBed(0x8fa3c0); b.position.set(cx*10,0,-rz*13); b.visible=false; room.add(b);}
+  b.userData.told=told; b.userData.home=cx===0&&rz===0; ST.labBeds.push(b);
+  const tg=new THREE.Group(); tg.position.set(cx*10-3.6,3.3,-rz*13-3); room.add(tg);
+  const glass=new THREE.Mesh(tubeG,new THREE.MeshStandardMaterial({color:0xdfefff,roughness:.1,metalness:.1,transparent:true,opacity:.32,side:THREE.DoubleSide,depthWrite:false})); glass.position.y=1.3; tg.add(glass);
+  const blood=new THREE.Mesh(liqG,M(0xb3122b,{roughness:.3})); tg.add(blood); const acth=new THREE.Mesh(liqG,M(0x7dff9a,{emissive:0x2bff6a,emissiveIntensity:.15})); acth.scale.set(1.04,.01,1.04); tg.add(acth);
+  tg.userData={blood,acth,told}; tg.scale.setScalar(.001); ST.tubes.push(tg);}
+ ST.flag=makeFlag(['#000000','#dd0000','#ffcc00'],false); ST.flag.position.set(-24,0,-30); ST.flag.scale.setScalar(.9); room.add(ST.flag);
+ ST.wclock=makeClock(); ST.wclock.scale.setScalar(1.2); ST.wclock.position.set(8,0,-36); room.add(ST.wclock);
+ ST.sci=[0xf4f4f4,0xf4f4f4,0xeaeaea].map((col,i)=>{const h=human(col,1.7); h.position.set(22+i*2,0,5-i*1.5); h.rotation.y=-Math.PI/2; room.add(h); return h;});
+ ST.bub=[]; for(let i=0;i<9;i++){const b=await icon3D(i%3?'message-text':'comment-question',[0x3fb8ff,0xff4fd8,0xffc21a,0x7dff9a,0xff7a1a][i%5],1.1,{depth:2}); b.userData={x:(rnd()-.5)*7,y:7+rnd()*4,z:-2+(rnd()-.5)*3,d:i*.1,ph:rnd()*6}; b.visible=false; room.add(b); ST.bub.push(b);}
  room.updateMatrixWorld(true); ST.H=new THREE.Vector3(); sl.children[1].getWorldPosition(ST.H); ST.H.y+=.17; // el cerebro, en el centro de la cabeza (por encima de la almohada)
  // --- el interior del cuerpo (mundo propio, a la misma escala que la habitación)
  const inner=new THREE.Mesh(new THREE.SphereGeometry(90,48,24),new THREE.ShaderMaterial({side:THREE.BackSide,depthWrite:false,fog:false,
@@ -305,17 +319,20 @@ window.setTL=async x=>{TL=x; await buildStory(); S.traverse(o=>{if(o.isMesh&&o!=
 const L_A=1.95, L_T=.25, D0=v3([0,3,20]);
 const zoomL=(t,Tin)=>t<Tin?L_A*(Tin-t):-L_A*L_T*(1-Math.exp(-(t-Tin)/L_T));
 const BIG=[["casual","no","¿CASUALIDAD?"],["no","entremos","NO<small>tu cuerpo se preparaba</small>"],["reloj","antes","RELOJ<small>circadiano</small>"],["antes","hipo","6:00<small>una hora antes de la alarma</small>"],
- ["hipo","acth","<span style=\"font-size:140px\">HIPÓFISIS</span>"],["acth","viaja","ACTH"],["viaja","supra","ACTH<small>viaja por la sangre</small>"],["supra","cortisol","<span style=\"font-size:104px\">SUPRARRENALES</span>"],["cortisol","motor","CORTISOL<small>te pone en marcha</small>"]];
-const SRCS=[["entremos",1e9,"Fuente: eje hipotálamo-hipófisis-suprarrenal (Clínica Universidad de Navarra); Born y otros, Nature (1999)"]];
+ ["hipo","acth","<span style=\"font-size:140px\">HIPÓFISIS</span>"],["acth","viaja","ACTH"],["viaja","supra","ACTH<small>viaja por la sangre</small>"],["supra","cortisol","<span style=\"font-size:104px\">SUPRARRENALES</span>"],["cortisol","motor","CORTISOL<small>te pone en marcha</small>"],
+ ["como","alem","<span style=\"font-size:120px\">¿CÓMO LO SABEMOS?</span>"],["alem","quince","ALEMANIA<small>el equipo de Jan Born</small>"],["quince","sangre","15<small>voluntarios</small>"],
+ ["sangre","solian","SANGRE<small>durante toda la noche</small>"],["solian","unos","7:00<small>su hora de siempre</small>"],["unos","casi","A LAS 6<small>a unos se lo avisaron</small>"],
+ ["casi","sorpresa","ACTH ↑<small>casi una hora antes</small>"],["sorpresa","esosi","<span style=\"font-size:130px\">POR SORPRESA</span><small>nada</small>"],["esosi","ati","OJO<small>midieron hormonas, no despertares</small>"],["ati","pillas","¿Y A TI?"]];
+
 window.render=(t)=>{const c=TL.cues; const up=new THREE.Vector3(0,1,0); let P,L,base,UP=up.clone(), inside=false;
  const Tin=c.dentro, Tout=c.motor+.85;
  // --- estado del protagonista
- const eyesOpen=t<Tout?seg(t,c.ojos-.1,c.ojos+.15):seg(t,Tout+.45,Tout+.7); ST.eyes.forEach(e=>{e.scale.set(1.25,Math.max(.08,eyesOpen)*1.25,1.25); e.visible=t>=Tout||t<c.entremos+.4;});
- const sit=eio(seg(t,c.desp-.15,c.desp+.55)); const sl=ST.sl; sl.rotation.x=-Math.PI/2*(1-sit); sl.position.set(0,lerp(ST.slPos.y,3.0-1.05*1.25+.35,sit),lerp(ST.slPos.z,-1.1,sit));
- sl.userData.lL.rotation.x=sl.userData.lR.rotation.x=-Math.PI/2*sit; const arm=eio(seg(t,c.desp+.35,c.desp+.9)); sl.userData.aL.rotation.x=sl.userData.aR.rotation.x=-2.7*arm; sl.userData.aL.rotation.z=-.3*arm; sl.userData.aR.rotation.z=.3*arm;
+ const eyesOpen=t<Tout?seg(t,c.ojos-.1,c.ojos+.15):seg(t,Tout+.45,Tout+.7)*(1-seg(t,c.quince+.3,c.quince+.6))+(t>c.final?seg(t,c.final+.05,c.final+.3)*0:0); ST.eyes.forEach(e=>{e.scale.set(1.25,Math.max(.08,eyesOpen)*1.25,1.25); e.visible=t>=Tout||t<c.entremos+.4;});
+ const lie=eio(seg(t,c.quince-.4,c.quince+.5)); const sit=eio(seg(t,c.desp-.15,c.desp+.55))*(1-lie); const sl=ST.sl; sl.rotation.x=-Math.PI/2*(1-sit); sl.position.set(0,lerp(ST.slPos.y,3.0-1.05*1.25+.35,sit),lerp(ST.slPos.z,-1.1,sit));
+ sl.userData.lL.rotation.x=sl.userData.lR.rotation.x=-Math.PI/2*sit; const arm=eio(seg(t,c.desp+.35,c.desp+.9))*(1-eio(seg(t,c.quince-.8,c.quince))); sl.userData.aL.rotation.x=sl.userData.aR.rotation.x=-2.7*arm; sl.userData.aL.rotation.z=-.3*arm; sl.userData.aR.rotation.z=.3*arm;
  const glow=t>=Tout?Math.max(0,1-(t-Tout)/1.6):0; ST.slM.emissive.setHex(glow>0?0xffc21a:0xff9a4a); ST.slM.emissiveIntensity=.02+glow*.7; ST.headM.emissive.copy(ST.slM.emissive); ST.headM.emissiveIntensity=ST.slM.emissiveIntensity;
  ST.headM.opacity=(t>=Tout)?1:1-seg(t,c.entremos+.35,Tin-.3); ST.headM.depthWrite=ST.headM.opacity>.99;
- const ring=(t>=c.suena&&t<c.casual)||(t>=c.movil); ST.ph.userData.scr.material.map=ring?ST.tAl:ST.t659; ST.ph.position.x=4.3+(ring?Math.sin(t*60)*.05:0); ST.ph.rotation.z=ring?Math.sin(t*47)*.05:0;
+ const ring=(t>=c.suena&&t<c.casual)||(t>=c.movil&&t<c.movil+1.3); ST.ph.userData.scr.material.map=ring?ST.tAl:ST.t659; ST.ph.position.x=4.3+(ring?Math.sin(t*60)*.05:0); ST.ph.rotation.z=ring?Math.sin(t*47)*.05:0;
  ST.MI.g.visible=t>c.entremos&&t<Tin;
  // --- reloj interno: la noche pasa deprisa hasta las 6:00 y entonces da la orden
  const hrs=lerp(23,30,eio(seg(t,Tin,c.antes+.2))); [ST.IN,ST.MI].forEach(A=>{A.c.userData.hh.rotation.z=-hrs/12*Math.PI*2; A.c.userData.mh.rotation.z=-(hrs%1)*Math.PI*2; A.c.rotation.z=(t>c.orden&&t<c.orden+.6)?Math.sin(t*45)*.07:0; A.b.rotation.y=Math.sin(t*.8)*.12;});
@@ -334,6 +351,17 @@ window.render=(t)=>{const c=TL.cues; const up=new THREE.Vector3(0,1,0); let P,L,
  // --- suprarrenales: fabrican cortisol (rayos)
  ST.adr.forEach(a=>{a.material.emissiveIntensity=.05+.9*seg(t,c.estas,c.cortisol); a.scale.setScalar(1+.15*Math.max(0,Math.sin((t-c.cortisol)*10))*(t>c.cortisol?Math.exp(-(t-c.cortisol)*1.5):0));});
  ST.bolts.forEach((b,i)=>{const d=t-c.cortisol-b.userData.dl; if(d<0||t>Tout){b.visible=false;return;} b.visible=true; const q=b.userData; b.position.copy(q.a).addScaledVector(q.d,(1-Math.exp(-d*1.6))*q.sp); b.rotation.set(d*3+i,d*2,i); b.scale.setScalar(.75*back(d/.3));});
+ // --- laboratorio
+ const lab=t>Tout?seg(t,c.como+.1,c.como+1.4)*(1-seg(t,c.ati,c.ati+1.1)):0; ST.wallM.opacity=1-lab; ST.winM.opacity=1-lab; ST.wallM.depthWrite=lab<.01;
+ ST.labBeds.forEach((b,i)=>{if(b.userData.home) return; const a=back((lab-(i%5)*.06)/.5); b.visible=lab>.01; b.scale.setScalar(Math.max(.001,Math.min(1,a)));});
+ const grp=seg(t,c.unos+.4,c.unos+1.2)*(1-seg(t,c.ati,c.ati+1));
+ ST.labBeds.forEach(b=>{const bl=b.userData.bl.material; if(b.userData.home&&!ST.homeBl) ST.homeBl=bl.color.getHex(); const base=b.userData.home?ST.homeBl:0x3fb8ff; const tgt=b.userData.told?0x3fb8ff:0x5d6270; bl.color.setHex(base).lerp(new THREE.Color(tgt),grp);});
+ ST.tubes.forEach((tg,i)=>{const u=tg.userData; const sc=back((seg(t,c.sangre-.2+i*.03,c.sangre+.4+i*.03)))*(1-seg(t,c.ati,c.ati+.6)); tg.scale.setScalar(Math.max(.001,sc)); tg.visible=sc>.01;
+  u.blood.scale.y=Math.max(.01,1.1*eio(seg(t,c.sangre,c.sangre+1.2))); const ac=u.told?eio(seg(t,c.casi+.2+i*.02,c.casi+2.2)):.04*seg(t,c.casi,c.casi+1); u.acth.scale.y=Math.max(.01,ac*2.2); u.acth.position.y=0;});
+ const sciIn=eio(seg(t,c.alem,c.alem+1.6)); ST.sci.forEach((h,i)=>{h.visible=lab>.01; h.position.x=lerp(24+i*2,9+i*2.2,sciIn); walk(h,t,7,i,.5*(1-sciIn)+.05); h.rotation.y=lerp(-Math.PI/2,-.6,sciIn);});
+ ST.flag.visible=ST.wclock.visible=lab>.01; ST.flag.scale.setScalar(.9*Math.max(.001,back((lab-.3)/.5))); if(ST.flag.userData.fl) waveFlag(ST.flag.userData.fl,t);
+ const wh=t<c.unos?7:(t<c.casi?lerp(7,6,eio(seg(t,c.unos,c.unos+.8))):lerp(4.85,5.1,seg(t,c.casi,c.sorpresa))); ST.wclock.userData.hh.rotation.z=-wh/12*Math.PI*2; ST.wclock.userData.mh.rotation.z=-(wh%1)*Math.PI*2;
+ ST.bub.forEach(b=>{const q=b.userData, d=t-c.ati-.6-q.d; b.visible=d>0&&t<c.pillas+.2; const kk=back(d/.4)*(1-seg(t,c.pillas-.2,c.pillas+.2)); b.scale.setScalar(Math.max(.01,kk)*1.1); b.position.set(q.x,q.y+Math.sin(t*2+q.ph)*.3,q.z); b.lookAt(cam.position);});
  // --- CÁMARA (una sola toma continua)
  const C1=tt=>[ROOM.clone().add(v3([lerp(4.6,3.9,tt/2.6),lerp(7.6,7.0,tt/2.6),lerp(5.6,4.4,tt/2.6)])),ROOM.clone().add(v3([2.1,3.4,-3.1]))];
  const dive=tt=>{const off=D0.clone().multiplyScalar(Math.exp(zoomL(tt,Tin))*KM).applyEuler(RMI); return [ST.H.clone().add(off),ST.H.clone()];};
@@ -353,11 +381,15 @@ window.render=(t)=>{const c=TL.cues; const up=new THREE.Vector3(0,1,0); let P,L,
   else {const lp=ST.curve.getPointAt(Math.min(1,Math.max(0,lead??1))); const fc=[lp.clone().add(v3([7,2.5,9])),lp.clone()]; cc=mix(fc,adrCam(t),eio(seg(t,c.supra,c.supra+.9)));
    if(t>c.motor){const k2=eio(seg(t,c.motor,Tout)); cc[0].add(v3([0,4,14]).multiplyScalar(k2));}}
   base=cc[1];}
- else {cc=RC(t); base=ROOM;}
+ else if(t<c.como){cc=RC(t); base=ROOM;}
+ else {const R=a=>ROOM.clone().add(v3(a)); const K=[[c.como,...RC(c.como)],[c.alem+.9,R([14,26,30]),R([0,0,-12])],[c.sangre-.3,R([-8,24,28]),R([0,0,-12])],[c.sangre+.8,R([2.5,8.5,8]),R([-3.6,4.6,-3])],[c.solian-.1,R([3,8.2,7]),R([-3.6,4.6,-3])],
+   [c.solian+.9,R([5,9.5,-13]),R([8,8.4,-36])],[c.unos,R([4.6,9.3,-14.5]),R([8,8.4,-36])],[c.unos+1.1,R([0,30,24]),R([0,0,-13])],[c.casi,R([-3,31,22]),R([0,0,-13])],[c.casi+.9,R([2,8,8]),R([-3.6,4.8,-3])],[c.sorpresa,R([2.6,7.6,6.8]),R([-3.6,4.8,-3])],
+   [c.sorpresa+.9,R([12,8,8]),R([6.4,4.8,-3])],[c.esosi,R([12.5,7.6,6.6]),R([6.4,4.8,-3])],[c.esosi+1.1,R([0,34,36]),R([0,0,-13])],[c.ati,R([3,35,34]),R([0,0,-13])],[c.ati+1.4,...C1(0).map((v,j)=>j?v:v.clone().sub(ROOM).multiplyScalar(1.06).add(ROOM))],[c.pillas+1.1,...C1(0)],[1e9,...C1(0)]];
+   let j=0; while(j<K.length-2&&t>=K[j+1][0]) j++; const e=eio(seg(t,K[j][0],K[j+1][0])); cc=[K[j][1].clone().lerp(K[j+1][1],e),K[j][2].clone().lerp(K[j+1][2],e)]; base=ROOM;}
  P=cc[0]; L=cc[1];
  let pk=0; TL.punch.forEach(v=>{const d=t-v; if(d>=0&&d<.5) pk=Math.max(pk,Math.exp(-d*7));});
  cam.up.copy(UP); cam.position.copy(P); cam.position.x+=Math.sin(t*70)*pk*.12; cam.position.y+=Math.cos(t*61)*pk*.12; cam.lookAt(L); cam.near=(t>c.entremos&&t<Tin)?0.002:0.1; cam.fov=50-pk*3; cam.updateProjectionMatrix();
- const kb=inside?base:ROOM; key.position.set(kb.x+8,kb.y+(inside?18:30),kb.z+16); keyT.position.set(kb.x,kb.y+(inside?0:3),kb.z); key.intensity=inside?60:150; fill.position.set(kb.x-16,kb.y+12,kb.z-8); fillT.position.copy(kb); rim.position.set(kb.x-6,kb.y+6,kb.z-6);
+ const kb=inside?base:(t>c.como?new THREE.Vector3(L.x,0,L.z):ROOM); key.position.set(kb.x+8,kb.y+(inside?18:30),kb.z+16); keyT.position.set(kb.x,kb.y+(inside?0:3),kb.z); key.intensity=inside?60:150; fill.position.set(kb.x-16,kb.y+12,kb.z-8); fillT.position.copy(kb); rim.position.set(kb.x-6,kb.y+6,kb.z-6);
  parts.position.set(base.x,base.y-(inside?15:0),base.z); for(let i=0;i<PN;i++){const q=pb[i]; pp[i*3]=q[0]+Math.sin(t*.25+q[3]*9)*.8; pp[i*3+1]=(q[1]+t*(.25+q[3]*.4))%35; pp[i*3+2]=q[2];} pg.attributes.position.needsUpdate=true;
  parts.material.color.setHex(inside?0xff6a7a:0xffd9a0);
  sky.position.copy(cam.position);
@@ -372,7 +404,7 @@ window.render=(t)=>{const c=TL.cues; const up=new THREE.Vector3(0,1,0); let P,L,
  document.getElementById('hook').innerHTML=t<c.casual?'¿ANTES DE<br><b>LA ALARMA?</b>':'';
  const ws=TL.words; let ci=ws.findIndex(w=>t<w.t1+0.04);
  document.getElementById('cap').innerHTML=ci>=0?'<span class="'+(ws[ci].k?'k':'')+'" style="opacity:'+(t>=ws[ci].t0-0.04?1:.35)+'">'+ws[ci].w+'</span>':'';
- const sr=SRCS.find(s=>t>=c[s[0]]); document.getElementById('src').textContent=(sr&&t<Tout)?sr[2]:'';
+ document.getElementById('src').textContent=''; const ec=t>=c.pillas&&t<c.final; document.getElementById('endc').style.opacity=ec?ease((t-c.pillas)/.3)*(1-ease((t-c.final+.25)/.25)):0; if(ec){document.getElementById('cap').innerHTML='';document.getElementById('big').innerHTML='';}
  document.getElementById('bar').style.width=(100*t/TL.end).toFixed(2)+'%';
 };
 

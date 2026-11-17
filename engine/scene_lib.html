@@ -253,7 +253,7 @@ window.render=(t)=>{
  document.getElementById('big').style.transform='scale('+(1+pk*.08)+')';
  const ws=TL.words; let ci=ws.findIndex(w=>t<w.t1+0.04); const showCap=ci>=0&&!ec&&!loopEnd;
  document.getElementById('cap').innerHTML=showCap?'<span class="'+(ws[ci].k?'k':'')+'" style="opacity:'+(t>=ws[ci].t0-0.04?1:.35)+'">'+ws[ci].w+'</span>':'';
- document.getElementById('src').textContent=ec?'':r.src;
+ document.getElementById('src').textContent=''; // sin fuente en pantalla (pedido del dueño)
  document.getElementById('endc').style.opacity=ec?ease((t-c.pillas)/.3)*(1-ease((t-c.loop+.25)/.25)):0;
  document.getElementById('bar').style.width=(100*t/TL.end).toFixed(2)+'%';
 };

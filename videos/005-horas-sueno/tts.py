@@ -1,10 +1,10 @@
 import json, base64, urllib.request, sys
 SEG = [
- "Dormir ocho horas no vale para todo el mundo. Un bebé necesita casi el doble. Y un adolescente, más que tú.",
- "La Fundación Nacional del Sueño de Estados Unidos reunió a expertos y fijó cuánto hay que dormir según la edad. Agárrate.",
- "Un recién nacido: de catorce a diecisiete horas al día. Un niño de seis a trece años: de nueve a once horas. Un adolescente: de ocho a diez. Sí: un recién nacido se pasa durmiendo más de medio día.",
- "Y los adultos, de dieciocho a sesenta y cuatro años: de siete a nueve horas. A partir de los sesenta y cinco, de siete a ocho. O sea, el famoso ocho está justo en medio del rango de un adulto.",
- "O sea, si eres adulto y duermes cinco o seis horas, vas por debajo de lo recomendado, aunque te hayas acostumbrado. Y ojo: son rangos orientativos, cada persona es un poco distinta. ¿Cuántas horas duermes tú? Te leo en comentarios. ¿Lo pillas? Un bebé duerme casi el doble que tú... y tiene sus motivos.",
+ "Dormir ocho horas no vale para todo el mundo. Un bebé necesita casi el doble… y un adolescente, más que tú. Mira cómo cambia tu sueño a lo largo de la vida.",
+ "Cuando naciste dormías de catorce a diecisiete horas al día: más de medio día durmiendo. Creces, y entre los seis y los trece años bastan de nueve a once.",
+ "Llega la adolescencia: de ocho a diez horas. Sí, más de lo que duermen casi todos los adultos. Y de los dieciocho a los sesenta y cuatro años, de siete a nueve. El famoso ocho está justo en medio.",
+ "A partir de los sesenta y cinco, de siete a ocho. Lo dice la Fundación Nacional del Sueño de Estados Unidos, después de reunir a un panel de expertos.",
+ "O sea: si eres adulto y duermes cinco o seis horas, vas por debajo de lo recomendado, aunque te hayas acostumbrado. Ojo, son rangos orientativos y cada persona es distinta. ¿Cuántas horas duermes tú? Te leo en comentarios. ¿Lo pillas? Un bebé duerme casi el doble que tú… y tiene sus motivos.",
 ]
 text = " ".join(SEG)
 voice = json.load(open("../../assets/voces.json"))["narrador"]

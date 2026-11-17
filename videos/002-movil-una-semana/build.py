@@ -1,45 +1,17 @@
-import json, re
-A = json.load(open("align.json")); text = A["text"]; st = A["start"]; en = A["end"]
-segs, pos = [], 0
-for s in A["segments"]:
-    i = text.index(s, pos); segs.append((i, i + len(s))); pos = i + len(s)
-segT = [st[a] for a, b in segs]
-def cue(seg, sub):
-    a, b = segs[seg]; i = text.index(sub, a); assert i < b, sub; return round(st[i], 3)
-# palabras clave (subtítulo en amarillo) e iconos de complemento
-ICON = {"móvil":("cellphone","B"),"cerebro":("brain","P"),"escáner":("radar","B"),"semanas":("calendar-week","W"),"días":("calendar-today","W"),
- "alemania":("map-marker","R"),"jóvenes":("account-group","B"),"horas":("clock-outline","W"),"resonancia":("radar","B"),"fotos":("image-multiple","P"),
- "recompensa":("star","G"),"antojos":("candy","P"),"comida":("hamburger","G"),"humor":("emoticon-neutral","W"),"distinto":("flash","G"),
- "unidos":("map-marker","R"),"personas":("account-group","B"),"internet":("web-off","R"),"llamar":("phone","G"),"mensajes":("message-text","B"),"redes":("web-off","R"),
- "ciento":("percent","G"),"atención":("bullseye-arrow","G"),"mental":("head-heart","P"),"bienestar":("emoticon-happy","G"),"años":("timer-sand","W"),"después":("calendar-check","G"),
- "cuatro":("account-multiple","B"),"podrías":("help-circle","G"),"comentarios":("comment-text-multiple","B"),"pillas":("lightbulb-on","G")}
-norm = lambda w: w.lower().strip("¿?¡!.,:…")
-words = []
-for m in re.finditer(r"\S+", text):
-    seg = next(k for k, (a, b) in enumerate(segs) if a <= m.start() < b)
-    w = m.group(); words.append({"w": w, "t0": st[m.start()], "t1": en[m.end()-1], "seg": seg, "k": norm(w) in ICON})
-cues = {"escaner": cue(0,"lo han visto"), "dossem": cue(0,"Y a las dos"), "res": cue(1,"Antes y después"), "fotos": cue(1,"y les enseñaron"),
- "reward": cue(2,"Cambió"), "humor": cue(2,"Ojo"), "distinto": cue(2,"pero su cerebro"),
- "n467": cue(3,"cuatrocientas"), "block": cue(3,"bloquearon"), "llamar": cue(3,"Podían"), "redes": cue(3,"pero nada"),
- "p91": cue(4,"el noventa"), "diez": cue(4,"recuperar diez"), "seguia": cue(4,"Y la mejora"),
- "cuarta": cue(5,"solo una de cada"), "pillas": cue(5,"¿Lo pillas"), "loop": cue(5,"Prueba tres")}
-# complementos: solo donde suman intriga o emoción
-KEEP = {"alemania","antojos","humor","unidos","redes","años"}
-pops=[]; last={}
-for w in words:
-    n=norm(w["w"])
-    if n in ICON and n in KEEP and w["t0"]-last.get(n,-9)>2.5:
-        pops.append({"t":round(w["t0"],3),"icon":ICON[n][0],"c":ICON[n][1]}); last[n]=w["t0"]
-# plan de escenas: (bloque, primeras palabras, escena)
-SC=[(0,"Tres días","phone_off"),(0,"y tu cerebro","brain"),(0,"lo han visto","mri_scan"),(0,"Y a las dos","calendar14"),
- (1,"En Alemania","flag_de"),(1,"pidieron","youth"),(1,"durante setenta","clock72"),(1,"Antes y después","mri_photos"),
- (2,"¿Resultado?","brain_reward"),(2,"las que se encienden","food"),(2,"Ojo","mood"),(2,"pero su cerebro","brain_diff"),
- (3,"Ahora","flag_us"),(3,"cuatrocientas","crowd467"),(3,"bloquearon","phone_block"),(3,"Podían","call_msg"),(3,"pero nada","no_social"),
- (4,"Y el noventa","crowd91"),(4,"atención","focus"),(4,"En atención","hourglass"),(4,"Y la mejora","calendar_after"),
- (5,"Eso sí","quarter"),(5,"¿Tú podrías?","you_phone"),(5,"Te leo","comments"),(5,"Prueba tres","phone_loop")]
-shots=[{"t":(0 if i==0 else cue(s,sub)),"n":n,"seg":s} for i,(s,sub,n) in enumerate(SC)]
-punch = [cues[k] for k in ["escaner","dossem","reward","distinto","n467","p91","diez","cuarta"]]
-end = en[-1] + 0.6
-json.dump({"fps": 30, "frames": int(end*30), "segT": segT, "words": words, "cues": cues, "punch": punch, "pops": pops, "shots": shots, "ding": [cues["p91"]], "end": end}, open("timeline.json","w"), ensure_ascii=False)
-print(len(pops),"complementos;", len(shots), "escenas;", round(end,1), "s")
-for s in shots: print(round(s["t"],1), s["n"])
+# 002 v2 — historia encadenada: guardas el móvil en un cajón. Escena: story.html (la versión anterior está en build_v1.py / scene.html)
+import sys, os; sys.path.insert(0, '../../engine'); from build_lib import make
+CUT = float(os.environ['CUT']) if os.environ.get('CUT') else None
+ICON={"móvil":("cellphone","B"),"cajón":("archive","W"),"días":("calendar","W"),"cerebro":("brain","P"),"distinto":("flash","G"),"semanas":("calendar","W"),"alemania":("map-marker","R"),
+ "jóvenes":("account-group","B"),"imprescindible":("phone","G"),"horas":("clock","W"),"cabeza":("head","B"),"fotos":("image","P"),"móviles":("cellphone","B"),"recompensa":("star","Y"),
+ "placer":("heart","P"),"ganas":("candy","P"),"humor":("emoticon-neutral","W"),"dentro":("brain","P"),"estudio":("flask","B"),"personas":("account-group","B"),"internet":("web-off","R"),
+ "llamadas":("phone","G"),"mensajes":("message","G"),"¿resultado?":("chart-bar","Y"),"ciento":("percent","G"),"atención":("target","G"),"mental":("head-heart","P"),"bienestar":("emoticon-happy","G"),
+ "años":("timer-sand","W"),"edad":("account","W"),"cuarta":("numeric-4","R"),"aguantó":("timer","R"),"aguantarías":("help","Y"),"comentarios":("comment","B"),"pillas":("lightbulb-on","Y")}
+KEEP=set()
+S=[dict(seg=0,at="",type="drawer"),dict(seg=0,at="y en solo",type="days"),dict(seg=0,at="Y a las dos",type="weeks"),dict(seg=1,at="En Alemania",type="group"),dict(seg=1,at="Entremos",type="dive"),
+   dict(seg=1,at="al ver",type="reward"),dict(seg=2,at="Eso sí",type="mood"),dict(seg=3,at="Otro estudio",type="crowd"),dict(seg=3,at="¿Resultado?",type="result"),dict(seg=3,at="Y la mejora",type="years"),
+   dict(seg=4,at="Ojo",type="quarter"),dict(seg=4,at="¿Tú",type="ask"),dict(seg=4,at="¿Lo pillas?",type="end"),dict(seg=4,at="Tu cerebro empieza",type="loop")]
+CUES={"tres":(0,"y en solo"),"cerebro":(0,"tu cerebro"),"dos":(0,"Y a las dos"),"alem":(1,"En Alemania"),"jov":(1,"veinticinco"),"impr":(1,"solo para"),"h72":(1,"durante setenta"),
+ "entremos":(1,"Entremos"),"dentro":(1,"al ver"),"zonas":(1,"cambiaba"),"placer":(1,"las del placer"),"esosi":(2,"Eso sí"),"humor":(2,"no notaron"),"elcambio":(2,"El cambio"),
+ "otro":(3,"Otro estudio"),"p467":(3,"cuatrocientas"),"bloq":(3,"bloquearon"),"llam":(3,"Llamadas"),"res":(3,"¿Resultado?"),"p91":(3,"El noventa"),"mejora":(3,"Y la mejora"),"diez":(3,"unos diez"),
+ "ojo":(4,"Ojo"),"cuarta":(4,"una cuarta"),"tu":(4,"¿Tú"),"leo":(4,"Te leo"),"pillas":(4,"¿Lo pillas?"),"final":(4,"Tu cerebro empieza")}
+make(ICON,KEEP,S,CUES,["tres","p467","p91","diez","cuarta"],["p91"],cut=CUT)

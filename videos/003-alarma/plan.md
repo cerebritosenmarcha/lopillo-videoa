@@ -15,6 +15,7 @@
 | 7 | La ACTH viaja por la sangre hasta las suprarrenales | Las moléculas bajan por un vaso sanguíneo junto a los glóbulos rojos | Llegan a las glándulas suprarrenales | Seguimiento de la primera molécula |
 | 8 | y estas fabrican cortisol | Las suprarrenales se encienden y disparan rayos (cortisol) | El cortisol inunda el cuerpo | Plano de las dos glándulas, alejándose |
 | 9 | Tu cuerpo enciende el motor… y te despiertas antes que el móvil | La energía llena la pantalla y salimos: estás brillando, te incorporas y estiras los brazos; después suena el móvil | Cierra el bucle de la escena 1 | Plano de la cama con la mesilla |
-| 10–12 | (resto del guion) | Al alejarse la cámara, tu cama resulta ser una de las 15 del laboratorio de Jan Born → extracción de sangre → el nivel de ACTH sube en los tubos antes de las 6 → por sorpresa, nada → vuelta a tu habitación con la pregunta | | |
-
-Demo: escenas 1–9 (0–25,6 s). Escena: `story.html`. Para la demo, `CUT=25.55` (variable de entorno).
+| 10 | ¿Y cómo lo sabemos? En Alemania, el equipo de Jan Born… | La cámara se aleja, las paredes desaparecen y tu cama resulta ser una de las 15 del laboratorio; bandera y científicos | Tú te vuelves a tumbar como voluntario | Grúa hacia atrás y arriba |
+| 11 | y les sacó sangre… Solían levantarse sobre las siete. A unos les dijeron: a las seis | Sobre cada cama, un tubo se llena de sangre; el reloj de pared marca las 7 y pasa a las 6; las mantas se tiñen (azul: avisados; gris: sorpresa) | Dos grupos para comparar | Tubo → reloj → plano cenital |
+| 12 | Y casi una hora antes, su ACTH ya estaba subiendo. A los que despertaron por sorpresa… nada | Sube el nivel verde (ACTH) en los tubos azules; en los grises, no | Conclusión | Tubo azul → tubo gris |
+| 13 | Eso sí… ¿A ti te pasa? ¿Lo pillas? Tu cuerpo ya sabe… | Plano general; vuelven las paredes; burbujas de comentarios; átomo; plano igual al del principio | Bucle | Vuelta al plano 1 |

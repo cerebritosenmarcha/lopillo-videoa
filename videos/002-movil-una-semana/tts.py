@@ -1,11 +1,10 @@
 import json, base64, urllib.request, sys
 SEG = [
- "Tres días sin móvil… y tu cerebro ya no es el mismo. No es un decir: lo han visto en un escáner. Y a las dos semanas pasa algo todavía más loco.",
- "En Alemania, investigadores de Heidelberg y Colonia pidieron a veinticinco jóvenes usar el móvil solo para lo imprescindible durante setenta y dos horas. Antes y después, los metieron en una resonancia y les enseñaron fotos de móviles.",
- "¿Resultado? Cambió la actividad en las zonas de la recompensa, las de los antojos, las que se encienden con la comida. Ojo: ellos no notaron cambios de humor, pero su cerebro reaccionaba distinto.",
- "Ahora, el experimento grande. En Estados Unidos, cuatrocientas sesenta y siete personas bloquearon el internet del móvil durante dos semanas. Podían llamar y mandar mensajes, pero nada de redes ni navegador.",
- "Y el noventa y uno por ciento mejoró en al menos una cosa: atención, salud mental o bienestar. En atención, los investigadores lo comparan con recuperar diez años de concentración perdida por la edad. Y la mejora seguía dos semanas después.",
- "Eso sí, solo una de cada cuatro personas aguantó las dos semanas enteras. ¿Tú podrías? Te leo en comentarios. ¿Lo pillas? Prueba tres días sin móvil… y mira qué le pasa a tu cerebro.",
+ "Guardas el móvil en un cajón… y en solo tres días, tu cerebro ya reacciona distinto. Y a las dos semanas, cambia algo más.",
+ "En Alemania, veinticinco jóvenes usaron el móvil solo para lo imprescindible durante setenta y dos horas. Entremos en su cabeza: al ver fotos de móviles, cambiaba la actividad de las zonas de recompensa, las del placer y las ganas.",
+ "Eso sí: ellos no notaron cambios de humor. El cambio estaba dentro, no en cómo se sentían.",
+ "Otro estudio fue más lejos: cuatrocientas sesenta y siete personas bloquearon el internet del móvil dos semanas. Llamadas y mensajes, sí. ¿Resultado? El noventa y uno por ciento mejoró en atención, salud mental o bienestar. Y la mejora de atención equivalía a quitarse unos diez años de deterioro por la edad.",
+ "Ojo: solo alrededor de una cuarta parte aguantó las dos semanas enteras. ¿Tú aguantarías tres días? Te leo en comentarios. ¿Lo pillas? Tu cerebro empieza a cambiar en cuanto guardas el móvil en el cajón.",
 ]
 text = " ".join(SEG)
 voice = json.load(open("../../assets/voces.json"))["narrador"]

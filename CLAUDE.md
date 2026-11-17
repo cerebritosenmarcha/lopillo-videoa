@@ -11,18 +11,21 @@ Este repositorio produce los vídeos de **¡Lo Pillo!** (Instagram @lopillocienc
 
 ## El estilo de vídeo (decidido con el dueño, no cambiar sin que lo pida)
 
-**Referencia fija de estilo y calidad: los vídeos 003, 004 y 005** (aprobados por el dueño el 17/11/2026). Todos los vídeos nuevos deben verse como ellos: misma biblioteca de escenas, misma iluminación, misma nitidez y mismo ritmo.
+**Estilo de historia encadenada** (aprobado por el dueño el 17/11/2026). Referencias: `videos/003-alarma`, `004-deja-vu`, `005-horas-sueno` y `002-movil-una-semana`, todos con `story.html` y `plan.md`.
 
-1. **Vertical 1080×1920, 30 fps. Duración: entre 50 y 60 s por lo general, y nunca más de 1 min 5 s (65 s).** El vídeo 001 dura 75 s porque se hizo antes de esta regla.
-2. **El protagonista de la pantalla es el objeto real del que habla el narrador en ese momento.** Si dice «banco», se ve un edificio de banco; si dice «coche», un coche que circula. No formas geométricas abstractas. Cuando la frase cambia de tema, cambia la figura principal (unas 25–30 escenas por vídeo).
-3. **Cada objeto actúa** según la frase: la caja fuerte se abre vacía, los billetes salen volando, el banco se derrumba, la gente corre al cajero…
-4. **Complementos** (iconos 3D pequeños alrededor): **pocos**, unos 10–12 por vídeo, solo donde añaden intriga o emoción (pánico, rumor, caída, límite…). Nunca repiten el objeto principal. Se controlan con el conjunto `KEEP` de `build.py`.
-5. **Look:** fondo casi negro, foco de luz cálida sobre cada escena, colores muy vivos solo en lo importante (dorado para el dinero, azul eléctrico, fucsia, rojo para el peligro). El dueño quiere ir variando colores: cambia la paleta cuando lo pida.
-6. **Cámara siempre en movimiento** (giro o acercamiento), destello y «whoosh» en cada cambio de escena, pequeño golpe de cámara en los datos fuertes.
-7. **Texto:** subtítulo de **una palabra** cada vez (palabras clave en amarillo), cifras grandes arriba en los datos clave, fuente pequeña abajo en los datos de salud, dinero y noticias.
-8. **Gancho en el primer segundo:** una afirmación que choca o una cifra imposible (no una pregunta genérica). Bucle abierto en los primeros 10 s.
-9. **Cierre:** pregunta para comentarios, «¿Lo pillas?» con el átomo, y la última frase enlaza con la primera para que el vídeo haga bucle.
-10. **Sonido:** música suave generada por `engine/audio.py` (sin derechos de autor) que baja sola cuando habla el narrador, «whoosh» en los cambios, golpe suave en los datos y «clin» en el momento bombilla.
+1. **Vertical 1080×1920, 30 fps. Duración: entre 50 y 60 s por lo general, y nunca más de 1 min 5 s (65 s).**
+2. **Un protagonista:** «tú», el muñeco naranja (`human(0xff9a4a,1.6)` con ojos), el mismo en todos los vídeos y durante todo el vídeo. Todo le pasa a él.
+3. **Reacción en cadena:** cada escena **provoca** la siguiente (el reloj interno da la orden → sale la hormona → viaja por la sangre…). Nada aparece sin causa. Unas **10–12 escenas** de unos 5 s.
+4. **Una sola toma continua:** sin cortes ni destellos. La cámara se mueve siempre y conecta las escenas con travelling, seguimiento, zoom continuo o transformación. Los escenarios evolucionan; no se salta de un sitio a otro sin mostrar cómo se llega.
+   - **Entrar en el cuerpo o la cabeza:** zoom continuo. La cabeza se vuelve transparente, dentro hay una copia en miniatura del interior (escala `KM=0.05`), la cámara se acerca de forma exponencial y, en el instante en que encaja, pasa al interior a tamaño real (mira `dive`/`camIn` en `003-alarma/story.html`).
+   - **Salir:** el zoom inverso (`LOUT`, como en el 004 y el 002) o un fundido de la energía que llena la pantalla (003).
+   - **Revelar:** alejar la cámara y descubrir que el sitio era otro, como la habitación que resulta ser el laboratorio del 003.
+5. **Objetos reales y reconocibles** que actúan según la frase; nada de formas abstractas. Los textos que explican van superpuestos (cifra grande arriba y subtítulo de una palabra), no dentro de la animación.
+6. **Look:** fondo casi negro, foco cálido, colores vivos solo en lo importante, sin halo (nitidez del paso 8). Dentro del cuerpo, fondo granate o morado oscuro.
+7. **Texto:** subtítulo de una palabra (palabras clave en amarillo) y cifras grandes arriba. **No se pone la fuente en pantalla** (pedido del dueño): las fuentes van solo en el texto de la publicación y en `fuentes.md`.
+8. **Gancho en el primer segundo** (afirmación que choca o cifra imposible) y bucle abierto en los primeros 10 s.
+9. **Cierre:** pregunta para comentarios (burbujas), «¿Lo pillas?» con el átomo, y la última frase vuelve al plano del principio para que el vídeo haga bucle.
+10. **Sonido:** música de `engine/audio.py`, «whoosh» en cada escena del plan, golpe suave en los datos y «clin» en la revelación.
 
 ## La voz
 
@@ -41,13 +44,18 @@ Este repositorio produce los vídeos de **¡Lo Pillo!** (Instagram @lopillocienc
 ## Cómo se hace un vídeo
 
 1. **Elige el tema:** el primero de la «Cola de producción» de `temas.md` que no esté en `publicados.md`. Respeta el orden; la reserva solo cuando la cola se acabe. La cola está ordenada por lo que más visualizaciones consigue en este tipo de vídeos (ver «Qué funciona» abajo). Si el tema que toca es de la misma familia que los dos vídeos anteriores (por ejemplo, un tercero seguido sobre sueño), salta al siguiente y deja ese para después.
-2. Crea `videos/NNN-slug/` copiando de `videos/003-alarma/` (referencia de estilo y calidad).
+2. Crea `videos/NNN-slug/` copiando `tts.py` de `videos/003-alarma/`.
 3. **Investiga** y escribe `fuentes.md`.
-4. **Guion** en `tts.py` (lista `SEG`, una entrada por bloque) y ejecuta `python3 tts.py` → `voz.mp3` y `align.json`.
-5. **Plan de escenas** en `build.py` (lista `SC`: bloque, primeras palabras de la frase, nombre de escena), los `cues` de cifras, el conjunto `KEEP` de complementos y la lista `ding` (momentos del «clin» de bombilla, normalmente la revelación principal) que se guarda en `timeline.json`.
-6. **Escenas:** copia `engine/scene_lib.html` como `scene.html` y describe las escenas en `build.py` con `engine/build_lib.py` (`make(ICON, KEEP, SCENES, CUES, PUNCH, DING)`; mira `videos/003-alarma/build.py` como ejemplo). Tipos disponibles: `icon` (cualquiera de los más de 7.000 iconos de `@mdi/svg` en 3D), `phone`, `clock`, `calendar`, `flag`, `mri`, `crowd`, `people`, `bed`, `brain`, `comments`, con `extra` para iconos secundarios, `big`, `src`, `cam` y `hook`. Si un tema necesita un objeto que no existe (banco, coche, casa…), añade su tipo a `scene_lib.html` (los constructores del vídeo 001 sirven de modelo) y súbelo al repositorio para los siguientes vídeos.
-7. Revisa fotogramas sueltos con `PORT=8780 node ../../engine/render.js 1.5,10,20` (crea `check_*.png`) y corrige encuadres antes del render completo.
-8. Render completo: `engine/make.sh videos/NNN-slug` → `video.mp4` (unos 60 min). Calidad estándar: supermuestreo 1,5× (`SS=1.5`, se reduce a 1080×1920 con lanczos), sombras suaves (`key.castShadow`, `S.traverse` que activa `castShadow/receiveShadow`) y CRF 16. No uses `RoomEnvironment` como mapa de entorno: lava los colores y triplica el tiempo. **Nitidez (pedido del dueño):** brillo contenido — bloom 0.18/0.3/0.85, `emissiveIntensity` bajo (0.05 en iconos, 0.02 en personas), exposición 0.95 y `unsharp` en el encode. No vuelvas a subir el brillo: las figuras deben verse nítidas, sin halo.
+4. **Guion encadenado** en `tts.py` (lista `SEG`): escrito para que cada frase cause la siguiente, en segunda persona («tú»). Ejecuta `python3 tts.py` → `voz.mp3` y `align.json`.
+5. **`plan.md`** antes de animar: una tabla con frase, qué pasa, causa → efecto que lleva a la siguiente, cámara y qué se conserva.
+6. **`build.py`** (como el del 003): `SCENES` con una entrada por escena del plan (dan los «whoosh»), `CUES` con las palabras que disparan cada acción, `PUNCH` y `DING`. **`story.html`** = `engine/scene_lib.html` con el código de la historia antes de `window.ready=true;` (construye el mundo en `buildStory()` y lo anima en `window.render(t)` con los `TL.cues`). Toma como base el `story.html` del vídeo de referencia más parecido. Trampas conocidas:
+   - **Coordenadas:** lo que añadas a `room` va en coordenadas locales; lo que se coloca con posiciones del mundo (`getWorldPosition`) va en `S`.
+   - **Nombres:** no llames `R` a ninguna variable dentro de `render`, porque es el renderizador.
+   - **Manchas negras:** dentro del cuerpo desactiva el resplandor (`bloom.enabled=!inside`) y oculta las luces que no se usen (`visible=false`, no `intensity=0`). Si no, aparecen manchas negras.
+   - **Cerebro en miniatura:** no puede quedar dentro de la almohada ni de otro objeto. Quita sus sombras.
+   - **Demo:** `CUT=25 python3 build.py` genera una versión recortada para enseñar.
+7. Revisa fotogramas sueltos con `SCENE=story.html PORT=8780 SS=1 node ../../engine/render.js 1.5,10,20` (crea `check_*.png`), sobre todo en mitad de cada transición, y corrige encuadres antes del render completo.
+8. Render completo: **borra antes `frames/`** (el render reutiliza los fotogramas que ya existen) y lanza `SCENE=story.html engine/make_par.sh videos/NNN-slug 4` → `video.mp4` (4 procesos a la vez, unos 25–30 min). Calidad estándar: supermuestreo 1,5× (`SS=1.5`, se reduce a 1080×1920 con lanczos), sombras suaves (`key.castShadow`, `S.traverse` que activa `castShadow/receiveShadow`) y CRF 16. No uses `RoomEnvironment` como mapa de entorno: lava los colores y triplica el tiempo. **Nitidez (pedido del dueño):** brillo contenido — bloom 0.18/0.3/0.85, `emissiveIntensity` bajo (0.05 en iconos, 0.02 en personas), exposición 0.95 y `unsharp` en el encode. No vuelvas a subir el brillo: las figuras deben verse nítidas, sin halo.
 9. **Sube el vídeo** a la rama `media` del repositorio (rama huérfana solo para mp4; las *releases* de GitHub no están permitidas en estas sesiones):
    `git clone --depth 1 --branch media https://github.com/cerebritosenmarcha/lopillo-videoa /home/user/lopillo-media`, copia `video.mp4` como `NNN-slug.mp4`, commit y push.
    URL pública: `https://raw.githubusercontent.com/cerebritosenmarcha/lopillo-videoa/media/NNN-slug.mp4`.

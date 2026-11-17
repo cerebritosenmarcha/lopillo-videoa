@@ -1,35 +1,20 @@
-import sys; sys.path.insert(0, '../../engine'); from build_lib import make
-R,Y,B,P,G,O,W,V='0xff2d46','0xffc21a','0x3fb8ff','0xff4fd8','0x7dff9a','0xff7a1a','0xfff3dd','0xb18cff'
-SRC='Fuente: estudios de déjà vu provocado en laboratorio (Live Science; Frontiers in Psychology, 2013)'
-ICON={"vivido":("replay","P"),"futuro":("crystal-ball","P"),"cerebro":("brain","P"),"error":("alert","R"),"francés":("map-marker","B"),"familiar":("map-marker-question","P"),
- "segundos":("timer-outline","W"),"investigadores":("account-group","B"),"palabras":("text-box-multiple","W"),"memoria":("brain","P"),"escáner":("radar","B"),
- "frontal":("brain","P"),"errores":("shield-search","G"),"señal":("alert-decagram","R"),"revisa":("magnify","B"),"epilepsia":("flash","G"),"edad":("account-multiple","B"),
- "comentarios":("comment-text-multiple","B"),"pillas":("lightbulb-on","G"),"calidad":("check-decagram","G")}
-KEEP={"error","francés","señal","edad"}
-HOOK="ESTO YA<br><b>LO HE VIVIDO</b>"
-S=[
- dict(seg=0,at="",type="people",p={"list":[{"col":B,"s":2.3,"pose":"idle"}],"extra":[{"icon":"replay","col":P,"s":2.6,"pos":[3,8.5,0],"anim":"spin"}]},hook=HOOK,cam={"R":14,"h":5,"ly":4,"a0":-.4,"av":.3}),
- dict(seg=0,at="no es ver",type="icon",p={"icon":"crystal-ball","col":V,"s":6,"anim":"float"},big="NO ES EL FUTURO",cam={"R":23}),
- dict(seg=0,at="Es tu cerebro",type="brain",p={"col":P,"extra":[{"icon":"alert","col":R,"s":2.2,"pos":[4,11,1],"anim":"pulse","d":.4}]},cam={"R":24}),
- dict(seg=1,at="Se llama",type="flag",p={"colors":["#0055a4","#ffffff","#ef4135"],"vertical":True},big="DÉJÀ VU",cam={"R":22,"h":10,"ly":10,"a0":.35,"av":-.1}),
- dict(seg=1,at="que en francés",type="icon",p={"icon":"eye","col":B,"s":6.5,"anim":"wobble"},big="«YA VISTO»",cam={"R":23}),
- dict(seg=1,at="Aparece cuando",type="icon",p={"icon":"map-marker-question","col":P,"s":6,"anim":"float"},big="FAMILIAR...",cam={"R":23}),
- dict(seg=1,at="pero sabes",type="icon",p={"icon":"numeric-1-circle","col":Y,"s":6,"anim":"spin"},big="...Y ES LA 1.ª VEZ",cam={"R":23}),
- dict(seg=1,at="Dura apenas",type="icon",p={"icon":"timer-outline","col":W,"s":6,"anim":"spin"},big="SEGUNDOS",cam={"R":23}),
- dict(seg=2,at="Un equipo",type="people",p={"list":[{"col":W,"x":-3,"pose":"idle"},{"col":B,"x":0,"pose":"wave"},{"col":W,"x":3,"pose":"idle"}]},big="EN EL LABORATORIO",src=SRC,cam={"R":15,"h":5,"ly":3}),
- dict(seg=2,at="con listas",type="icon",p={"icon":"text-box-multiple","col":W,"s":6,"anim":"wobble"},big="LISTAS DE PALABRAS",src=SRC,cam={"R":23}),
- dict(seg=2,at="y miró",type="mri",p={"in":True},big="ESCÁNER",src=SRC,cam={"R":22,"h":8,"ly":5,"a0":.7,"av":-.15}),
- dict(seg=2,at="Y la zona",type="icon",p={"icon":"archive-lock","col":V,"s":6,"anim":"wobble"},big="NO: MEMORIA",src=SRC,cam={"R":23}),
- dict(seg=2,at="era la parte",type="brain",p={"col":P,"glow":True,"glowPos":[-2.4,8,2.6],"glowCol":"0x7dff9a"},big="ZONA FRONTAL",src=SRC,cam={"R":24}),
- dict(seg=3,at="O sea, el",type="icon",p={"icon":"shield-search","col":G,"s":6.5,"anim":"wobble","pop":True},big="DETECTOR<small>de errores</small>",cam={"R":23}),
- dict(seg=3,at="tu cerebro nota",type="icon",p={"icon":"alert-decagram","col":R,"s":6,"anim":"shake"},big="«ESTO ME SUENA»",cam={"R":23}),
- dict(seg=3,at="y la revisa",type="icon",p={"icon":"magnify","col":B,"s":6,"anim":"float"},big="REVISIÓN",cam={"R":23}),
- dict(seg=3,at="También se estudia",type="icon",p={"icon":"flash","col":Y,"s":6.5,"anim":"pulse"},big="EPILEPSIA<small>del lóbulo temporal</small>",src=SRC,cam={"R":23}),
- dict(seg=3,at="Y tranquilo",type="icon",p={"icon":"check-decagram","col":G,"s":6.5,"anim":"spin","pop":True},big="NO ES MALA MEMORIA",src=SRC,cam={"R":23}),
- dict(seg=4,at="Y un dato",type="people",p={"list":[{"col":Y,"s":2.1,"x":-2.2,"pose":"cheer"},{"col":V,"s":1.9,"x":2.4,"pose":"tired"}]},big="CON LA EDAD,<small>menos déjà vus</small>",src=SRC,cam={"R":15,"h":5,"ly":3.5}),
- dict(seg=4,at="¿Cuándo tuviste",type="icon",p={"icon":"calendar-question","col":B,"s":6,"anim":"wobble"},big="¿Y TU ÚLTIMO?",cam={"R":23}),
- dict(seg=4,at="Te leo",type="comments",cam={"R":20,"h":8,"ly":8,"a0":0}),
- dict(seg=4,at="La próxima vez",type="people",p={"list":[{"col":B,"s":2.3,"pose":"idle"}],"extra":[{"icon":"replay","col":P,"s":2.6,"pos":[3,8.5,0],"anim":"spin"}]},hook=HOOK,cam={"R":14,"h":5,"ly":4,"a0":-.4,"av":.3}),
-]
-CUES={"futuro":(0,"no es ver"),"error":(0,"Es tu cerebro"),"frontal":(2,"era la parte"),"detector":(3,"O sea, el"),"edad":(4,"con la edad")}
-make(ICON,KEEP,S,CUES,["futuro","error","frontal","edad"],["detector"])
+# 004 v2 — historia encadenada con protagonista. Escena: story.html (ver plan.md)
+import sys, os; sys.path.insert(0, '../../engine'); from build_lib import make
+CUT = float(os.environ['CUT']) if os.environ.get('CUT') else None
+ICON={"vivido":("eye","B"),"futuro":("crystal-ball","P"),"cerebro":("brain","P"),"error":("alert","R"),"cabeza":("head","B"),"temporal":("brain","P"),"recuerdos":("archive","Y"),
+ "familiar":("bell","Y"),"suena":("bell","Y"),"suena»":("bell","Y"),"motivo":("help","Y"),"frontal":("magnify","B"),"comprueba":("magnify","B"),"archivo":("archive","Y"),"nada":("close","R"),
+ "choque":("flash","R"),"vu":("eye","B"),"escocia":("map-marker","B"),"laboratorio":("flask","B"),"cama":("bed","B"),"almohada":("cloud","W"),"noche":("weather-night","B"),
+ "d":("alpha-d","W"),"«dormir»":("sleep","B"),"escáner":("radar","B"),"conflictos":("flash","R"),"detector":("magnify","B"),"errores":("alert","R"),"memoria":("archive","Y"),
+ "edad":("account","W"),"último":("clock","W"),"comentarios":("comment","B"),"pillas":("lightbulb-on","Y"),"calidad":("check-decagram","G")}
+KEEP=set()
+S=[dict(seg=0,at="",type="cafe"),dict(seg=1,at="Entremos",type="dive"),dict(seg=1,at="«esto me suena»",type="bell"),dict(seg=2,at="Entonces",type="frontal"),
+   dict(seg=2,at="busca ese",type="search"),dict(seg=2,at="Ese choque",type="clash"),dict(seg=3,at="En Escocia",type="exit"),dict(seg=3,at="Oías",type="words"),
+   dict(seg=3,at="¿Había",type="d"),dict(seg=3,at="¿Y «dormir»?",type="dormir"),dict(seg=3,at="Y en el escáner",type="scan"),dict(seg=4,at="O sea",type="detector"),
+   dict(seg=4,at="Y tranquilo",type="memory"),dict(seg=4,at="y con la edad",type="age"),dict(seg=4,at="¿Cuándo",type="back"),dict(seg=4,at="¿Lo pillas?",type="end"),dict(seg=4,at="La próxima",type="loop")]
+CUES={"vivido":(0,"«esto ya"),"nofut":(0,"No es ver"),"error":(0,"Es tu cerebro"),"entremos":(1,"Entremos"),"dentro":(1,"En el lóbulo"),"familiar":(1,"familiar:"),
+ "suena1":(1,"«esto me suena»"),"expl":(1,"Y una explicación"),"dispara":(1,"se dispara"),"frontal":(2,"Entonces"),"busca":(2,"busca ese"),"nada":(2,"y no hay nada"),
+ "choque":(2,"Ese choque"),"dejavu":(2,"déjà vu."),"escocia":(3,"En Escocia"),"oias":(3,"Oías"),"cama":(3,"cama,"),"almo":(3,"almohada"),"noche":(3,"noche…"),
+ "conD":(3,"¿Había"),"no":(3,"No. ¿Y"),"dormir":(3,"¿Y «dormir»?"),"tesuena":(3,"Te suena"),"pero":(3,"pero sabes"),"escaner":(3,"Y en el escáner"),"zona":(3,"la zona frontal"),
+ "recuerdos":(3,"no la de los recuerdos"),"osea":(4,"O sea"),"detector":(4,"detector"),"tranq":(4,"Y tranquilo"),"edad":(4,"y con la edad"),"cuando":(4,"¿Cuándo"),
+ "leo":(4,"Te leo"),"pillas":(4,"¿Lo pillas?"),"final":(4,"La próxima vez")}
+make(ICON,KEEP,S,CUES,["nada","dejavu","no","zona"],["dejavu","detector"],cut=CUT)
