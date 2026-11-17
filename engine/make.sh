@@ -11,7 +11,7 @@ ln -sfn "$ROOT/node_modules" node_modules
 cp "$ROOT/assets/atom.png" atom.png
 python3 build.py
 mkdir -p frames
-pgrep -f "http.server $PORT" >/dev/null || (nohup python3 -m http.server $PORT >/dev/null 2>&1 &)
+pkill -f "http.server $PORT" 2>/dev/null; sleep .5; (nohup python3 -m http.server $PORT >/dev/null 2>&1 &)  # siempre un servidor nuevo en la carpeta de ESTE vídeo
 sleep 1
 PORT=$PORT node "$ROOT/engine/render.js"
 python3 "$ROOT/engine/audio.py"
