@@ -321,7 +321,7 @@ window.render=(t)=>{const c=TL.cues; const up=new THREE.Vector3(0,1,0); let P,L,
  const hrs=lerp(23,30,eio(seg(t,Tin,c.antes+.2))); [ST.IN,ST.MI].forEach(A=>{A.c.userData.hh.rotation.z=-hrs/12*Math.PI*2; A.c.userData.mh.rotation.z=-(hrs%1)*Math.PI*2; A.c.rotation.z=(t>c.orden&&t<c.orden+.6)?Math.sin(t*45)*.07:0; A.b.rotation.y=Math.sin(t*.8)*.12;});
  // --- señal: del reloj a la hipófisis
  const sp=seg(t,c.orden,c.orden+.85); ST.spark.visible=t>c.orden&&t<c.hipo+.5; const sA=ST.IN.c.getWorldPosition(new THREE.Vector3()).add(v3([0,0,.6]));
- ST.spark.position.copy(sA.lerp(ST.gland.position,eio(sp))); ST.spark.position.x+=Math.sin(sp*Math.PI)*1.6; ST.sL.intensity=ST.spark.visible?40:0;
+ ST.spark.position.copy(sA.lerp(ST.gland.position,eio(sp))); ST.spark.position.x+=Math.sin(sp*Math.PI)*1.6; ST.sL.intensity=40; ST.sL.visible=ST.spark.visible; // luz apagada = oculta (evita píxeles NaN)
  const gp=t>c.suelta-.3?1+Math.max(0,Math.sin((t-c.suelta)*9))*.25*Math.max(0,1-(t-c.suelta)/1.5):1; ST.gland.scale.setScalar(gp*(1+.4*Math.exp(-Math.max(0,t-(c.orden+.85))*4)*(t>c.orden+.85?1:0)));
  ST.gland.material.emissiveIntensity=.1+.6*seg(t,c.orden+.7,c.orden+1.1);
  // --- ACTH: sale de la hipófisis y viaja por la sangre
