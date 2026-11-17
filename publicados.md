@@ -9,3 +9,4 @@
 | 005 | 2026-11-19 10:00 | ¿Cuántas horas de sueño necesitas de verdad según tu edad? | videos/005-horas-sueno | Programado en Metricool con aviso al móvil; historia encadenada (48 s) |
 | 002b | 2026-11-20 10:00 | ¿Qué le pasa a tu cuerpo cuando dejas el móvil? (historia encadenada) | videos/002-movil-una-semana | Programado en Metricool con aviso al móvil (48 s) |
 | 003b | 2026-11-21 10:00 | ¿Por qué te despiertas justo antes de la alarma? (historia encadenada) | videos/003-alarma | Programado en Metricool con aviso al móvil (52 s) |
+| 006 | 2026-11-22 10:00 | El hombre que saltó de espaldas: cómo Dick Fosbury revolucionó el salto de altura (serie de deportes) | videos/006-fosbury | Programado en Metricool con aviso al móvil; historia encadenada (64 s) |
