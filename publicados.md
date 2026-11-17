@@ -8,3 +8,4 @@
 | 004 | 2026-11-18 10:00 | ¿Qué pasa en tu cerebro cuando tienes un déjà vu? | videos/004-deja-vu | Programado en Metricool con aviso al móvil (55 s) |
 | 005 | 2026-11-19 10:00 | ¿Cuántas horas de sueño necesitas de verdad según tu edad? | videos/005-horas-sueno | Programado en Metricool con aviso al móvil (48 s) |
 | 002b | 2026-11-20 10:00 | ¿Qué le pasa a tu cuerpo cuando dejas el móvil? (versión nítida) | videos/002-movil-una-semana | Programado en Metricool con aviso al móvil (56 s) |
+| 003b | 2026-11-21 10:00 | ¿Por qué te despiertas justo antes de la alarma? (historia encadenada) | videos/003-alarma | Programado en Metricool con aviso al móvil (52 s) |
