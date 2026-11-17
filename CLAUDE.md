@@ -11,7 +11,7 @@ Este repositorio produce los vídeos de **¡Lo Pillo!** (Instagram @lopillocienc
 
 ## El estilo de vídeo (decidido con el dueño, no cambiar sin que lo pida)
 
-1. **Vertical 1080×1920, 30 fps, 60–80 s.**
+1. **Vertical 1080×1920, 30 fps. Duración: entre 50 y 60 s por lo general, y nunca más de 1 min 5 s (65 s).** El vídeo 001 dura 75 s porque se hizo antes de esta regla.
 2. **El protagonista de la pantalla es el objeto real del que habla el narrador en ese momento.** Si dice «banco», se ve un edificio de banco; si dice «coche», un coche que circula. No formas geométricas abstractas. Cuando la frase cambia de tema, cambia la figura principal (unas 25–30 escenas por vídeo).
 3. **Cada objeto actúa** según la frase: la caja fuerte se abre vacía, los billetes salen volando, el banco se derrumba, la gente corre al cajero…
 4. **Complementos** (iconos 3D pequeños alrededor): **pocos**, unos 10–12 por vídeo, solo donde añaden intriga o emoción (pánico, rumor, caída, límite…). Nunca repiten el objeto principal. Se controlan con el conjunto `KEEP` de `build.py`.
@@ -27,7 +27,7 @@ Este repositorio produce los vídeos de **¡Lo Pillo!** (Instagram @lopillocienc
 - Voz del **Narrador** en ElevenLabs (ID en `assets/voces.json`, clave `narrador`): chico de unos 24 años, alegre y simpático.
 - Modelo `eleven_v3`, después acelerado un **25 %** (`TEMPO = 1.25` en `tts.py`). El narrador va rápido y con frases densas.
 - La clave de ElevenLabs la inyecta el proxy del entorno: no hace falta ni se debe escribir en ningún archivo.
-- Guion: frases cortas, como se habla («Tranquilo, que te lo explico»), muchas cosas concretas por frase para que haya figuras que mostrar, unos 1.500–1.600 caracteres.
+- Guion: frases cortas, como se habla («Tranquilo, que te lo explico»), muchas cosas concretas por frase para que haya figuras que mostrar. Con `eleven_v3` + 25 % de velocidad salen unos 21 caracteres por segundo: apunta a **1.050–1.250 caracteres** (50–60 s) y **nunca más de 1.380** (65 s). Comprueba la duración real que imprime `tts.py`; si pasa de 65 s, recorta el guion y vuelve a generar la voz.
 
 ## Rigor (obligatorio)
 
@@ -62,7 +62,8 @@ Este repositorio produce los vídeos de **¡Lo Pillo!** (Instagram @lopillocienc
 - **Siempre pendiente de aprobación** hasta que el dueño diga lo contrario. El plan de Metricool es gratuito y no tiene flujo de aprobación (`createScheduledPostForReview` da error 403), así que usa `createScheduledPost` con `draft: true`: queda como borrador en el calendario y el dueño lo confirma en Metricool.
 - Texto: gancho + pregunta para comentarios + fuentes + aviso + 6–8 hashtags.
 
-## Cadencia
+## Cadencia y capacidad
 
-- 1 vídeo corto al día (Reels + TikTok + Shorts).
+- **Un vídeo al día, publicado a las 10:00** (Reels + TikTok + Shorts), todos los días que permita la capacidad de ElevenLabs.
+- Antes de grabar la voz, consulta los caracteres disponibles (`curl -sS https://api.elevenlabs.io/v1/user/subscription`: `character_limit - character_count`). Si quedan menos de 2.000, no produzcas: avisa en el resumen de que el cupo del mes se ha agotado y de la fecha de renovación (`next_character_count_reset_unix`).
 - Más adelante, 2 vídeos largos de YouTube por semana (pendiente de definir formato).
