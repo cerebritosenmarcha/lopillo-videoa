@@ -1,6 +1,23 @@
-# Temas pendientes
+# Temas
 
-Ordenados por prioridad. Alterna pilares. Marca cada tema en `publicados.md` cuando salga.
+## Cola de producción (en este orden; el dueño la ha elegido)
+
+Produce siempre el primero de esta lista que no esté en `publicados.md`.
+
+1. ¿Qué le pasa a tu cuerpo cuando dejas el móvil una semana? (salud: solo lo que digan estudios, sin exagerar)
+2. ¿Por qué te despiertas siempre justo antes de que suene la alarma?
+3. ¿Qué pasa en tu cerebro cuando tienes un déjà vu?
+4. ¿Cuántas horas de sueño necesitas de verdad según tu edad? (salud: fuente oficial de recomendaciones)
+5. ¿Por qué tienes más hambre cuando duermes poco? (salud)
+6. ¿Los perros ven en blanco y negro? (mito)
+7. ¿Afeitarse hace que el pelo salga más fuerte? (mito)
+8. ¿Qué pasaría si dejaras de respirar por la nariz? (salud)
+9. ¿Qué pasaría si cayeras por un agujero que atraviesa la Tierra?
+10. ¿Por qué el mar es salado y los ríos no?
+11. ¿Cómo sabe un GPS dónde estás?
+12. ¿Qué pasa con tus datos cuando aceptas las cookies?
+
+## Reserva (usar solo cuando se acabe la cola)
 
 ## Dinero y economía
 - ¿Por qué un café cuesta el doble que hace 10 años? (inflación explicada)

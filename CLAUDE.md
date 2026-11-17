@@ -38,7 +38,7 @@ Este repositorio produce los vídeos de **¡Lo Pillo!** (Instagram @lopillocienc
 
 ## Cómo se hace un vídeo
 
-1. **Elige el tema** siguiente de `temas.md` que no esté en `publicados.md`. Alterna los pilares.
+1. **Elige el tema:** el primero de la «Cola de producción» de `temas.md` que no esté en `publicados.md`. Respeta el orden; la reserva solo cuando la cola se acabe.
 2. Crea `videos/NNN-slug/` copiando de `videos/001-banco-panico/` (es la referencia de calidad).
 3. **Investiga** y escribe `fuentes.md`.
 4. **Guion** en `tts.py` (lista `SEG`, una entrada por bloque) y ejecuta `python3 tts.py` → `voz.mp3` y `align.json`.
