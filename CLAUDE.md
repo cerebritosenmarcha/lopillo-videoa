@@ -46,7 +46,10 @@ Este repositorio produce los vídeos de **¡Lo Pillo!** (Instagram @lopillocienc
 6. **Escenas** en `scene.html`: reutiliza los constructores existentes (`makeBank`, `makeNote`, `makeCoin`, `human`, `makeATM`, `icon3D` con los más de 7.000 iconos de `@mdi/svg`, casas, coches…) y crea los objetos nuevos que pida el tema. Cada escena: `shot('nombre', async g=>{…})` y su `case` en `animate()`.
 7. Revisa fotogramas sueltos con `PORT=8780 node ../../engine/render.js 1.5,10,20` (crea `check_*.png`) y corrige encuadres antes del render completo.
 8. Render completo: `engine/make.sh videos/NNN-slug` → `video.mp4` (unos 30–40 min).
-9. **Sube el vídeo** como asset de una *release* de GitHub (`gh release create NNN-slug video.mp4 …`) y usa la URL de descarga pública.
+9. **Sube el vídeo** a la rama `media` del repositorio (rama huérfana solo para mp4; las *releases* de GitHub no están permitidas en estas sesiones):
+   `git clone --depth 1 --branch media https://github.com/cerebritosenmarcha/lopillo-videoa /home/user/lopillo-media`, copia `video.mp4` como `NNN-slug.mp4`, commit y push.
+   URL pública: `https://raw.githubusercontent.com/cerebritosenmarcha/lopillo-videoa/media/NNN-slug.mp4`.
+   Metricool copia el vídeo a su propio almacenamiento al programarlo, así que después puedes borrar de `media` los mp4 de vídeos ya programados para que la rama no crezca.
 10. **Programa en Metricool** (ver abajo) y añade una línea a `publicados.md`.
 11. Commit y push de la carpeta del vídeo (sin `frames/` ni el mp4).
 
@@ -56,7 +59,7 @@ Este repositorio produce los vídeos de **¡Lo Pillo!** (Instagram @lopillocienc
 - Redes: Instagram (`type: REEL`), TikTok y YouTube (`type: short`, `madeForKids: false`, categoría `EDUCATION`).
 - Marca siempre el contenido como generado con IA: `isAiGenerated` (Instagram), `isAigc` (TikTok), `isAiGeneratedContent` (YouTube).
 - **Hora:** consulta `getBestTimeToPostByNetwork` para la semana; por ahora la mejor franja es **10:00** (y 18:00 como segunda opción).
-- **Siempre pendiente de aprobación** hasta que el dueño diga lo contrario: crea la publicación como borrador (`draft: true`) para que la revise y la apruebe en Metricool.
+- **Siempre pendiente de aprobación** hasta que el dueño diga lo contrario. El plan de Metricool es gratuito y no tiene flujo de aprobación (`createScheduledPostForReview` da error 403), así que usa `createScheduledPost` con `draft: true`: queda como borrador en el calendario y el dueño lo confirma en Metricool.
 - Texto: gancho + pregunta para comentarios + fuentes + aviso + 6–8 hashtags.
 
 ## Cadencia
