@@ -59,7 +59,7 @@ Este repositorio produce los vídeos de **¡Lo Pillo!** (Instagram @lopillocienc
 - Redes: Instagram (`type: REEL`), TikTok y YouTube (`type: short`, `madeForKids: false`, categoría `EDUCATION`).
 - Marca siempre el contenido como generado con IA: `isAiGenerated` (Instagram), `isAigc` (TikTok), `isAiGeneratedContent` (YouTube).
 - **Hora:** consulta `getBestTimeToPostByNetwork` para la semana; por ahora la mejor franja es **10:00** (y 18:00 como segunda opción).
-- **Siempre pendiente de aprobación** hasta que el dueño diga lo contrario. El plan de Metricool es gratuito y no tiene flujo de aprobación (`createScheduledPostForReview` da error 403), así que usa `createScheduledPost` con `draft: true`: queda como borrador en el calendario y el dueño lo confirma en Metricool.
+- **El dueño publica a mano** hasta que diga lo contrario. El plan de Metricool es gratuito y no tiene flujo de aprobación (`createScheduledPostForReview` da error 403), así que usa `createScheduledPost` con `draft: false` y `autoPublish: false`: a la hora programada Metricool envía un aviso al móvil del dueño, que revisa el vídeo y lo publica desde la app.
 - Texto: gancho + pregunta para comentarios + fuentes + aviso + 6–8 hashtags.
 
 ## Cadencia y capacidad
