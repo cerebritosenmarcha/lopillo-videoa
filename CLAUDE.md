@@ -27,6 +27,19 @@ Este repositorio produce los vídeos de **¡Lo Pillo!** (Instagram @lopillocienc
 9. **Cierre:** pregunta para comentarios (burbujas), «¿Lo pillas?» con el átomo, y la última frase vuelve al plano del principio para que el vídeo haga bucle.
 10. **Sonido:** música de `engine/audio.py`, «whoosh» en cada escena del plan, golpe suave en los datos y «clin» en la revelación.
 
+### Estilo épico (pedido del dueño el 18/11/2026: «mucho más espectaculares y emocionantes»)
+
+Combina todo esto en los momentos clave de cada vídeo (referencias: `videos/008-kanakuri` y `009-comaneci`):
+- **Guion con suspense:** frases muy cortas, pausas («Te sientas. Solo un momento. Pero ya no te levantas.») y el dato clave guardado hasta el clímax.
+- **Sonido épico** (`engine/audio.py`, se activa con `epic=` en `make(...)` de `build.py`):
+  - `climax`: subida, redoble y golpe; la música pasa a la parte épica.
+  - `heart`: latidos entre dos claves.
+  - `roar`: rugido del público.
+  - `hit`: golpe grave.
+- **Efectos** (módulo `FX` de `engine/scene_lib.html`, todo depende solo de `t`): `FX.burst('confetti'|'sparks'|'dust', posMundo, t0)`, `FX.ring(...)` para las ondas, `FX.beam(...)` para los focos, `FX.flashField(puntos)` para los flashes del público y `FX.update(t,{cine,vig,beams,flash})` en cada fotograma.
+- **Cámara de cine:** bandas negras (`cine`) y viñeta (`vig`) en los clímax, cámara lenta en el momento clave, planos muy cerca o en contrapicado, más sacudida en los impactos y un zoom (FOV) que se cierra justo antes del clímax.
+- Sigue sin haber destellos blancos ni cortes: la toma es continua y la nitidez no cambia.
+
 ## La voz
 
 - Voz del **Narrador** en ElevenLabs (ID en `assets/voces.json`, clave `narrador`): chico de unos 24 años, alegre y simpático.
