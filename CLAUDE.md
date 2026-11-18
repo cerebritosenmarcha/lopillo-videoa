@@ -44,7 +44,7 @@ Este repositorio produce los vídeos de **¡Lo Pillo!** (Instagram @lopillocienc
 ## Cómo se hace un vídeo
 
 1. **Elige el tema:** el primero de la «Cola de producción» de `temas.md` que no esté en `publicados.md` (ahora mismo, la serie de deportes; la investigación de cada historia está en `deportes.md`, y en esa serie «tú» eres el deportista protagonista, como Fosbury en `videos/006-fosbury`). Respeta el orden; la reserva solo cuando la cola se acabe. La cola está ordenada por lo que más visualizaciones consigue en este tipo de vídeos (ver «Qué funciona» abajo). Si el tema que toca es de la misma familia que los dos vídeos anteriores (por ejemplo, un tercero seguido sobre sueño), salta al siguiente y deja ese para después.
-2. Crea `videos/NNN-slug/` copiando `tts.py` de `videos/003-alarma/`.
+2. Crea `videos/NNN-slug/` copiando `tts.py` de `videos/003-alarma/`. **Si ya existe una carpeta de ese tema con trabajo hecho** (por ejemplo `tts.py`, `voz.mp3`, `fuentes.md`, `story.html` o `plan.md`, como pasa con `010-baumgartner` y `011-isner-mahut`), no empieces de cero: revísala, comprueba de nuevo los datos, corrige lo que haga falta y sigue desde ahí.
 3. **Investiga** y escribe `fuentes.md`.
 4. **Guion encadenado** en `tts.py` (lista `SEG`): escrito para que cada frase cause la siguiente, en segunda persona («tú»). Ejecuta `python3 tts.py` → `voz.mp3` y `align.json`.
 5. **`plan.md`** antes de animar: una tabla con frase, qué pasa, causa → efecto que lleva a la siguiente, cámara y qué se conserva.
@@ -90,5 +90,6 @@ Revisado el 17/11/2026 con búsquedas sobre los Shorts, Reels y TikTok de curios
 ## Cadencia y capacidad
 
 - **Un vídeo al día, publicado a las 10:00** (Reels + TikTok + Shorts), todos los días que permita la capacidad de ElevenLabs.
+- **Margen de 3 días (pedido del dueño el 18/11):** siempre debe haber unos 3 vídeos programados por delante. La tarea diaria produce uno nuevo cada día para el siguiente día libre de `publicados.md`.
 - Antes de grabar la voz, consulta los caracteres disponibles (`curl -sS https://api.elevenlabs.io/v1/user/subscription`: `character_limit - character_count`). Si quedan menos de 2.000, no produzcas: avisa en el resumen de que el cupo del mes se ha agotado y de la fecha de renovación (`next_character_count_reset_unix`).
 - Más adelante, 2 vídeos largos de YouTube por semana (pendiente de definir formato).
