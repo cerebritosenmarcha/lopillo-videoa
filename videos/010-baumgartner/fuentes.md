@@ -1,0 +1,17 @@
+# Fuentes — 010 Saltó desde el borde del espacio y rompió la barrera del sonido (Felix Baumgartner, 2012)
+
+- **Datos de la misión** (14/10/2012, Red Bull Stratos, Nuevo México):
+  - Salto desde unos 39 km (38.969 m tras la corrección oficial).
+  - Velocidad máxima de 1.357,6 km/h (Mach 1,25), alcanzada a los 50 s.
+  - 4 min 20 s de caída libre y unos 30 s por encima de la velocidad del sonido.
+  - https://www.redbull.com/eu-en/red-bull-stratos-release-mission-data
+  - https://techradar.com/news/world-of-tech/red-bull-stratos-final-data-reveals-baumgartner-hit-mach-1-25-1129573
+  - https://www.universetoday.com/97956/baumgarter-survives-heart-pounding-record-setting-freefall
+- **El giro (barrena plana):** podía hacerle perder el conocimiento. Lo controló.
+  - https://www.pbs.org/newshour/science/on-sunday-the-world
+  - https://www.redbull.com/us-en/red-bull-stratos-release-mission-data
+- **Aterrizó de pie** en el desierto de Nuevo México (cerca de Roswell):
+  - https://www.nationalgeographic.com/adventure/article/121014-felix-baumgartner-skydive-sound-barrier-kittinger-roswell-science-2
+  - https://www.pbs.org/newshour/show/austrian-daredevil-lands-on-his-feet-after-supersonic-jump
+- **Física:** a esa altura el aire es muy poco denso y apenas frena. Al bajar, el aire se hace más denso y la resistencia aumenta.
+- Datos descartados: la duración exacta de la subida (no confirmada) y la duración del giro (las fuentes no coinciden: unos 13 s según los datos oficiales y unos 40 s según el propio Baumgartner).
