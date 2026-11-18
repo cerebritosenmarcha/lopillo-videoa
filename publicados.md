@@ -14,3 +14,4 @@
 | 008 | 2026-11-20 10:00 | Tardó 54 años en terminar un maratón (Shizo Kanakuri, serie de deportes, estilo épico) | videos/008-kanakuri | Programado en Metricool con aviso al móvil; historia encadenada épica (54 s) |
 | 009 | 2026-11-21 10:00 | Sacó un 10 perfecto y el marcador puso un 1 (Nadia Comăneci, serie de deportes, estilo épico) | videos/009-comaneci | Programado en Metricool con aviso al móvil; historia encadenada épica (56 s) |
 | 011 | 2026-11-22 10:00 | El partido de tenis que rompió el marcador (Isner–Mahut, serie de deportes, estilo épico, sin marcas) | videos/011-isner-mahut | Programado en Metricool con aviso al móvil; historia encadenada épica (58 s) |
+| 012 | 2026-11-23 10:00 | El gol de Roberto Carlos que parecía desafiar la física (serie de deportes, estilo épico, sin marcas) | videos/012-roberto-carlos | Programado en Metricool con aviso al móvil; historia encadenada épica (52 s) |
