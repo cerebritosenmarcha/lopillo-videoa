@@ -12,3 +12,4 @@
 | 006 | 2026-11-18 10:00 | El hombre que saltó de espaldas: cómo Dick Fosbury revolucionó el salto de altura (serie de deportes) | videos/006-fosbury | Programado en Metricool con aviso al móvil; historia encadenada (64 s) |
 | 007 | 2026-11-19 10:00 | Ganó el oro olímpico porque todos los demás se cayeron (Steven Bradbury, serie de deportes) | videos/007-bradbury | Programado en Metricool con aviso al móvil; historia encadenada (62 s) |
 | 008 | 2026-11-20 10:00 | Tardó 54 años en terminar un maratón (Shizo Kanakuri, serie de deportes, estilo épico) | videos/008-kanakuri | Programado en Metricool con aviso al móvil; historia encadenada épica (54 s) |
+| 009 | 2026-11-21 10:00 | Sacó un 10 perfecto y el marcador puso un 1 (Nadia Comăneci, serie de deportes, estilo épico) | videos/009-comaneci | Programado en Metricool con aviso al móvil; historia encadenada épica (56 s) |
