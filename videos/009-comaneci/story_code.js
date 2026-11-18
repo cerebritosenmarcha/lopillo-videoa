@@ -48,7 +48,15 @@ async function buildStory(){
  ST.fact=await icon3D('factory',0x8a8f9c,1.6,{depth:3}); W0.add(ST.fact); ST.horn=await icon3D('bullhorn',0x3fb8ff,1.6,{depth:3}); W0.add(ST.horn);
  ST.bub=[]; for(let i=0;i<9;i++){const b=await icon3D(i%3?'message-text':'comment-question',[0x3fb8ff,0xff4fd8,0xffc21a,0x7dff9a,0xff7a1a][i%5],1.2,{depth:2}); b.userData={x:(rnd()-.5)*10,y:5+rnd()*5,z:(rnd()-.5)*5,d:i*.1,ph:rnd()*6}; b.visible=false; W0.add(b); ST.bub.push(b);}
 }
-window.setTL=async x=>{TL=x; await buildStory(); S.traverse(o=>{if(o.isMesh&&o!==floor&&o!==sky){o.castShadow=true; o.receiveShadow=true;}}); ST.crowd.castShadow=false; window.popsReady=true;};
+window.setTL=async x=>{TL=x; await buildStory(); S.traverse(o=>{if(o.isMesh&&o!==floor&&o!==sky){o.castShadow=true; o.receiveShadow=true;}}); ST.crowd.castShadow=false; setupFX(); window.popsReady=true;};
+
+function setupFX(){const c=TL.cues, W=v=>ROOM.clone().add(new THREE.Vector3(...v)); FX.init();
+ FX.burst('dust',W([0,.8,-7.2]),c.clavas,70); FX.ring(W([0,.5,-7.2]),c.clavas,0xffffff,7,.7);
+ FX.burst('dust',W([0,.8,-7.2]),2.0,40); FX.ring(W([0,13,-15.4]),c.uno1,0xffb21a,6,.7,new THREE.Vector3(0,0,1));
+ FX.ring(W([0,13,-15.4]),c.d0b,0xffb21a,8,.8,new THREE.Vector3(0,0,1)); FX.burst('sparks',W([0,13,-15]),c.d0b,80,[0xffb21a,0xffffff],1);
+ FX.burst('confetti',W([0,16,-6]),c.esdiez,260,undefined,1.4); FX.burst('confetti',W([-6,15,-3]),c.esdiez+.15,150); FX.burst('confetti',W([6,15,-3]),c.esdiez+.3,150); FX.burst('sparks',W([0,13,-15]),c.esdiez,120,[0xffd23f,0xffffff,0xff4fd8],1.4);
+ [[-14,26,-10],[14,26,-10],[-12,26,10],[12,26,10]].forEach((p,i)=>FX.beam(W(p),0xfff2d0,40,i*1.7));
+ FX.flashField(ST.cpos.map(p=>[ROOM.x+p[0],ROOM.y+p[1]+.6,ROOM.z+p[2]]));}
 // ---- el ejercicio como línea de tiempo propia (T): [T, y, z, rx, brazos(0 abajo..1 arriba), piernas(0..1 carpado)]
 let RT=null;
 const hang=(B,th,arms=1,pk=0)=>[B.y-RH*Math.cos(th),B.z-RH*Math.sin(th),th,arms,pk];
@@ -63,12 +71,12 @@ function buildRoutine(){const K=[]; const add=(T,v)=>K.push([T,...v]); const ST0
  const d0=hang(HIGH,g1), land=[MAT+2.2,-7.2,10*Math.PI,.5,.5]; for(let i=1;i<=8;i++){const f=i/8; add(16.8+f*.9,[lerp(d0[0],land[0],f)+Math.sin(f*Math.PI)*3.2,lerp(d0[1],land[1],f),lerp(g1,10*Math.PI,eio(f)),lerp(1,.4,f),.8*Math.sin(f*Math.PI)]);}
  add(17.95,[MAT+2.4,-7.2,10*Math.PI,.95,0]); add(19.0,[MAT+2.4,-7.2,10*Math.PI,.95,0]); add(19.6,[MAT+2.4,-7.2,10*Math.PI,.05,0]);
  return K;}
-const BIG=[["","uno1","<span style=\"font-size:120px\">EJERCICIO PERFECTO</span>"],["unq","espera","¿UN 1?"],["montreal","eres","<span style=\"font-size:130px\">MONTREAL 1976</span>"],["eres","toca","<span style=\"font-size:120px\">NADIA COMĂNECI</span><small>Rumanía · 14 años</small>"],
- ["toca","saltas","<span style=\"font-size:120px\">BARRA ASIMÉTRICA</span>"],["diez","nadie","10<small>la nota perfecta</small>"],["nadie","pero","PRIMER 10<small>en unos Juegos Olímpicos</small>"],["pero","fabricante","1 CIFRA<small>antes de la coma</small>"],
+const BIG=[["","uno1","<span style=\"font-size:120px\">EJERCICIO PERFECTO</span>"],["unq","montreal","¿UN 1?"],["montreal","eres","<span style=\"font-size:130px\">MONTREAL 1976</span>"],["eres","toca","<span style=\"font-size:120px\">NADIA COMĂNECI</span><small>Rumanía · 14 años</small>"],
+ ["toca","respira","<span style=\"font-size:120px\">BARRA ASIMÉTRICA</span>"],["clavas","jueces","¡PERFECTO!"],["diez","nadie","10<small>la nota perfecta</small>"],["nadie","pero","PRIMER 10<small>en unos Juegos Olímpicos</small>"],["pero","fabricante","1 CIFRA<small>antes de la coma</small>"],
  ["fabricante","asi","<span style=\"font-size:110px\">«UN 10 ES IMPOSIBLE»</span>"],["esdiez","repites","ES UN 10"],["repites","imagina","7 DIECES<small>y 3 oros</small>"],["imagina","leo","¿Y TÚ?"]];
 window.render=(t)=>{const c=TL.cues; if(!RT) RT=buildRoutine(); const end=TL.end; const W0=ST.W;
  // tiempo del ejercicio: gancho, rebobinado, ejercicio real, rebobinado bajo la tarjeta y repetición acelerada (bucle)
- const TAU=[[0,16.95],[2.6,18.6],[c.espera,18.6],[c.montreal,11.0],[c.saltas,12.16],[19.6,19.6],[c.pillas,19.6],[c.loop,11.0],[end,16.95]];
+ const TAU=[[0,16.95],[2.6,18.6],[c.espera,18.6],[c.montreal,11.0],[c.saltas-.6,12.16],[c.saltas,12.75],[c.saltas+.3,13.0],[c.giras,13.05],[c.vuelas,14.15],[c.vuelas+.45,14.6],[c.sueltas,15.04],[c.coger,15.74],[c.ultima,16.8],[c.clavas,17.7],[c.clavas+.45,17.95],[c.publico+1.0,19.0],[c.publico+1.6,19.6],[c.pillas,19.6],[c.loop,11.0],[end,16.95]];
  const tau=kfl(TAU,t)[0];
  const [py,pz,rx,ar,pk]=kfl(RT,tau); ST.J.position.set(0,py,pz); ST.J.rotation.set(rx,Math.PI,0);
  // el cuerpo se pivota en el centro: el muñeco va desplazado para que el centro sea el de la cadera
@@ -90,14 +98,14 @@ window.render=(t)=>{const c=TL.cues; if(!RT) RT=buildRoutine(); const end=TL.end
  ST.tens.forEach((m,i)=>{const s=back(seg(t,c.siete+i*.1,c.siete+.4+i*.1))*(1-seg(t,c.imagina+.5,c.imagina+1)); m.visible=s>.01; const a=-1.2+i*.4; m.position.set(Math.sin(a)*4,5.5+Math.sin(t*2+i)*.2+(i%2)*1.2,-7.2+Math.cos(a)*4); m.scale.setScalar(Math.max(.01,s)*1.3);});
  // ---- CÁMARA [t, ángulo, distancia, altura, mirada x, y, z, peso hacia ti]
  const CK=[[0,1.35,20,.22,0,6.2,-1,.3],[c.uno1,.75,26,.18,0,9,-7,.2],[c.unq,.35,19,.2,0,8,-9,.3],[c.espera+.4,1.2,22,.25,0,6,-1,.3],[c.montreal,.4,26,.3,0,5.5,0,0],[c.eres,.25,13,.22,0,3.6,5.5,.8],
-  [c.toca,.9,19,.25,0,5,0,.2],[c.saltas,1.4,19,.2,0,6,-.5,.35],[c.clavas,1.3,20,.2,0,5.5,-3,.4],[c.publico,.65,19,.22,0,4.5,-6,.8],[c.jueces,3.3,13,.2,-9,3.4,9.8,0],[c.diez,3.25,9.5,.18,-9,4.2,9.8,0],[c.diez+.6,3.2,9.5,.18,-9,4.2,9.8,0],
+  [c.toca,.9,19,.25,0,5,0,.2],[c.respira,.3,24,.3,0,5,0,.1],[c.saltas-.3,1.2,17,.22,0,5.5,0,.3],[c.saltas,1.4,18,.2,0,6,-.5,.4],[c.sueltas,1.45,16,.12,0,8,-1,.6],[c.aire,1.55,13,.02,0,9.5,-1.2,.8],[c.coger,1.35,17,.15,0,7,-1.5,.5],[c.ultima,1.2,18,.18,0,6,-3,.5],[c.clavas,.9,12,.1,0,4,-7,.9],[c.publico,.5,22,.3,0,6,-6,.5],[c.jueces,3.3,13,.2,-9,3.4,9.8,0],[c.diez,3.25,9.5,.18,-9,4.2,9.8,0],[c.diez+.6,3.2,9.5,.18,-9,4.2,9.8,0],
   [c.perfecta+.5,.25,14,.22,0,4.5,-7,.9],[c.nadie,.5,24,.22,0,7,-6,.3],[c.pero,0,20,.08,0,13,-15,0],[c.asi,0,17.5,.05,0,13,-15,0],[c.d0b+.5,0,18,.05,0,13,-15,0],[c.nada,.9,28,.28,0,7,-5,.2],
   [c.tampoco,.25,11,.22,0,4.2,-7.2,1],[c.anuncian,.1,23,.12,0,12.5,-12,0],[c.repites,.3,15,.24,0,5.5,-7.2,1],[c.imagina,.5,17,.25,0,5.5,-7.2,1],[c.leo+1,.6,18,.28,0,6,-7,1],
   [c.pillas,.9,20,.25,0,6,-3,.4],[c.loop,1.4,20,.22,0,6,-1,.35],[end-.2,1.35,20,.22,0,6.2,-1,.3],[1e9,1.35,20,.22,0,6.2,-1,.3]];
  const [ca,cd,chh,lx,ly,lz,cw]=kf(CK,t); const T=new THREE.Vector3(lx,ly,lz).lerp(new THREE.Vector3(0,py+1,pz),cw); const Lw=ROOM.clone().add(T);
  const P=Lw.clone().add(new THREE.Vector3(Math.sin(ca)*cd,cd*chh,Math.cos(ca)*cd));
  let pkk=0; TL.punch.forEach(v=>{const dd=t-v; if(dd>=0&&dd<.5) pkk=Math.max(pkk,Math.exp(-dd*7));});
- cam.up.set(0,1,0); cam.position.copy(P); cam.position.x+=Math.sin(t*70)*pkk*.12; cam.position.y+=Math.cos(t*61)*pkk*.12; cam.lookAt(Lw); cam.near=.1; cam.fov=50-pkk*3; cam.updateProjectionMatrix();
+ cam.up.set(0,1,0); cam.position.copy(P); cam.position.x+=Math.sin(t*70)*pkk*.3; cam.position.y+=Math.cos(t*61)*pkk*.3; cam.lookAt(Lw); cam.near=.1; cam.fov=50-pkk*3; cam.updateProjectionMatrix();
  ST.tens.forEach(m=>m.lookAt(cam.position));
  ST.qs.forEach((q,i)=>{const s=back(seg(t,c.nada+i*.06,c.nada+.4+i*.06))*(1-seg(t,c.anuncian,c.anuncian+.4)); q.visible=s>.01; if(!q.visible) return; const u=q.userData; q.position.set(Math.sin(u.a)*u.r,u.y+Math.sin(t*3+i)*.3,Math.cos(u.a)*u.r); q.scale.setScalar(1.3*s); q.lookAt(cam.position);});
  const fv=seg(t,c.fabricante,c.fabricante+.4)*(1-seg(t,c.asi,c.asi+.4)); ST.fact.visible=fv>.01; if(fv>.01){ST.fact.position.set(-3.6,17.6,-15); ST.fact.scale.setScalar(1.6*back(fv)); ST.fact.lookAt(cam.position);}
@@ -107,6 +115,8 @@ window.render=(t)=>{const c=TL.cues; if(!RT) RT=buildRoutine(); const end=TL.end
  parts.position.set(kb.x,0,kb.z); for(let i=0;i<PN;i++){const q=pb[i]; pp[i*3]=q[0]+Math.sin(t*.25+q[3]*9)*.8; pp[i*3+1]=(q[1]+t*(.25+q[3]*.4))%35; pp[i*3+2]=q[2];} pg.attributes.position.needsUpdate=true;
  sky.position.copy(cam.position);
  const gf=(TL.ding||[]).reduce((m,d)=>Math.max(m,1-Math.abs(t-d-.1)/.5),0); document.getElementById('gflash').style.opacity=Math.min(1,gf)*.4; document.getElementById('flash').style.opacity=0;
+ const cine=Math.max(seg(t,c.vuelas,c.vuelas+.4)*(1-seg(t,c.publico+.8,c.publico+1.4)),seg(t,c.asi,c.asi+.4)*(1-seg(t,c.d0b+.6,c.d0b+1.2)),seg(t,c.esdiez-.2,c.esdiez+.2)*(1-seg(t,c.oros+.6,c.oros+1.2)),t<2.8?.8*(1-seg(t,2.2,2.8)):0);
+ FX.update(t,{cine,vig:.45*seg(t,c.respira,c.respira+.6)*(1-seg(t,c.saltas,c.saltas+.4))+.4*seg(t,c.nada,c.nada+.4)*(1-seg(t,c.anuncian,c.anuncian+.4)),beams:(t>c.respira&&t<c.jueces)||(t>c.esdiez-.2&&t<c.imagina)?.12:.04,flash:(t>c.clavas&&t<c.jueces)||(t>c.esdiez&&t<c.imagina)?.2:(t<2.6?.1:0)});
  C.render();
  const bg=BIG.find(b=>t>=(b[0]?c[b[0]]:0)&&t<c[b[1]]); document.getElementById('big').innerHTML=bg?bg[2]:''; document.getElementById('big').style.transform='scale('+(1+pkk*.06)+')';
  document.getElementById('hook').innerHTML='';

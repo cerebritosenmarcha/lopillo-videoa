@@ -21,11 +21,13 @@ canvas{position:absolute;inset:0}
 #endc img{width:400px}
 #endc .t{font:800 150px 'Baloo 2';color:#fff;-webkit-text-stroke:10px #07080c;paint-order:stroke fill}
 #endc .s{font:900 56px Nunito;color:#ffe9b0}
+#lbt,#lbb{position:absolute;left:0;right:0;height:0;background:#000;z-index:5}#brand,#wm{z-index:6}#lbt{top:0}#lbb{bottom:0}
+#vigp{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 50%,rgba(0,0,0,0) 45%,rgba(0,0,0,.75) 100%);opacity:0}
 </style></head><body>
 <div id="vig"></div><div id="brand">¡LO PILLO!</div><img id="wm" src="atom.png">
 <div id="big" class="ov"></div><div id="hook" class="ov"></div><div id="cap" class="ov"></div><div id="src" class="ov"></div>
 <div id="endc"><img src="atom.png"><div class="t">¿Lo pillas?</div><div class="s">Síguenos para entender el mundo</div></div>
-<div id="gflash"></div><div id="flash"></div><div id="bar"></div>
+<div id="vigp"></div><div id="lbt"></div><div id="lbb"></div><div id="gflash"></div><div id="flash"></div><div id="bar"></div>
 <script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
 <script type="module">
 import * as THREE from 'three';
@@ -257,6 +259,39 @@ window.render=(t)=>{
  document.getElementById('endc').style.opacity=ec?ease((t-c.pillas)/.3)*(1-ease((t-c.loop+.25)/.25)):0;
  document.getElementById('bar').style.width=(100*t/TL.end).toFixed(2)+'%';
 };
+
+// ================= FX: efectos espectaculares (todo depende solo de t, válido para render en paralelo) =================
+const FX={bursts:[],rings:[],beams:[],flashes:null,inited:false};
+const fxHash=(a,b)=>{const x=Math.sin(a*127.1+b*311.7)*43758.5453; return x-Math.floor(x);};
+FX.init=()=>{if(FX.inited) return; FX.inited=true; const n=900;
+ FX.inst=new THREE.InstancedMesh(new THREE.BoxGeometry(.16,.16,.04),new THREE.MeshBasicMaterial({color:0xffffff,fog:false}),n); FX.inst.count=0; FX.inst.frustumCulled=false; FX.inst.castShadow=false; S.add(FX.inst);
+ FX.instColor=new THREE.Color(); FX.dm=new THREE.Object3D(); FX.inst.setColorAt(0,FX.instColor);
+ FX.ringPool=[]; for(let i=0;i<8;i++){const r=new THREE.Mesh(new THREE.TorusGeometry(1,.06,8,64),new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:0,depthWrite:false,fog:false})); r.visible=false; S.add(r); FX.ringPool.push(r);}};
+// kind: 'confetti' | 'sparks' | 'dust' ; pos en coordenadas del mundo
+FX.burst=(kind,pos,t0,n=120,cols=[0xffd23f,0xff4fd8,0x3fb8ff,0x7dff9a,0xff7a1a,0xffffff],spread=1)=>{FX.init(); FX.bursts.push({kind,pos:pos.clone(),t0,n,cols,spread,id:FX.bursts.length});};
+FX.ring=(pos,t0,col=0xffffff,maxR=8,dur=.8,normal=new THREE.Vector3(0,1,0))=>{FX.init(); FX.rings.push({pos:pos.clone(),t0,col,maxR,dur,normal});};
+FX.beam=(pos,col=0xfff2d0,len=60,ph=0,aim=null)=>{const m=new THREE.Mesh(new THREE.ConeGeometry(len*.12,len,24,1,true),new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:.1,side:THREE.DoubleSide,depthWrite:false,blending:THREE.AdditiveBlending,fog:false}));
+ m.geometry.translate(0,-len/2,0); m.position.copy(pos); m.castShadow=false; S.add(m); FX.beams.push({m,ph,aim,base:pos.clone()}); return m;};
+FX.flashField=(pts)=>{FX.init(); const g=new THREE.BufferGeometry(); g.setAttribute('position',new THREE.BufferAttribute(new Float32Array(pts.length*3),3));
+ const m=new THREE.Points(g,new THREE.PointsMaterial({color:0xffffff,size:.9,transparent:true,opacity:1,depthWrite:false,blending:THREE.AdditiveBlending,fog:false})); m.frustumCulled=false; S.add(m); FX.flashes={m,pts,rate:0};};
+FX.update=(t,o={})=>{if(!FX.inited) return; let k=0; const dm=FX.dm, cc=FX.instColor, MAX=900;
+ for(const b of FX.bursts){const d=t-b.t0; const life=b.kind==='confetti'?3.2:b.kind==='dust'?1.6:1.1; if(d<0||d>life) continue;
+  for(let i=0;i<b.n&&k<MAX;i++,k++){const r1=fxHash(b.id,i), r2=fxHash(i,b.id+.5), r3=fxHash(b.id+i,7.3), r4=fxHash(i*3.1,b.id*1.7);
+   const a=r1*Math.PI*2, el=b.kind==='dust'?r2*.6:.25+r2*1.1, sp=(b.kind==='sparks'?9:b.kind==='dust'?3.5:7)*(.4+r3)*b.spread;
+   const vx=Math.cos(a)*Math.cos(el)*sp, vy=Math.sin(el)*sp+(b.kind==='confetti'?4:0), vz=Math.sin(a)*Math.cos(el)*sp; const g=b.kind==='confetti'?3.2:b.kind==='dust'?1.5:9.8;
+   const drag=b.kind==='confetti'?(1-Math.exp(-d*1.6))/1.6:d; dm.position.set(b.pos.x+vx*drag+(b.kind==='confetti'?Math.sin(d*4+i)*.4:0),b.pos.y+vy*drag-.5*g*d*d,b.pos.z+vz*drag);
+   if(b.kind==='confetti'&&dm.position.y<b.pos.y-8) dm.position.y=b.pos.y-8;
+   dm.rotation.set(d*6*r4+i,d*5*r3,d*7*r2); const sc=b.kind==='sparks'?Math.max(.01,1-d/life)*.8:b.kind==='dust'?(1+d*2)*(1-d/life):1.3; dm.scale.set(sc,b.kind==='sparks'?sc*.4:sc,sc); dm.updateMatrix(); FX.inst.setMatrixAt(k,dm.matrix);
+   FX.inst.setColorAt(k,cc.setHex(b.kind==='dust'?0xcfc0a0:b.cols[i%b.cols.length]));}}
+ FX.inst.count=k; FX.inst.instanceMatrix.needsUpdate=true; if(FX.inst.instanceColor) FX.inst.instanceColor.needsUpdate=true;
+ let ri=0; FX.ringPool.forEach(r=>r.visible=false); for(const r of FX.rings){const d=t-r.t0; if(d<0||d>r.dur||ri>=FX.ringPool.length) continue; const m=FX.ringPool[ri++]; m.visible=true; m.position.copy(r.pos);
+  m.quaternion.setFromUnitVectors(new THREE.Vector3(0,0,1),r.normal); const e=1-Math.pow(1-d/r.dur,3); m.scale.setScalar(.3+e*r.maxR); m.material.color.setHex(r.col); m.material.opacity=.85*(1-d/r.dur);}
+ FX.beams.forEach((b,i)=>{const ph=t*.6+b.ph; b.m.rotation.set(.35+Math.sin(ph)*.25,0,Math.cos(ph*1.3)*.35); b.m.material.opacity=(o.beams??.1)*(.7+.3*Math.sin(t*3+i));});
+ if(FX.flashes){const f=FX.flashes, a=f.m.geometry.attributes.position.array, rate=o.flash??0; const slot=Math.floor(t*14); let n=0;
+  for(let i=0;i<f.pts.length;i++){const on=fxHash(i,slot)<rate; const p=on?f.pts[i]:[0,-999,0]; a[n++]=p[0]; a[n++]=p[1]; a[n++]=p[2];} f.m.geometry.attributes.position.needsUpdate=true;}
+ const cine=o.cine??0; document.getElementById('lbt').style.height=(cine*150)+'px'; document.getElementById('lbb').style.height=(cine*150)+'px'; document.getElementById('vigp').style.opacity=o.vig??0;};
+// cámara lenta: devuelve el «tiempo de acción» con tramos ralentizados [[inicio, fin, factor]]
+FX.slowmo=(t,spans)=>{let ta=t; for(const [a,b,f] of spans){if(t>a) ta-=(Math.min(t,b)-a)*(1-f);} return ta;};
 // ================= HISTORIA 009: tú eres Nadia Comăneci (Montreal 1976) =================
 const ROOM=new THREE.Vector3(0,0,-400); const ST={}; const cl=x=>Math.min(1,Math.max(0,x)), seg=(t,a,b)=>cl((t-a)/(b-a));
 const kf=(K,t)=>{let j=0; while(j<K.length-2&&t>=K[j+1][0]) j++; const e=eio(seg(t,K[j][0],K[j+1][0])); return K[j].slice(1).map((v,i)=>lerp(v,K[j+1][i+1],e));};
@@ -307,7 +342,15 @@ async function buildStory(){
  ST.fact=await icon3D('factory',0x8a8f9c,1.6,{depth:3}); W0.add(ST.fact); ST.horn=await icon3D('bullhorn',0x3fb8ff,1.6,{depth:3}); W0.add(ST.horn);
  ST.bub=[]; for(let i=0;i<9;i++){const b=await icon3D(i%3?'message-text':'comment-question',[0x3fb8ff,0xff4fd8,0xffc21a,0x7dff9a,0xff7a1a][i%5],1.2,{depth:2}); b.userData={x:(rnd()-.5)*10,y:5+rnd()*5,z:(rnd()-.5)*5,d:i*.1,ph:rnd()*6}; b.visible=false; W0.add(b); ST.bub.push(b);}
 }
-window.setTL=async x=>{TL=x; await buildStory(); S.traverse(o=>{if(o.isMesh&&o!==floor&&o!==sky){o.castShadow=true; o.receiveShadow=true;}}); ST.crowd.castShadow=false; window.popsReady=true;};
+window.setTL=async x=>{TL=x; await buildStory(); S.traverse(o=>{if(o.isMesh&&o!==floor&&o!==sky){o.castShadow=true; o.receiveShadow=true;}}); ST.crowd.castShadow=false; setupFX(); window.popsReady=true;};
+
+function setupFX(){const c=TL.cues, W=v=>ROOM.clone().add(new THREE.Vector3(...v)); FX.init();
+ FX.burst('dust',W([0,.8,-7.2]),c.clavas,70); FX.ring(W([0,.5,-7.2]),c.clavas,0xffffff,7,.7);
+ FX.burst('dust',W([0,.8,-7.2]),2.0,40); FX.ring(W([0,13,-15.4]),c.uno1,0xffb21a,6,.7,new THREE.Vector3(0,0,1));
+ FX.ring(W([0,13,-15.4]),c.d0b,0xffb21a,8,.8,new THREE.Vector3(0,0,1)); FX.burst('sparks',W([0,13,-15]),c.d0b,80,[0xffb21a,0xffffff],1);
+ FX.burst('confetti',W([0,16,-6]),c.esdiez,260,undefined,1.4); FX.burst('confetti',W([-6,15,-3]),c.esdiez+.15,150); FX.burst('confetti',W([6,15,-3]),c.esdiez+.3,150); FX.burst('sparks',W([0,13,-15]),c.esdiez,120,[0xffd23f,0xffffff,0xff4fd8],1.4);
+ [[-14,26,-10],[14,26,-10],[-12,26,10],[12,26,10]].forEach((p,i)=>FX.beam(W(p),0xfff2d0,40,i*1.7));
+ FX.flashField(ST.cpos.map(p=>[ROOM.x+p[0],ROOM.y+p[1]+.6,ROOM.z+p[2]]));}
 // ---- el ejercicio como línea de tiempo propia (T): [T, y, z, rx, brazos(0 abajo..1 arriba), piernas(0..1 carpado)]
 let RT=null;
 const hang=(B,th,arms=1,pk=0)=>[B.y-RH*Math.cos(th),B.z-RH*Math.sin(th),th,arms,pk];
@@ -322,12 +365,12 @@ function buildRoutine(){const K=[]; const add=(T,v)=>K.push([T,...v]); const ST0
  const d0=hang(HIGH,g1), land=[MAT+2.2,-7.2,10*Math.PI,.5,.5]; for(let i=1;i<=8;i++){const f=i/8; add(16.8+f*.9,[lerp(d0[0],land[0],f)+Math.sin(f*Math.PI)*3.2,lerp(d0[1],land[1],f),lerp(g1,10*Math.PI,eio(f)),lerp(1,.4,f),.8*Math.sin(f*Math.PI)]);}
  add(17.95,[MAT+2.4,-7.2,10*Math.PI,.95,0]); add(19.0,[MAT+2.4,-7.2,10*Math.PI,.95,0]); add(19.6,[MAT+2.4,-7.2,10*Math.PI,.05,0]);
  return K;}
-const BIG=[["","uno1","<span style=\"font-size:120px\">EJERCICIO PERFECTO</span>"],["unq","espera","¿UN 1?"],["montreal","eres","<span style=\"font-size:130px\">MONTREAL 1976</span>"],["eres","toca","<span style=\"font-size:120px\">NADIA COMĂNECI</span><small>Rumanía · 14 años</small>"],
- ["toca","saltas","<span style=\"font-size:120px\">BARRA ASIMÉTRICA</span>"],["diez","nadie","10<small>la nota perfecta</small>"],["nadie","pero","PRIMER 10<small>en unos Juegos Olímpicos</small>"],["pero","fabricante","1 CIFRA<small>antes de la coma</small>"],
+const BIG=[["","uno1","<span style=\"font-size:120px\">EJERCICIO PERFECTO</span>"],["unq","montreal","¿UN 1?"],["montreal","eres","<span style=\"font-size:130px\">MONTREAL 1976</span>"],["eres","toca","<span style=\"font-size:120px\">NADIA COMĂNECI</span><small>Rumanía · 14 años</small>"],
+ ["toca","respira","<span style=\"font-size:120px\">BARRA ASIMÉTRICA</span>"],["clavas","jueces","¡PERFECTO!"],["diez","nadie","10<small>la nota perfecta</small>"],["nadie","pero","PRIMER 10<small>en unos Juegos Olímpicos</small>"],["pero","fabricante","1 CIFRA<small>antes de la coma</small>"],
  ["fabricante","asi","<span style=\"font-size:110px\">«UN 10 ES IMPOSIBLE»</span>"],["esdiez","repites","ES UN 10"],["repites","imagina","7 DIECES<small>y 3 oros</small>"],["imagina","leo","¿Y TÚ?"]];
 window.render=(t)=>{const c=TL.cues; if(!RT) RT=buildRoutine(); const end=TL.end; const W0=ST.W;
  // tiempo del ejercicio: gancho, rebobinado, ejercicio real, rebobinado bajo la tarjeta y repetición acelerada (bucle)
- const TAU=[[0,16.95],[2.6,18.6],[c.espera,18.6],[c.montreal,11.0],[c.saltas,12.16],[19.6,19.6],[c.pillas,19.6],[c.loop,11.0],[end,16.95]];
+ const TAU=[[0,16.95],[2.6,18.6],[c.espera,18.6],[c.montreal,11.0],[c.saltas-.6,12.16],[c.saltas,12.75],[c.saltas+.3,13.0],[c.giras,13.05],[c.vuelas,14.15],[c.vuelas+.45,14.6],[c.sueltas,15.04],[c.coger,15.74],[c.ultima,16.8],[c.clavas,17.7],[c.clavas+.45,17.95],[c.publico+1.0,19.0],[c.publico+1.6,19.6],[c.pillas,19.6],[c.loop,11.0],[end,16.95]];
  const tau=kfl(TAU,t)[0];
  const [py,pz,rx,ar,pk]=kfl(RT,tau); ST.J.position.set(0,py,pz); ST.J.rotation.set(rx,Math.PI,0);
  // el cuerpo se pivota en el centro: el muñeco va desplazado para que el centro sea el de la cadera
@@ -349,14 +392,14 @@ window.render=(t)=>{const c=TL.cues; if(!RT) RT=buildRoutine(); const end=TL.end
  ST.tens.forEach((m,i)=>{const s=back(seg(t,c.siete+i*.1,c.siete+.4+i*.1))*(1-seg(t,c.imagina+.5,c.imagina+1)); m.visible=s>.01; const a=-1.2+i*.4; m.position.set(Math.sin(a)*4,5.5+Math.sin(t*2+i)*.2+(i%2)*1.2,-7.2+Math.cos(a)*4); m.scale.setScalar(Math.max(.01,s)*1.3);});
  // ---- CÁMARA [t, ángulo, distancia, altura, mirada x, y, z, peso hacia ti]
  const CK=[[0,1.35,20,.22,0,6.2,-1,.3],[c.uno1,.75,26,.18,0,9,-7,.2],[c.unq,.35,19,.2,0,8,-9,.3],[c.espera+.4,1.2,22,.25,0,6,-1,.3],[c.montreal,.4,26,.3,0,5.5,0,0],[c.eres,.25,13,.22,0,3.6,5.5,.8],
-  [c.toca,.9,19,.25,0,5,0,.2],[c.saltas,1.4,19,.2,0,6,-.5,.35],[c.clavas,1.3,20,.2,0,5.5,-3,.4],[c.publico,.65,19,.22,0,4.5,-6,.8],[c.jueces,3.3,13,.2,-9,3.4,9.8,0],[c.diez,3.25,9.5,.18,-9,4.2,9.8,0],[c.diez+.6,3.2,9.5,.18,-9,4.2,9.8,0],
+  [c.toca,.9,19,.25,0,5,0,.2],[c.respira,.3,24,.3,0,5,0,.1],[c.saltas-.3,1.2,17,.22,0,5.5,0,.3],[c.saltas,1.4,18,.2,0,6,-.5,.4],[c.sueltas,1.45,16,.12,0,8,-1,.6],[c.aire,1.55,13,.02,0,9.5,-1.2,.8],[c.coger,1.35,17,.15,0,7,-1.5,.5],[c.ultima,1.2,18,.18,0,6,-3,.5],[c.clavas,.9,12,.1,0,4,-7,.9],[c.publico,.5,22,.3,0,6,-6,.5],[c.jueces,3.3,13,.2,-9,3.4,9.8,0],[c.diez,3.25,9.5,.18,-9,4.2,9.8,0],[c.diez+.6,3.2,9.5,.18,-9,4.2,9.8,0],
   [c.perfecta+.5,.25,14,.22,0,4.5,-7,.9],[c.nadie,.5,24,.22,0,7,-6,.3],[c.pero,0,20,.08,0,13,-15,0],[c.asi,0,17.5,.05,0,13,-15,0],[c.d0b+.5,0,18,.05,0,13,-15,0],[c.nada,.9,28,.28,0,7,-5,.2],
   [c.tampoco,.25,11,.22,0,4.2,-7.2,1],[c.anuncian,.1,23,.12,0,12.5,-12,0],[c.repites,.3,15,.24,0,5.5,-7.2,1],[c.imagina,.5,17,.25,0,5.5,-7.2,1],[c.leo+1,.6,18,.28,0,6,-7,1],
   [c.pillas,.9,20,.25,0,6,-3,.4],[c.loop,1.4,20,.22,0,6,-1,.35],[end-.2,1.35,20,.22,0,6.2,-1,.3],[1e9,1.35,20,.22,0,6.2,-1,.3]];
  const [ca,cd,chh,lx,ly,lz,cw]=kf(CK,t); const T=new THREE.Vector3(lx,ly,lz).lerp(new THREE.Vector3(0,py+1,pz),cw); const Lw=ROOM.clone().add(T);
  const P=Lw.clone().add(new THREE.Vector3(Math.sin(ca)*cd,cd*chh,Math.cos(ca)*cd));
  let pkk=0; TL.punch.forEach(v=>{const dd=t-v; if(dd>=0&&dd<.5) pkk=Math.max(pkk,Math.exp(-dd*7));});
- cam.up.set(0,1,0); cam.position.copy(P); cam.position.x+=Math.sin(t*70)*pkk*.12; cam.position.y+=Math.cos(t*61)*pkk*.12; cam.lookAt(Lw); cam.near=.1; cam.fov=50-pkk*3; cam.updateProjectionMatrix();
+ cam.up.set(0,1,0); cam.position.copy(P); cam.position.x+=Math.sin(t*70)*pkk*.3; cam.position.y+=Math.cos(t*61)*pkk*.3; cam.lookAt(Lw); cam.near=.1; cam.fov=50-pkk*3; cam.updateProjectionMatrix();
  ST.tens.forEach(m=>m.lookAt(cam.position));
  ST.qs.forEach((q,i)=>{const s=back(seg(t,c.nada+i*.06,c.nada+.4+i*.06))*(1-seg(t,c.anuncian,c.anuncian+.4)); q.visible=s>.01; if(!q.visible) return; const u=q.userData; q.position.set(Math.sin(u.a)*u.r,u.y+Math.sin(t*3+i)*.3,Math.cos(u.a)*u.r); q.scale.setScalar(1.3*s); q.lookAt(cam.position);});
  const fv=seg(t,c.fabricante,c.fabricante+.4)*(1-seg(t,c.asi,c.asi+.4)); ST.fact.visible=fv>.01; if(fv>.01){ST.fact.position.set(-3.6,17.6,-15); ST.fact.scale.setScalar(1.6*back(fv)); ST.fact.lookAt(cam.position);}
@@ -366,6 +409,8 @@ window.render=(t)=>{const c=TL.cues; if(!RT) RT=buildRoutine(); const end=TL.end
  parts.position.set(kb.x,0,kb.z); for(let i=0;i<PN;i++){const q=pb[i]; pp[i*3]=q[0]+Math.sin(t*.25+q[3]*9)*.8; pp[i*3+1]=(q[1]+t*(.25+q[3]*.4))%35; pp[i*3+2]=q[2];} pg.attributes.position.needsUpdate=true;
  sky.position.copy(cam.position);
  const gf=(TL.ding||[]).reduce((m,d)=>Math.max(m,1-Math.abs(t-d-.1)/.5),0); document.getElementById('gflash').style.opacity=Math.min(1,gf)*.4; document.getElementById('flash').style.opacity=0;
+ const cine=Math.max(seg(t,c.vuelas,c.vuelas+.4)*(1-seg(t,c.publico+.8,c.publico+1.4)),seg(t,c.asi,c.asi+.4)*(1-seg(t,c.d0b+.6,c.d0b+1.2)),seg(t,c.esdiez-.2,c.esdiez+.2)*(1-seg(t,c.oros+.6,c.oros+1.2)),t<2.8?.8*(1-seg(t,2.2,2.8)):0);
+ FX.update(t,{cine,vig:.45*seg(t,c.respira,c.respira+.6)*(1-seg(t,c.saltas,c.saltas+.4))+.4*seg(t,c.nada,c.nada+.4)*(1-seg(t,c.anuncian,c.anuncian+.4)),beams:(t>c.respira&&t<c.jueces)||(t>c.esdiez-.2&&t<c.imagina)?.12:.04,flash:(t>c.clavas&&t<c.jueces)||(t>c.esdiez&&t<c.imagina)?.2:(t<2.6?.1:0)});
  C.render();
  const bg=BIG.find(b=>t>=(b[0]?c[b[0]]:0)&&t<c[b[1]]); document.getElementById('big').innerHTML=bg?bg[2]:''; document.getElementById('big').style.transform='scale('+(1+pkk*.06)+')';
  document.getElementById('hook').innerHTML='';

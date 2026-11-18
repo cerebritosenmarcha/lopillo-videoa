@@ -1,12 +1,12 @@
 import json, base64, urllib.request, sys
 SEG = [
- "Haces el ejercicio perfecto… y el marcador pone un uno. ¿Un uno? Espera, que esto tiene truco.",
- "Montreal, mil novecientos setenta y seis. Eres Nadia Comăneci, rumana, tienes catorce años, y te toca la barra asimétrica.",
- "Saltas a la barra baja, giras, vuelas a la alta, te sueltas, la vuelves a coger… y clavas la salida. El público se pone en pie.",
- "Los jueces deciden: un diez. La nota perfecta. Nadie la había conseguido nunca en unos Juegos Olímpicos.",
- "Pero el marcador solo tiene sitio para una cifra antes de la coma. Al fabricante le dijeron que un diez era imposible. Así que pone: uno, coma, cero, cero.",
- "El público no entiende nada. Tú tampoco. Hasta que lo anuncian por megafonía: es un diez. Y en esos Juegos lo repites siete veces y te llevas tres oros.",
- "¿Te imaginas sacar un diez y que te pongan un uno? Te leo en comentarios. ¿Lo pillas? A veces, lo imposible no cabe en el marcador.",
+ "Haces el ejercicio perfecto… y el marcador pone un uno. Un uno. ¿Qué ha pasado aquí?",
+ "Montreal, mil novecientos setenta y seis. Eres Nadia Comăneci. Rumana. Catorce años. Te toca la barra asimétrica, y el pabellón entero contiene la respiración.",
+ "Saltas. Giras. Vuelas a la barra alta. Te sueltas… en el aire… ¡y la vuelves a coger! Última salida… y la clavas. ¡El pabellón explota!",
+ "Los jueces deliberan. Y deciden: un diez. La nota perfecta. Nunca nadie la había conseguido en unos Juegos Olímpicos.",
+ "Pero hay un problema. El marcador solo tiene sitio para una cifra antes de la coma: al fabricante le dijeron que un diez era imposible. Así que se enciende: uno… coma… cero… cero.",
+ "Silencio. Nadie entiende nada. Ni tú. Hasta que la megafonía lo anuncia: ¡es un diez! Y lo repites siete veces. Y te llevas tres oros.",
+ "¿Te imaginas sacar un diez y ver un uno? Te leo en comentarios. ¿Lo pillas? A veces, lo imposible no cabe en el marcador.",
 ]
 text = " ".join(SEG)
 voice = json.load(open("../../assets/voces.json"))["narrador"]
