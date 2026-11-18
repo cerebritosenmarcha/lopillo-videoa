@@ -21,7 +21,7 @@ canvas{position:absolute;inset:0}
 #endc img{width:400px}
 #endc .t{font:800 150px 'Baloo 2';color:#fff;-webkit-text-stroke:10px #07080c;paint-order:stroke fill}
 #endc .s{font:900 56px Nunito;color:#ffe9b0}
-#lbt,#lbb{position:absolute;left:0;right:0;height:0;background:#000;z-index:5}#lbt{top:0}#lbb{bottom:0}
+#lbt,#lbb{position:absolute;left:0;right:0;height:0;background:#000;z-index:5}#brand,#wm{z-index:6}#lbt{top:0}#lbb{bottom:0}
 #vigp{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 50% 50%,rgba(0,0,0,0) 45%,rgba(0,0,0,.75) 100%);opacity:0}
 </style></head><body>
 <div id="vig"></div><div id="brand">¡LO PILLO!</div><img id="wm" src="atom.png">
@@ -433,7 +433,7 @@ window.render=(t)=>{const c=TL.cues; if(!K) setupK(c); const end=TL.end; const W
   [c.llegas,.25,20,.35,.7,-31,3,-12],[c.calor,1.45,17,.1,.35,-36,6.5,0],[c.pum,1.3,15,.12,.5,-31,4,0],[c.corres+.6,.2,15,.22,1,0,3.2,0],[c.sofocante,.15,13,.5,1,0,3,0],[c.piernas,.3,10,.42,1,0,3,0],
   [c.familia,.5,15,.28,.55,6,3,-3.6],[c.sientas+.3,.25,8.5,.25,.5,6.5,2.6,-4.4],[c.novuelves,.35,7,.2,.5,6.5,2.6,-4.4],[c.verg+.4,.75,16,.3,1,0,3,0],[c.verg+2.4,.55,30,.5,.5,9,2,-30],[c.suecia+.3,.25,12,.2,0,-3,3.8,3],[c.desap+.2,.2,9,.15,0,-3,3.8,3],
   [c.anos+.5,.3,26,.42,.5,0,3,-64],[c.japon+.5,.25,17,.27,1,0,3,0],[c.relevos,.4,15,.27,1,0,3,0],[c.tv+.3,.55,16,.27,.7,12,3,-65.5],[c.termina+1.0,.75,36,.5,.5,-14,2,-34],[c.vuelves+.8,-.3,18,.3,1,0,3.2,0],
-  [c.setenta+.6,-1.0,15,.27,1,0,3.4,0],[c.zancadas,-1.25,11,.2,1,-36,3.6,0],[c.meta,-1.35,9,.15,1,-36,3.6,0],[c.meta+.8,-1.2,16,.3,.7,-36,5,0],[c.oficial+.3,-1.12,30,.28,.45,-36,12,0],[c.pregunta,-1.0,18,.3,.8,-36,4,0],
+  [c.setenta,.6,16,.3,1,0,3.4,0],[c.zancadas,1.25,11,.18,1,-36,3.6,0],[c.meta,1.4,10,.15,1,-36,4,0],[c.meta+.5,.2,20,1.0,.7,-36,6,0],[c.meta+1.3,-1.2,18,.4,.6,-36,6,0],[c.oficial+.3,-1.12,30,.28,.45,-36,12,0],[c.pregunta,-1.0,18,.3,.8,-36,4,0],
   [c.pillas,-1.2,15,.27,1,-36,3.4,0],[end-.2,-1.3,13,.25,1,-36,3.4,0],[1e9,-1.3,13,.25,1,-36,3.4,0]];
  const [ca,cd,chh,cw,lx,ly,lz]=kf(CK,t); const T=new THREE.Vector3(lx,0,lz).lerp(new THREE.Vector3(yx,0,yz),cw); const Lw=ROOM.clone().add(new THREE.Vector3(T.x,ly+(cw>.5&&mode==='deck'?1.6:0),T.z));
  const P=Lw.clone().add(new THREE.Vector3(Math.sin(ca)*cd,cd*chh,Math.cos(ca)*cd));
