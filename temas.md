@@ -1,6 +1,31 @@
 # Temas
 
-## Cola de producción (ordenada por potencial de visualizaciones; revisada el 17/11/2026)
+## Cola de producción: SERIE DE DEPORTES (prioridad desde el 18/11/2026, pedida por el dueño)
+
+Produce siempre el primero de esta lista que no esté en `publicados.md`. Los detalles de cada historia (qué ocurrió, dato sorprendente, idea visual 3D, gancho y fuentes) están en `deportes.md`; aun así, comprueba de nuevo cada cifra antes de grabar la voz. En esta serie, la «familia» es el deporte: no hagas dos vídeos seguidos del mismo deporte. Ya hecho: 006 Fosbury (atletismo).
+
+1. Ganó el oro olímpico… porque todos los demás se cayeron (Steven Bradbury, patinaje, 2002)
+2. Tardó 54 años en terminar un maratón (Shizo Kanakuri, 1912–1967)
+3. La nota perfecta que el marcador no sabía mostrar: 1.00 (Nadia Comăneci, gimnasia, 1976)
+4. Saltó desde el borde del espacio y rompió la barrera del sonido sin avión (Felix Baumgartner, 2012)
+5. El partido de tenis que rompió el marcador: 11 horas y 70–68 (Isner–Mahut, Wimbledon 2010)
+6. 28 segundos dentro del fuego: el arco que le salvó la vida (Romain Grosjean, F1, 2020)
+7. El gol que parecía desafiar la física (Roberto Carlos, fútbol, 1997)
+8. Saltó tan lejos que el medidor no llegaba (Bob Beamon, longitud, 1968)
+9. Nadó solo en unos Juegos sin haber nadado nunca en una piscina de 50 m (Eric Moussambani, 2000)
+10. Pagaban 42 a 1 por él… y tumbó a Tyson (Buster Douglas, boxeo, 1990)
+11. El maratón más loco de la historia (San Luis 1904)
+12. El Tour de Francia que se ganó por 8 segundos (Greg LeMond, ciclismo, 1989)
+13. Metió 100 puntos en un partido… y no hay ni un vídeo (Wilt Chamberlain, NBA, 1962)
+14. Le dieron la extremaunción… y 42 días después volvía a correr (Niki Lauda, F1, 1976)
+15. Se cayó en mitad de la final… y ganó con récord del mundo (Lasse Virén, 10.000 m, 1972)
+16. Escaló una pared de casi 900 metros sin cuerda (Alex Honnold, 2017)
+17. El gol que dejó en silencio a 200.000 personas (Maracanazo, 1950)
+18. Cuatro récords del mundo en 45 minutos (Jesse Owens, 1935)
+19. 0–3 en el descanso de una final… y la ganaron (Liverpool, Estambul 2005)
+20. Se rompió en mitad de la carrera… y su padre bajó a la pista (Derek Redmond, 1992)
+
+## Cola de ciencia y curiosidades (después de la serie de deportes; ordenada por potencial de visualizaciones, revisada el 17/11/2026)
 
 Produce siempre el primero de esta lista que no esté en `publicados.md`, salvo que repita la familia de los dos vídeos anteriores (en ese caso, el siguiente). Ya publicados: móvil, alarma, déjà vu, horas de sueño.
 

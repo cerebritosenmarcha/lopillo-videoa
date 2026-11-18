@@ -11,7 +11,7 @@ Este repositorio produce los vídeos de **¡Lo Pillo!** (Instagram @lopillocienc
 
 ## El estilo de vídeo (decidido con el dueño, no cambiar sin que lo pida)
 
-**Estilo de historia encadenada** (aprobado por el dueño el 17/11/2026). Referencias: `videos/003-alarma`, `004-deja-vu`, `005-horas-sueno` y `002-movil-una-semana`, todos con `story.html` y `plan.md`.
+**Estilo de historia encadenada** (aprobado por el dueño el 17/11/2026). Referencias: `videos/003-alarma`, `004-deja-vu`, `005-horas-sueno`, `002-movil-una-semana` y, para historias del deporte, `006-fosbury` (el protagonista es el deportista, el escenario evoluciona alrededor y el salto/movimiento se anima con `pose()`), todos con `story.html` y `plan.md`.
 
 1. **Vertical 1080×1920, 30 fps. Duración: entre 50 y 60 s por lo general, y nunca más de 1 min 5 s (65 s).**
 2. **Un protagonista:** «tú», el muñeco naranja (`human(0xff9a4a,1.6)` con ojos), el mismo en todos los vídeos y durante todo el vídeo. Todo le pasa a él.
@@ -43,7 +43,7 @@ Este repositorio produce los vídeos de **¡Lo Pillo!** (Instagram @lopillocienc
 
 ## Cómo se hace un vídeo
 
-1. **Elige el tema:** el primero de la «Cola de producción» de `temas.md` que no esté en `publicados.md`. Respeta el orden; la reserva solo cuando la cola se acabe. La cola está ordenada por lo que más visualizaciones consigue en este tipo de vídeos (ver «Qué funciona» abajo). Si el tema que toca es de la misma familia que los dos vídeos anteriores (por ejemplo, un tercero seguido sobre sueño), salta al siguiente y deja ese para después.
+1. **Elige el tema:** el primero de la «Cola de producción» de `temas.md` que no esté en `publicados.md` (ahora mismo, la serie de deportes; la investigación de cada historia está en `deportes.md`, y en esa serie «tú» eres el deportista protagonista, como Fosbury en `videos/006-fosbury`). Respeta el orden; la reserva solo cuando la cola se acabe. La cola está ordenada por lo que más visualizaciones consigue en este tipo de vídeos (ver «Qué funciona» abajo). Si el tema que toca es de la misma familia que los dos vídeos anteriores (por ejemplo, un tercero seguido sobre sueño), salta al siguiente y deja ese para después.
 2. Crea `videos/NNN-slug/` copiando `tts.py` de `videos/003-alarma/`.
 3. **Investiga** y escribe `fuentes.md`.
 4. **Guion encadenado** en `tts.py` (lista `SEG`): escrito para que cada frase cause la siguiente, en segunda persona («tú»). Ejecuta `python3 tts.py` → `voz.mp3` y `align.json`.
@@ -75,7 +75,7 @@ Revisado el 17/11/2026 con búsquedas sobre los Shorts, Reels y TikTok de curios
   - Datos de psicología y cerebro.
 - **Títulos que responden a una pregunta concreta** («¿Por qué…?», «¿Qué pasa si…?», «¿Cómo…?»): además del feed, se encuentran por búsqueda.
 - **Gancho en los 3 primeros segundos** y un dato sorprendente o una cifra imposible antes del segundo 10.
-- **Variedad:** no repetir la misma familia (sueño, cerebro, espacio…) más de dos días seguidos.
+- **Variedad:** no repetir la misma familia (sueño, cerebro, espacio…) más de dos días seguidos. En la serie de deportes, la familia es el deporte: nunca dos vídeos seguidos del mismo deporte.
 - **Revisión semanal:** cuando el dueño lo pida, o en una sesión con Metricool conectado, consulta la analítica de los vídeos publicados (visualizaciones, retención, compartidos y guardados). Sube en la cola los temas parecidos a los que mejor funcionen y anota aquí lo aprendido.
 
 ## Publicación en Metricool
