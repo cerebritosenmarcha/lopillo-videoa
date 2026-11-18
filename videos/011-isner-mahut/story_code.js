@@ -58,7 +58,7 @@ function setupK(c){const end=TL.end;
  // luz del día: 1 = día, 0 = noche
  K={DAY:[[0,1],[c.forma,1],[c.wimbledon,1],[c.noche,1],[c.noche+.8,0],[c.dia2-.4,0],[c.dia2+.4,1],[c.c59+.6,1],[c.noche2+.2,0],[c.dia3-.2,0],[c.dia3+.5,1],[1e9,1]],
   RATE:[[0,1.2],[c.forma,1.2],[c.forma+.3,-3],[c.wimbledon-.2,-3],[c.wimbledon,1],[c.noche,1],[c.noche+.6,0],[c.dia2+.2,0],[c.dia2+.5,1],[c.diez-.3,1],[c.diez,3.2],[c.apaga,3.2],[c.apaga+.5,1.2],[c.noche2,1.2],[c.noche2+.5,0],[c.dia3+.3,0],[c.dia3+.6,.8],[c.c69,.8],[c.c69+.2,0],[c.loop-.3,0],[c.loop,1.2],[end,1.2]],
-  G:[[0,46],[1.25,47],[c.forma,47],[c.wimbledon,0],[c.dia2,0],[c.diez,10],[c.treinta,30],[c.c47,47],[c.apaga+.3,47],[c.c59,59],[c.c69,69],[c.s70,70],[c.pillas,70],[c.loop,46],[end,46]]};
+  G:[[0,46],[1.25,47],[c.forma,47],[c.wimbledon,0],[c.dia2,0],[c.diez,10],[c.treinta,30],[c.c47,47],[c.apaga+.3,47],[c.c59,59],[c.dia3,59],[c.c69,69],[c.s70,70],[c.pillas,70],[c.loop,46],[end,46]]};
  // integra la fase del peloteo
  K.PH=[]; let ph=0; const dt=1/60; for(let tt=0;tt<=end+.1;tt+=dt){K.PH.push(ph); ph+=kfl(K.RATE,tt)[0]*dt*.62;} K.PH0=K.PH[0];}
 const phaseAt=t=>{const i=Math.max(0,Math.min(K.PH.length-1,Math.floor(t*60))); return K.PH[i];};
