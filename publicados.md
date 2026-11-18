@@ -10,3 +10,4 @@
 | 002b | — | ¿Qué le pasa a tu cuerpo cuando dejas el móvil? (historia encadenada) | videos/002-movil-una-semana | Cancelado el 18/11 (borrador en Metricool, 48 s): se deja de momento |
 | 003b | — | ¿Por qué te despiertas justo antes de la alarma? (historia encadenada) | videos/003-alarma | Cancelado el 18/11 (borrador en Metricool, 52 s): se deja de momento |
 | 006 | 2026-11-18 10:00 | El hombre que saltó de espaldas: cómo Dick Fosbury revolucionó el salto de altura (serie de deportes) | videos/006-fosbury | Programado en Metricool con aviso al móvil; historia encadenada (64 s) |
+| 007 | 2026-11-19 10:00 | Ganó el oro olímpico porque todos los demás se cayeron (Steven Bradbury, serie de deportes) | videos/007-bradbury | Programado en Metricool con aviso al móvil; historia encadenada (62 s) |
