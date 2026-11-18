@@ -1,11 +1,12 @@
 import json, base64, urllib.request, sys
 SEG = [
- "Juegas un partido de tenis tan largo… que el marcador deja de funcionar. Y no es una forma de hablar.",
- "Wimbledon, dos mil diez, primera ronda, pista dieciocho. Eres John Isner, y enfrente tienes a Nicolas Mahut. Empatáis a dos sets… y se hace de noche. Se sigue mañana.",
- "Día dos. Quinto set. Entonces, en Wimbledon, el último set no tenía muerte súbita: había que ganarlo por dos juegos de diferencia. Y ninguno de los dos pierde su saque.",
- "Diez a diez. Treinta a treinta. Cuarenta y siete a cuarenta y siete… y el marcador electrónico se apaga. No estaba programado para contar tanto.",
- "Cincuenta y nueve a cincuenta y nueve. Otra vez de noche. Día tres. Seguís… hasta que, con sesenta y nueve a sesenta y ocho, le rompes el saque. Setenta a sesenta y ocho. Has ganado.",
- "Once horas y cinco minutos. Ciento ochenta y tres juegos. Solo el quinto set duró más de ocho horas.",
+ "Este partido de tenis duró tanto… que rompió el marcador. Y quédate hasta el final, porque el último punto es de locos.",
+ "Wimbledon, dos mil diez. Pista dieciocho. Primera ronda. Eres John Isner. Enfrente, Nicolas Mahut. Dos sets a dos… y se hace de noche. Se sigue mañana.",
+ "Y entonces, en Wimbledon, el último set no tenía muerte súbita: había que ganarlo por dos juegos. Día dos. Sacas tú. Saca él. Nadie falla.",
+ "Diez a diez. Treinta a treinta. Cuarenta y siete a cuarenta y siete… y el marcador se apaga. No estaba programado para contar tanto.",
+ "Cincuenta y nueve a cincuenta y nueve. Otra vez de noche. Estás agotado. Día tres. La pista dieciocho, abarrotada.",
+ "Sesenta y nueve a sesenta y ocho. Saca él. Quinta bola de partido. Sube a la red… y le pasas con un revés paralelo. ¡Setenta a sesenta y ocho! ¡Has ganado!",
+ "Once horas y cinco minutos. Ciento ochenta y tres juegos. Solo el quinto set, más de ocho horas.",
  "¿Tú habrías aguantado? Te leo en comentarios. ¿Lo pillas? Hay partidos que no caben ni en el marcador.",
 ]
 text = " ".join(SEG)

@@ -46,21 +46,28 @@ async function buildStory(){
  ST.hemi=new THREE.HemisphereLight(0xdfeaff,0x203018,.6); S.add(ST.hemi);
  ST.bub=[]; for(let i=0;i<9;i++){const b=await icon3D(i%3?'message-text':'comment-question',[0x3fb8ff,0xff4fd8,0xffc21a,0x7dff9a,0xff7a1a][i%5],1.2,{depth:2}); b.userData={x:(rnd()-.5)*10,y:4+rnd()*5,z:(rnd()-.5)*5,d:i*.1,ph:rnd()*6}; b.visible=false; W0.add(b); ST.bub.push(b);}
 }
-window.setTL=async x=>{TL=x; await buildStory(); S.traverse(o=>{if(o.isMesh&&o!==floor&&o!==sky){o.castShadow=true; o.receiveShadow=true;}}); [ST.skyT,ST.sun,ST.moon].forEach(m=>m.castShadow=false); ST.crowd.castShadow=false; window.popsReady=true;};
+window.setTL=async x=>{TL=x; await buildStory(); S.traverse(o=>{if(o.isMesh&&o!==floor&&o!==sky){o.castShadow=true; o.receiveShadow=true;}}); [ST.skyT,ST.sun,ST.moon].forEach(m=>m.castShadow=false); ST.crowd.castShadow=false; setupFX(); window.popsReady=true;};
+
+function setupFX(){const c=TL.cues, W=v=>ROOM.clone().add(new THREE.Vector3(...v)); FX.init(); const bn=new THREE.Vector3(Math.sin(.55),0,Math.cos(.55));
+ FX.ring(W([-9.84,7.5,7.26]),c.deja,0xff5a3a,6,.7,bn); FX.burst('sparks',W([-9.8,7.5,7.4]),c.deja,90,[0xffd23f,0xff5a3a,0xffffff],1.2);
+ FX.ring(W([-9.84,7.5,7.26]),c.apaga,0xff5a3a,8,.8,bn); FX.burst('sparks',W([-9.8,7.5,7.4]),c.apaga,140,[0xffd23f,0xff5a3a,0xffffff],1.5);
+ FX.burst('dust',W([-4.6,.3,-11.5]),c.s70,70,undefined,1.2); FX.ring(W([-4.6,.15,-11.5]),c.s70,0xffffff,8,.8); FX.burst('sparks',W([-4.6,.5,-11.5]),c.s70,60,[0xd8f25a,0xffffff],1);
+ FX.flashField(ST.cpos.map(p=>[ROOM.x+p[0],ROOM.y+p[1]+.6,ROOM.z+p[2]]));}
 let K=null;
 function setupK(c){const end=TL.end;
  // luz del día: 1 = día, 0 = noche
- K={DAY:[[0,1],[c.forma,1],[c.wimbledon,1],[c.noche,1],[c.noche+.8,0],[c.dia2-.2,0],[c.dia2+.5,1],[c.c59+.6,1],[c.noche2+.2,0],[c.dia3-.2,0],[c.dia3+.5,1],[1e9,1]],
-  // velocidad del peloteo (pelotas por segundo relativas)
-  RATE:[[0,1.2],[c.forma,1.2],[c.forma+.3,-3],[c.wimbledon-.2,-3],[c.wimbledon,1],[c.noche,1],[c.noche+.6,0],[c.dia2+.3,0],[c.dia2+.6,1],[c.diez-.3,1],[c.diez,3.2],[c.apaga,3.2],[c.apaga+.5,1.2],[c.noche2,1.2],[c.noche2+.5,0],[c.dia3+.3,0],[c.dia3+.6,.8],[c.rompes+.5,.8],[c.rompes+.6,0],[c.loop-.3,0],[c.loop,1.2],[end,1.2]],
-  G:[[0,46],[1.25,47],[c.forma,47],[c.wimbledon,0],[c.quinto,0],[c.diez,10],[c.treinta,30],[c.c47,47],[c.c59,59],[c.c69,69],[c.s70,70],[c.pillas,70],[c.loop,46],[end,46]]};
+ K={DAY:[[0,1],[c.forma,1],[c.wimbledon,1],[c.noche,1],[c.noche+.8,0],[c.dia2-.4,0],[c.dia2+.4,1],[c.c59+.6,1],[c.noche2+.2,0],[c.dia3-.2,0],[c.dia3+.5,1],[1e9,1]],
+  RATE:[[0,1.2],[c.forma,1.2],[c.forma+.3,-3],[c.wimbledon-.2,-3],[c.wimbledon,1],[c.noche,1],[c.noche+.6,0],[c.dia2+.2,0],[c.dia2+.5,1],[c.diez-.3,1],[c.diez,3.2],[c.apaga,3.2],[c.apaga+.5,1.2],[c.noche2,1.2],[c.noche2+.5,0],[c.dia3+.3,0],[c.dia3+.6,.8],[c.c69,.8],[c.c69+.2,0],[c.loop-.3,0],[c.loop,1.2],[end,1.2]],
+  G:[[0,46],[1.25,47],[c.forma,47],[c.wimbledon,0],[c.dia2,0],[c.diez,10],[c.treinta,30],[c.c47,47],[c.apaga+.3,47],[c.c59,59],[c.c69,69],[c.s70,70],[c.pillas,70],[c.loop,46],[end,46]]};
  // integra la fase del peloteo
  K.PH=[]; let ph=0; const dt=1/60; for(let tt=0;tt<=end+.1;tt+=dt){K.PH.push(ph); ph+=kfl(K.RATE,tt)[0]*dt*.62;} K.PH0=K.PH[0];}
 const phaseAt=t=>{const i=Math.max(0,Math.min(K.PH.length-1,Math.floor(t*60))); return K.PH[i];};
-const BIG=[["wimbledon","eres","<span style=\"font-size:120px\">WIMBLEDON 2010</span><small>primera ronda · pista 18</small>"],["eres","empatais","<span style=\"font-size:120px\">ISNER – MAHUT</span>"],["empatais","noche","2 – 2<small>en sets</small>"],
- ["noche","dia2","<span style=\"font-size:120px\">SE HACE DE NOCHE</span><small>se sigue mañana</small>"],["dia2","quinto","DÍA 2"],["quinto","muerte","QUINTO SET"],["muerte","ninguno","<span style=\"font-size:110px\">SIN MUERTE SÚBITA</span><small>hay que ganar por 2 juegos</small>"],
- ["ninguno","diez","<span style=\"font-size:110px\">NADIE PIERDE SU SAQUE</span>"],["apaga","programado","<span style=\"font-size:120px\">¡SE APAGA!</span>"],["programado","c59","<span style=\"font-size:100px\">NO SABÍA CONTAR TANTO</span>"],
- ["noche2","dia3","<span style=\"font-size:120px\">OTRA VEZ DE NOCHE</span>"],["dia3","c69","DÍA 3"],["rompes","s70","¡BREAK!"],["s70","once","70 – 68"],["once","c183","11 h 5 min"],["c183","solo","183 JUEGOS"],["solo","pregunta","+8 HORAS<small>solo el quinto set</small>"],["pregunta","leo","¿Y TÚ?"]];
+const BIG=[["deja","forma","<span style=\"font-size:120px\">¡SE APAGA!</span>"],["forma","wimbledon","<span style=\"font-size:110px\">QUÉDATE AL FINAL</span><small>el último punto es de locos</small>"],
+ ["wimbledon","eres","<span style=\"font-size:120px\">WIMBLEDON 2010</span><small>pista 18 · primera ronda</small>"],["eres","empatais","<span style=\"font-size:120px\">ISNER – MAHUT</span>"],["empatais","noche","2 – 2<small>en sets</small>"],
+ ["noche","entonces","<span style=\"font-size:120px\">SE HACE DE NOCHE</span><small>se sigue mañana</small>"],["muerte","dia2","<span style=\"font-size:110px\">SIN MUERTE SÚBITA</span><small>hay que ganar por 2 juegos</small>"],["dia2","ninguno","DÍA 2"],["ninguno","diez","NADIE FALLA"],
+ ["apaga","programado","<span style=\"font-size:120px\">¡SE APAGA!</span>"],["programado","c59","<span style=\"font-size:100px\">NO SABÍA CONTAR TANTO</span>"],["noche2","dia3","<span style=\"font-size:120px\">OTRA VEZ DE NOCHE</span>"],["dia3","abarrotada","DÍA 3"],
+ ["abarrotada","c69","PISTA 18<small>abarrotada</small>"],["quinta","red","<span style=\"font-size:110px\">BOLA DE PARTIDO</span><small>la quinta</small>"],["reves","s70","<span style=\"font-size:110px\">¡REVÉS PARALELO!</span>"],["s70","once","70 – 68"],
+ ["once","c183","11 h 5 min"],["c183","solo","183 JUEGOS"],["solo","pregunta","+8 HORAS<small>solo el quinto set</small>"],["pregunta","leo","¿Y TÚ?"]];
 window.render=(t)=>{const c=TL.cues; if(!K) setupK(c); const end=TL.end; const W0=ST.W;
  const day=kfl(K.DAY,t)[0]; const G=Math.round(kfl(K.G,t)[0]);
  // cielo, sol y luna
@@ -77,35 +84,52 @@ window.render=(t)=>{const c=TL.cues; if(!K) setupK(c); const end=TL.end; const W
  const myHit=toFar?f:1-f; const rvHit=toFar?1-f:f;
  rp(ST.you,1,toFar?bx:bx2,myHit-0.02); rp(ST.riv,-1,toFar?bx2:bx,rvHit-0.02);
  if(!rally){ST.you.h.userData.aR.rotation.x=-.3; ST.riv.h.userData.aR.rotation.x=-.3;}
+ // ---- el último punto (coreografía): saque, resto, Mahut sube a la red y revés paralelo a cámara lenta
+ if(t>=c.c69+.2&&t<c.ganado+.6){const T0=c.saca,T1=T0+.8,T2=c.quinta+.5,T3=c.reves,T4=c.s70;
+  const arc=(p0,p1,h,u)=>new THREE.Vector3(lerp(p0[0],p1[0],u),lerp(p0[1],p1[1],u)+Math.sin(u*Math.PI)*h,lerp(p0[2],p1[2],u));
+  let bp; if(t<T0) bp=new THREE.Vector3(-1.5,2.6+Math.abs(Math.sin(t*4))*.6,-14.6); else if(t<T1) bp=arc([-1.5,4.6,-14.6],[1.6,1.2,13.6],1.2,seg(t,T0,T1));
+  else if(t<T2) bp=arc([1.6,1.2,13.6],[-.5,1.2,-13.6],4,seg(t,T1,T2)); else if(t<T3) bp=arc([-.5,1.2,-13.6],[-3.8,1.2,13.4],2.6,seg(t,T2,T3));
+  else if(t<T4) bp=arc([-3.8,1.2,13.4],[-4.6,.12,-11.5],1.0,seg(t,T3,T4)); else bp=arc([-4.6,.12,-11.5],[-5,.6,-17],.8,seg(t,T4,T4+.7));
+  ST.ball.position.copy(bp); ST.ball.visible=true;
+  const yx=t<T1?lerp(0,1.6,seg(t,c.c69,T1)):lerp(1.6,-3.8,eio(seg(t,T1+.2,T3-.1))); ST.you.J.position.x=yx;
+  const yU=ST.you.h.userData; const sw1=Math.max(0,1-Math.abs(t-T1)*4), sw3=Math.max(0,1-Math.abs(t-T3)*3); yU.aR.rotation.x=-1.0-1.3*sw1-.6*sw3; yU.aR.rotation.z=-.4+1.6*sw3; yU.aL.rotation.x=-.4-1.0*sw3;
+  ST.you.J.rotation.y=Math.PI+.7*sw3; const runY=t>T1+.2&&t<T3; yU.lL.rotation.x=runY?Math.sin(t*14)*.6:0; yU.lR.rotation.x=-yU.lL.rotation.x;
+  const mJ=ST.riv.J, mU=ST.riv.h.userData; const toNet=eio(seg(t,T2,T3+.3)); mJ.position.set(lerp(-1.5,-1,toNet),2.4,lerp(-14.5,-4.2,toNet));
+  const lunge=seg(t,T3+.5,T3+1.0); mJ.position.x=lerp(mJ.position.x,-3.4,lunge); mJ.rotation.set(.1,0,-.7*lunge); mJ.position.y=2.4-.5*lunge;
+  mU.aR.rotation.x=t<T0+.3?-2.9*Math.max(0,1-Math.abs(t-T0)*3):(-1.2-1.2*Math.max(0,1-Math.abs(t-T2)*4)); mU.aR.rotation.z=-.4-1.2*lunge; const runM=t>T2&&t<T3+.3; mU.lL.rotation.x=runM?Math.sin(t*14)*.6:0; mU.lR.rotation.x=-mU.lL.rotation.x;}
  // celebración: caes de espaldas en la hierba
  const cel=seg(t,c.ganado-.2,c.ganado+.5)*(1-seg(t,c.pillas,c.loop-.3)); if(cel>0){const J=ST.you.J; J.position.y=lerp(2.4,.6,eio(cel)); J.rotation.x=lerp(.1,-Math.PI/2,eio(cel)); const U2=ST.you.h.userData; U2.aL.rotation.x=U2.aR.rotation.x=-2.9*cel;
   ST.riv.J.rotation.x=.5*cel; ST.riv.h.children[1].rotation.x=.4*cel;}
  ST.eyes.forEach(e=>e.scale.set(1,(Math.sin(t*2.7)>.985)?.15:1,1));
  // público: aplaude al final
- const cheer=seg(t,c.ganado,c.ganado+.5)*(1-seg(t,c.solo,c.solo+1)); const dm=new THREE.Object3D(); ST.cpos.forEach((p,k)=>{dm.position.set(p[0],p[1]+(cheer>0?Math.abs(Math.sin(t*9+k))*.5*cheer:0),p[2]); dm.rotation.y=p[3]>0?-Math.PI/2:Math.PI/2; dm.updateMatrix(); ST.crowd.setMatrixAt(k,dm.matrix);}); ST.crowd.instanceMatrix.needsUpdate=true;
+ const cheer=Math.max(seg(t,c.s70,c.s70+.4)*(1-seg(t,c.solo,c.solo+1)),.25*seg(t,c.abarrotada,c.abarrotada+.5)*(1-seg(t,c.c69,c.c69+.5))); const dm=new THREE.Object3D(); ST.cpos.forEach((p,k)=>{dm.position.set(p[0],p[1]+(cheer>0?Math.abs(Math.sin(t*9+k))*.5*cheer:0),p[2]); dm.rotation.y=p[3]>0?-Math.PI/2:Math.PI/2; dm.updateMatrix(); ST.crowd.setMatrixAt(k,dm.matrix);}); ST.crowd.instanceMatrix.needsUpdate=true;
  // marcador
  let mode='games', a=String(G), b=String(G>=70?68:G); if(t<c.deja){mode='games';} else if(t<c.forma+.3) mode=t<c.deja+.5?'glitch':'off';
  if(t>=c.wimbledon&&t<c.quinto){mode='sets'; a='2'; b='2';} if(t>=c.c47+.4&&t<c.apaga) mode='glitch'; if(t>=c.apaga&&t<c.pillas+.3) mode='off'; if(t>=c.pillas+.3) {mode='games';}
- if(G===69&&t<c.s70){a='69';b='68';}
+ if(G>=69&&t<c.s70){a='69';b='68';}
  const bkey=mode+a+b+(mode==='glitch'?Math.floor(t*12):''); if(bkey!==ST.bkey){ST.bkey=bkey; boardDraw(ST.bctx,768,420,a,b,mode); ST.btex.needsUpdate=true;}
  const spk=(t>=c.deja&&t<c.deja+1.4)?t-c.deja:(t>=c.apaga&&t<c.apaga+1.6)?t-c.apaga:-1;
  ST.sparks.forEach((s,i)=>{s.visible=spk>=0&&spk<1.2; if(!s.visible) return; const v=s.userData.v; s.position.set(v[0]*spk,7.5+v[1]*spk-6*spk*spk,.4+v[2]*spk);});
  const smk=(t>=c.apaga&&t<c.c59)?t-c.apaga:(t>=c.deja&&t<c.forma+.3)?t-c.deja:-1; ST.smoke.forEach((s,i)=>{s.visible=smk>=0; if(!s.visible) return; const k=(smk*.5+i*.1)%1; s.position.set(Math.sin(i*2)*1.5,9.5+k*4,.2); s.scale.setScalar(.5+k*1.5); s.material.opacity=.35*(1-k);});
  // ---- CÁMARA [t, ángulo, distancia, altura, mirada x, y, z]
- const CK=[[0,-.3,19,.25,-4.5,5.5,11],[c.deja,-.35,17,.22,-5.5,6.2,10],[c.forma,-.3,22,.4,-3,4,-2],[c.wimbledon,0,30,.42,0,1.5,-3],[c.eres,.15,15,.22,0,3.2,13],[c.empatais,-.3,20,.28,-5,5.5,9],[c.noche,0,30,.42,0,1.5,-3],
-  [c.dia2,.05,30,.42,0,1.5,-3],[c.entonces,.9,26,.3,0,2,0],[c.diez,-.3,20,.26,-5,5.5,10],[c.c47,-.4,16,.2,-6.5,6.5,9.5],[c.programado,-.45,15,.18,-7,6.8,9],[c.c59,0,30,.42,0,1.5,-3],
-  [c.dia3,.1,28,.4,0,1.5,-3],[c.rompes,.05,24,.3,0,2,-6],[c.ganado,.35,13,.45,0,1,13.5],[c.once,.2,32,.65,0,1,0],[c.pregunta,.3,16,.35,0,2,12],[c.pillas,-.3,20,.28,-4,5,10],[c.loop,-.3,19,.25,-4.5,5.5,11],[end,-.3,19,.25,-4.5,5.5,11],[1e9,-.3,19,.25,-4.5,5.5,11]];
+ const CK=[[0,-.3,19,.25,-4.5,5.5,11],[c.deja,-.35,17,.22,-5.5,6.2,10],[c.forma,-.3,22,.4,-3,4,-2],[c.wimbledon,0,30,.42,0,1.5,-3],[c.eres,.15,15,.22,0,3.2,13],[c.empatais,-.3,20,.28,-5,5.5,9],
+  [c.noche,0,30,.42,0,1.5,-3],[c.entonces,.9,26,.3,0,2,0],[c.dia2,.05,30,.42,0,1.5,-3],[c.ninguno,.6,18,.2,0,2,0],[c.diez,-.3,20,.26,-5,5.5,10],[c.c47,-.4,16,.2,-6.5,6.5,9.5],[c.programado,-.45,15,.18,-7,6.8,9],
+  [c.c59,0,30,.42,0,1.5,-3],[c.agotado,.2,11,.18,0,3,13.5],[c.dia3,.1,28,.4,0,1.5,-3],[c.abarrotada,.9,30,.35,8,4,0],[c.c69,0,24,.32,0,2,-2],[c.saca,.05,22,.3,0,2,-4],
+  [c.red,.25,11,.16,-2.5,2.6,12],[c.reves,.35,9,.14,-3.6,2.6,12.5],[c.reves+.7,.25,10,.12,-3.8,2,9],[c.s70,.05,12,.2,-4.5,1,-9],[c.ganado,.35,13,.45,0,1,13.5],[c.once,.2,32,.65,0,1,0],
+  [c.pregunta,.3,16,.35,0,2,12],[c.pillas,-.3,20,.28,-4,5,10],[c.loop,-.3,19,.25,-4.5,5.5,11],[end,-.3,19,.25,-4.5,5.5,11],[1e9,-.3,19,.25,-4.5,5.5,11]];
  const [ca,cd,chh,lx,ly,lz]=kf(CK,t); const Lw=ROOM.clone().add(new THREE.Vector3(lx,ly,lz)); const P=Lw.clone().add(new THREE.Vector3(Math.sin(ca)*cd,cd*chh,Math.cos(ca)*cd));
  let pkk=0; TL.punch.forEach(v=>{const dd=t-v; if(dd>=0&&dd<.5) pkk=Math.max(pkk,Math.exp(-dd*7));});
- cam.up.set(0,1,0); cam.position.copy(P); cam.position.x+=Math.sin(t*70)*pkk*.12; cam.position.y+=Math.cos(t*61)*pkk*.12; cam.lookAt(Lw); cam.near=.1; cam.fov=50-pkk*3; cam.updateProjectionMatrix();
+ cam.up.set(0,1,0); cam.position.copy(P); cam.position.x+=Math.sin(t*70)*pkk*.3; cam.position.y+=Math.cos(t*61)*pkk*.3; cam.lookAt(Lw); cam.near=.1; cam.fov=50-pkk*6-8*seg(t,c.quinta,c.reves)*(1-seg(t,c.s70,c.s70+.5)); cam.updateProjectionMatrix();
  ST.bub.forEach(b=>{const q=b.userData, dd=t-c.leo-q.d; b.visible=dd>0&&t<c.pillas+.2; b.scale.setScalar(Math.max(.01,back(dd/.4)*(1-seg(t,c.pillas-.2,c.pillas+.2)))*1.2); b.position.set(q.x,q.y+Math.sin(t*2+q.ph)*.3,12+q.z); b.lookAt(cam.position);});
  const kb=new THREE.Vector3(Lw.x,0,Lw.z); key.position.set(kb.x+8,30,kb.z+16); keyT.position.set(kb.x,3,kb.z); fill.position.set(kb.x-16,12,kb.z-8); fillT.position.copy(kb); rim.position.set(kb.x-6,6,kb.z-6);
  parts.position.set(kb.x,0,kb.z); for(let i=0;i<PN;i++){const q=pb[i]; pp[i*3]=q[0]+Math.sin(t*.25+q[3]*9)*.8; pp[i*3+1]=(q[1]+t*(.25+q[3]*.4))%35; pp[i*3+2]=q[2];} pg.attributes.position.needsUpdate=true;
  sky.position.copy(cam.position);
  const gf=(TL.ding||[]).reduce((m,d)=>Math.max(m,1-Math.abs(t-d-.1)/.5),0); document.getElementById('gflash').style.opacity=Math.min(1,gf)*.4; document.getElementById('flash').style.opacity=0;
+ const fin=seg(t,c.c69,c.c69+.4)*(1-seg(t,c.solo+.4,c.solo+1));
+ FX.update(t,{cine:Math.max(fin,t<c.forma?.8*(1-seg(t,c.forma-.4,c.forma)):0,seg(t,c.c47,c.c47+.3)*(1-seg(t,c.programado,c.programado+.5))),vig:Math.max(.5*seg(t,c.agotado-.3,c.agotado+.3)*(1-seg(t,c.dia3,c.dia3+.5)),.35*fin*(t<c.s70?1:0)),flash:(t>c.abarrotada&&t<c.c69)?.08:(t>c.s70&&t<c.solo)?.22:(t>c.reves&&t<c.s70?.12:0)});
  C.render();
  let bg=BIG.find(bb=>t>=(bb[0]?c[bb[0]]:0)&&t<c[bb[1]]); let bh=bg?bg[2]:'';
- if(!bg&&(t<c.forma||(t>=c.diez&&t<c.apaga)||(t>=c.c59&&t<c.noche2)||(t>=c.c69&&t<c.rompes))) bh=(G===69?'69 – 68':G+' – '+G);
+ if(!bg&&(t<c.deja||(t>=c.diez&&t<c.apaga)||(t>=c.c59&&t<c.noche2)||(t>=c.c69&&t<c.quinta))) bh=(G===69?'69 – 68':G+' – '+G);
  document.getElementById('big').innerHTML=bh; document.getElementById('big').style.transform='scale('+(1+pkk*.06)+')';
  document.getElementById('hook').innerHTML='';
  const ws=TL.words; let ci=ws.findIndex(w=>t<w.t1+0.04);

@@ -11,7 +11,7 @@ const { chromium } = require('playwright'); const fs = require('fs');
   const A = Number(process.env.START||0), B = Number(process.env.END||TL.frames); // trozo de fotogramas, para renderizar en paralelo
   const list = only ? only.map(s => Math.round(s * TL.fps)) : [...Array(TL.frames).keys()].filter(f => f >= A && f < B);
   const t0=Date.now();
-  for (const f of list) { const fp=n=>`frames/${String(n).padStart(5,"0")}.jpg`; if (!only && fs.existsSync(fp(f)) && (fs.existsSync(fp(f+1)) || f+1 >= B)) continue; // salta lo ya hecho y rellena huecos await p.evaluate(t => render(t), f / TL.fps);
+  for (const f of list) { const fp=n=>`frames/${String(n).padStart(5,"0")}.jpg`; if (!only && fs.existsSync(fp(f)) && (fs.existsSync(fp(f+1)) || f+1 >= B)) continue; /* salta lo ya hecho y rellena huecos */ await p.evaluate(t => render(t), f / TL.fps);
     await p.screenshot({ path: only ? `check_${f}.png` : `frames/${String(f).padStart(5,'0')}.jpg`, type: only?'png':'jpeg', quality: only?undefined:95 }); }
   console.log('ms/frame', Math.round((Date.now()-t0)/list.length));
   await b.close();

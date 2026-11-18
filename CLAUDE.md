@@ -22,10 +22,11 @@ Este repositorio produce los vídeos de **¡Lo Pillo!** (Instagram @lopillocienc
    - **Revelar:** alejar la cámara y descubrir que el sitio era otro, como la habitación que resulta ser el laboratorio del 003.
 5. **Objetos reales y reconocibles** que actúan según la frase; nada de formas abstractas. Los textos que explican van superpuestos (cifra grande arriba y subtítulo de una palabra), no dentro de la animación.
 6. **Look:** fondo casi negro, foco cálido, colores vivos solo en lo importante, sin halo (nitidez del paso 8). Dentro del cuerpo, fondo granate o morado oscuro.
-7. **Texto:** subtítulo de una palabra (palabras clave en amarillo) y cifras grandes arriba. **No se pone la fuente en pantalla** (pedido del dueño): las fuentes van solo en el texto de la publicación y en `fuentes.md`.
-8. **Gancho en el primer segundo** (afirmación que choca o cifra imposible) y bucle abierto en los primeros 10 s.
-9. **Cierre:** pregunta para comentarios (burbujas), «¿Lo pillas?» con el átomo, y la última frase vuelve al plano del principio para que el vídeo haga bucle.
-10. **Sonido:** música de `engine/audio.py`, «whoosh» en cada escena del plan, golpe suave en los datos y «clin» en la revelación.
+7. **Sin marcas (pedido del dueño el 18/11):** ni el distintivo «¡LO PILLO!» ni el átomo en pantalla, tampoco en la tarjeta final.
+8. **Texto:** subtítulo de una palabra (palabras clave en amarillo) y cifras grandes arriba. **No se pone la fuente en pantalla** (pedido del dueño): las fuentes van solo en el texto de la publicación y en `fuentes.md`.
+9. **Gancho en el primer segundo** (afirmación que choca o cifra imposible) y bucle abierto en los primeros 10 s.
+10. **Cierre:** pregunta para comentarios (burbujas), «¿Lo pillas?» (sin átomo), y la última frase vuelve al plano del principio para que el vídeo haga bucle.
+11. **Sonido:** música de `engine/audio.py`, «whoosh» en cada escena del plan, golpe suave en los datos y «clin» en la revelación.
 
 ### Estilo épico (pedido del dueño el 18/11/2026: «mucho más espectaculares y emocionantes»)
 
@@ -38,6 +39,7 @@ Combina todo esto en los momentos clave de cada vídeo (referencias: `videos/008
   - `hit`: golpe grave.
 - **Efectos** (módulo `FX` de `engine/scene_lib.html`, todo depende solo de `t`): `FX.burst('confetti'|'sparks'|'dust', posMundo, t0)`, `FX.ring(...)` para las ondas, `FX.beam(...)` para los focos, `FX.flashField(puntos)` para los flashes del público y `FX.update(t,{cine,vig,beams,flash})` en cada fotograma.
 - **Cámara de cine:** bandas negras (`cine`) y viñeta (`vig`) en los clímax, cámara lenta en el momento clave, planos muy cerca o en contrapicado, más sacudida en los impactos y un zoom (FOV) que se cierra justo antes del clímax.
+- **Retención hasta el final:** promete en el gancho que el final merece la pena («quédate hasta el final»), abre preguntas que solo se responden al final, sube la tensión en escalera (cifras que crecen, cuenta atrás, latidos) y guarda el clímax más grande para los últimos 15 s.
 - Sigue sin haber destellos blancos ni cortes: la toma es continua y la nitidez no cambia.
 
 ## La voz

@@ -2,15 +2,15 @@
 
 ## Cola de producción: SERIE DE DEPORTES (prioridad desde el 18/11/2026, pedida por el dueño)
 
-Produce siempre el primero de esta lista que no esté en `publicados.md`. Los detalles de cada historia (qué ocurrió, dato sorprendente, idea visual 3D, gancho y fuentes) están en `deportes.md`; aun así, comprueba de nuevo cada cifra antes de grabar la voz. En esta serie, la «familia» es el deporte: no hagas dos vídeos seguidos del mismo deporte. Ya hecho: 006 Fosbury (atletismo).
+Produce siempre el primero de esta lista que no esté en `publicados.md`. Los detalles de cada historia (qué ocurrió, dato sorprendente, idea visual 3D, gancho y fuentes) están en `deportes.md`; aun así, comprueba de nuevo cada cifra antes de grabar la voz. En esta serie, la «familia» es el deporte: no hagas dos vídeos seguidos del mismo deporte. Ya hechos: 006 Fosbury, 007 Bradbury, 008 Kanakuri, 009 Comăneci. Orden pedido por el dueño el 18/11: primero el tenis (Isner–Mahut) y después Roberto Carlos.
 
-1. Ganó el oro olímpico… porque todos los demás se cayeron (Steven Bradbury, patinaje, 2002)
-2. Tardó 54 años en terminar un maratón (Shizo Kanakuri, 1912–1967)
-3. La nota perfecta que el marcador no sabía mostrar: 1.00 (Nadia Comăneci, gimnasia, 1976)
-4. Saltó desde el borde del espacio y rompió la barrera del sonido sin avión (Felix Baumgartner, 2012)
-5. El partido de tenis que rompió el marcador: 11 horas y 70–68 (Isner–Mahut, Wimbledon 2010)
-6. 28 segundos dentro del fuego: el arco que le salvó la vida (Romain Grosjean, F1, 2020)
-7. El gol que parecía desafiar la física (Roberto Carlos, fútbol, 1997)
+1. El partido de tenis que rompió el marcador: 11 horas y 70–68 (Isner–Mahut, Wimbledon 2010)
+2. El gol que parecía desafiar la física (Roberto Carlos, fútbol, 1997)
+3. Ganó el oro olímpico… porque todos los demás se cayeron (Steven Bradbury, patinaje, 2002)
+4. Tardó 54 años en terminar un maratón (Shizo Kanakuri, 1912–1967)
+5. La nota perfecta que el marcador no sabía mostrar: 1.00 (Nadia Comăneci, gimnasia, 1976)
+6. Saltó desde el borde del espacio y rompió la barrera del sonido sin avión (Felix Baumgartner, 2012)
+7. 28 segundos dentro del fuego: el arco que le salvó la vida (Romain Grosjean, F1, 2020)
 8. Saltó tan lejos que el medidor no llegaba (Bob Beamon, longitud, 1968)
 9. Nadó solo en unos Juegos sin haber nadado nunca en una piscina de 50 m (Eric Moussambani, 2000)
 10. Pagaban 42 a 1 por él… y tumbó a Tyson (Buster Douglas, boxeo, 1990)
