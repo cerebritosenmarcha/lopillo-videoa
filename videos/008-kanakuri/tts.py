@@ -1,12 +1,13 @@
 import json, base64, urllib.request, sys
 SEG = [
- "Empezaste un maratón en mil novecientos doce… y lo terminaste en mil novecientos sesenta y siete. Cincuenta y cuatro años. Y es récord oficial.",
- "Eres Shizo Kanakuri, uno de los dos primeros deportistas de Japón en unos Juegos. Llegas a Estocolmo tras dieciocho días de viaje, agotado. Y el día del maratón hace un calor tremendo.",
- "Corres. El sol aprieta. Hacia la mitad, ya no puedes más. Una familia sueca te ve desde su jardín y te ofrece zumo y bollos. Te sientas a descansar… y ya no vuelves a la carrera.",
- "Te da tanta vergüenza que regresas a Japón sin avisar a nadie. Y en Suecia, durante décadas, eres el corredor que desapareció.",
- "Pasan los años. En Japón sigues corriendo, entrenas a otros y ayudas a crear una carrera de relevos que hoy es famosísima.",
- "Hasta que, en mil novecientos sesenta y siete, una televisión sueca te encuentra y te invita a terminar. Con más de setenta años, vuelves a Estocolmo… y cruzas la meta.",
- "Tiempo oficial: cincuenta y cuatro años, ocho meses y seis días. ¿Tú lo habrías terminado? Te leo en comentarios. ¿Lo pillas? Nunca es tarde para cruzar la meta.",
+ "Este hombre tardó cincuenta y cuatro años en terminar un maratón. Y no es una broma: es récord oficial.",
+ "Estocolmo, mil novecientos doce. Eres Shizo Kanakuri, uno de los dos primeros deportistas de Japón en unos Juegos. Llegas tras dieciocho días de viaje… destrozado.",
+ "¡Pum! Salida. Un calor sofocante. Kilómetro a kilómetro, las piernas te fallan. Y en un jardín, una familia sueca te hace señas: zumo, bollos, una silla…",
+ "Te sientas. Solo un momento. Pero ya no te levantas. Te da tanta vergüenza que vuelves a Japón sin decírselo a nadie. Y en Suecia te conviertes en un misterio: el corredor que desapareció.",
+ "Pasan los años. Tú no paras: entrenas a otros y ayudas a crear una carrera de relevos que hoy es famosísima.",
+ "Hasta que, en mil novecientos sesenta y siete, una televisión sueca te encuentra… y te propone algo: termina lo que empezaste.",
+ "Vuelves a Estocolmo. Con más de setenta años. Las últimas zancadas… y cruzas la meta. Tiempo oficial: cincuenta y cuatro años, ocho meses y seis días.",
+ "¿Tú lo habrías terminado? Te leo en comentarios. ¿Lo pillas? Nunca es tarde para cruzar la meta.",
 ]
 text = " ".join(SEG)
 voice = json.load(open("../../assets/voces.json"))["narrador"]
