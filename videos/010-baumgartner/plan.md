@@ -1,19 +1,19 @@
-# 010 — Plan de continuidad (historia encadenada)
+# 010 — Plan de continuidad (historia encadenada, estilo épico)
 
-**Protagonista:** tú eres Felix Baumgartner (el muñeco naranja con casco y traje). **Lo que se conserva:** la cámara te acompaña siempre y el mundo se mueve a tu alrededor. La Tierra es una esfera que se aleja y se curva al subir; el globo y la cápsula suben contigo y luego se quedan arriba; las partículas del aire desaparecen al subir y vuelven al bajar (densidad del aire).
+**Protagonista:** tú eres Felix Baumgartner (el muñeco naranja con casco y traje). **Lo que se conserva:** la cámara te acompaña siempre y el mundo se mueve a tu alrededor. La Tierra es una esfera que se aleja y se curva al subir. El globo y la cápsula suben contigo y luego se quedan arriba. Las partículas del aire desaparecen al subir y vuelven al bajar (densidad del aire).
 
-| # | Frase | Qué pasa | Causa → efecto | Cámara |
+| # | Frase | Qué pasa | Causa → efecto | Cámara / épico |
 |---|---|---|---|---|
-| 1 | Vas a caer más rápido que el sonido… solo con tu traje | Caes de cabeza envuelto en el cono del sonido, con líneas de velocidad | ¿Cómo es posible? → rebobinado | Órbita cercana |
-| 2 | ¿Cómo es posible? | Rebobinado: subes hasta la cápsula y la cápsula baja hasta el suelo | Volvemos al despegue | Te sigue |
-| 3 | Octubre de 2012, Nuevo México… Eres Felix | Desierto, plataforma de despegue, el globo a medio inflar; tú en la puerta de la cápsula | El globo te sube | Contrapicado hacia el globo |
-| 4 | Un globo de helio te sube hasta casi 39 km | Subida: la Tierra se aleja y se curva, el cielo se oscurece y el altímetro sube a 39 KM | Arriba no hay aire | Desde arriba, mirando hacia la Tierra |
-| 5 | Casi no hay aire… traje presurizado | Las partículas desaparecen; el visor del casco brilla | Con el traje puedes salir | Primer plano del casco |
-| 6 | Abres la puerta, ves la curva… y saltas | La puerta se abre, sales al escalón y la Tierra se ve curva; saltas | Sin aire que frene → aceleras | Detrás de ti, hacia el horizonte |
-| 7 | Aceleras… 1.357 km/h, más rápido que el sonido | El velocímetro sube; aparece el cono del sonido | Tanta velocidad → inestabilidad | Órbita |
-| 8 | Giras como una peonza… estiras los brazos y lo controlas | Barrena plana muy rápida; abres los brazos y el giro se frena | Estable → sigues cayendo | Desde arriba |
-| 9 | El aire se vuelve más denso y te frena | Vuelven las partículas; la velocidad baja | Lento → paracaídas | Lateral |
-| 10 | Abres el paracaídas… 4 min 20 s… aterrizas de pie | La vela se abre, el suelo sube y te posas de pie | — | Contrapicado y luego lateral |
-| 11 | ¿Te atreverías? Te leo | Burbujas de comentarios | — | — |
-| 12 | ¿Lo pillas? | Tarjeta del átomo; rebobinado hacia arriba por detrás | — | — |
-| 13 | Sin aire que te frene, caes más rápido que el sonido | Vuelve el plano 1 (bucle) | Bucle | Igual que el plano 1 |
+| 1 | Vas a saltar desde 39 km… con tu cuerpo. Quédate hasta el final | Caes de cabeza con el cono del sonido | Promesa → rebobinado | Órbita cercana, bandas de cine |
+| 2 | Octubre de 2012. Eres Felix | Rebobinado hasta el desierto; el globo se infla | El globo te sube | Contrapicado hacia el globo |
+| 3 | Diez kilómetros. Veinte. Treinta… | Subida en escalera: la Tierra se aleja y se curva, cifra de altura arriba | Arriba falla algo | Desde arriba, mirando a la Tierra |
+| 4 | El visor no calienta… si se empaña… decides seguir | Primer plano del casco: el visor se empaña; icono de aviso | Sigues → llegas arriba | Plano cerrado y viñeta |
+| 5 | 39 km. 8 millones te miran. Abres la puerta. La curva de la Tierra | La puerta se abre, sales al escalón | La radio te habla | Detrás de ti, hacia el horizonte |
+| 6 | Kittinger: «Tu ángel de la guarda…». Y saltas | Latidos, el zoom se cierra; saltas | Sin aire que frene → aceleras | Plano muy cerrado y luego amplio, golpe al saltar |
+| 7 | Aceleras. 500. 800. Mil | Las cifras de velocidad suben en escalera | → barrera del sonido | Órbita |
+| 8 | 1.357. Más rápido que el sonido | Onda de choque (anillos y chispas), cono del sonido | Tanta velocidad → giro | Contrapicado, golpe grave |
+| 9 | Giras como una peonza… se acabó | Barrena plana; icono de aviso y latidos | Peligro → reaccionas | Desde arriba, viñeta y bandas |
+| 10 | Estiras los brazos. Aguantas. Lo controlas | Los brazos se abren, el giro se frena, anillo verde | Estable → sigues cayendo | Lateral |
+| 11 | El aire se espesa… 4 min 20 s… paracaídas… aterrizas de pie | Vuelven las partículas, la vela se abre y te posas | Clímax: polvo, confeti, rugido; el equipo celebra | Contrapicado, zoom que se cierra |
+| 12 | ¿Te atreverías? / ¿Lo pillas? | Burbujas de comentarios / tarjeta final sin marcas | — | — |
+| 13 | Sin aire que te frene… | Vuelve el plano 1 (bucle) | Bucle | Igual que el plano 1 |

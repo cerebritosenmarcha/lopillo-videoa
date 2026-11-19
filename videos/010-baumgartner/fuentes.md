@@ -13,5 +13,14 @@
 - **Aterrizó de pie** en el desierto de Nuevo México (cerca de Roswell):
   - https://www.nationalgeographic.com/adventure/article/121014-felix-baumgartner-skydive-sound-barrier-kittinger-roswell-science-2
   - https://www.pbs.org/newshour/show/austrian-daredevil-lands-on-his-feet-after-supersonic-jump
+- **El visor:** la calefacción del visor falló durante la subida; se discutió abortar y se decidió seguir. En la caída, el visor se le empañó.
+  - https://www.popsci.com/technology/article/2012-10/felix-baumgartners-nail-biting-ascent/
+  - https://www.sciencedaily.com/releases/2012/10/121014170655.htm
+- **Joe Kittinger** (récord anterior, 1960) fue la única voz por radio desde control de misión, a petición de Baumgartner. Su despedida: «our guardian angel will take care of you».
+  - https://www.popsci.com/technology/article/2012-10/felix-baumgartners-nail-biting-ascent/
+  - https://www.universetoday.com/articles/baumgarter-survives-heart-pounding-record-setting-freefall
+- **Unos 8 millones de personas lo vieron en directo en YouTube** (Guinness; otras fuentes dan entre 7,5 y 9,5 millones).
+  - https://www.guinnessworldrecords.com/news/2015/8/60/2012-highest-freefall-parachute-jump-392848
+  - https://itweb.co.za/article/stratospheric-skydive-breaks-streaming-records/YKzQenvjX1pMZd2r
 - **Física:** a esa altura el aire es muy poco denso y apenas frena. Al bajar, el aire se hace más denso y la resistencia aumenta.
 - Datos descartados: la duración exacta de la subida (no confirmada) y la duración del giro (las fuentes no coinciden: unos 13 s según los datos oficiales y unos 40 s según el propio Baumgartner).

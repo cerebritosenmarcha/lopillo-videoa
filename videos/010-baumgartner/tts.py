@@ -1,12 +1,16 @@
 import json, base64, urllib.request, sys
 SEG = [
- "Vas a caer más rápido que el sonido. Sin avión, sin cohete… solo con tu traje. ¿Cómo es posible?",
- "Octubre de dos mil doce, Nuevo México. Eres Felix Baumgartner. Un globo de helio gigante te sube en una cápsula hasta casi treinta y nueve kilómetros de altura.",
- "Ahí arriba casi no hay aire. Por eso llevas un traje presurizado, como un astronauta. Abres la puerta, ves la curva de la Tierra… y saltas.",
- "Como apenas hay aire que te frene, aceleras sin parar. A los cincuenta segundos vas a mil trescientos cincuenta y siete kilómetros por hora: más rápido que el sonido.",
- "De pronto empiezas a girar como una peonza. Si no paras, podrías perder el conocimiento. Estiras los brazos… y lo controlas.",
- "Al bajar, el aire se vuelve más denso y te frena. Abres el paracaídas y, tras cuatro minutos y veinte segundos de caída libre… aterrizas de pie.",
- "¿Tú te atreverías a saltar? Te leo en comentarios. ¿Lo pillas? Sin aire que te frene, caes más rápido que el sonido.",
+ 'Vas a saltar desde treinta y nueve kilómetros. Sin avión. Y vas a romper la barrera del sonido… con tu cuerpo. Quédate hasta el final.',
+ 'Octubre de dos mil doce. Eres Felix Baumgartner. Un globo gigante sube tu cápsula. Diez kilómetros. Veinte. Treinta…',
+ 'Pero el visor de tu casco no calienta bien. Si se empaña, no verás nada. Decides seguir.',
+ 'Treinta y nueve kilómetros. Ocho millones de personas te miran en directo. Abres la puerta. Ves la curva de la Tierra.',
+ 'Por la radio, tu mentor, Joe Kittinger: «Tu ángel de la guarda cuidará de ti». Y saltas.',
+ 'Casi no hay aire que te frene. Aceleras. Quinientos kilómetros por hora. Ochocientos. Mil.',
+ 'Mil trescientos cincuenta y siete. Más rápido que el sonido.',
+ 'Y empiezas a girar como una peonza. Si pierdes el conocimiento… se acabó.',
+ 'Estiras los brazos. Aguantas. Y lo controlas.',
+ 'El aire se espesa y te frena. Cuatro minutos y veinte segundos de caída libre. Paracaídas… y aterrizas de pie.',
+ '¿Tú te atreverías? Te leo en comentarios. ¿Lo pillas? Sin aire que te frene, caes más rápido que el sonido.',
 ]
 text = " ".join(SEG)
 voice = json.load(open("../../assets/voces.json"))["narrador"]
