@@ -1,6 +1,6 @@
 # ¡Lo Pillo! — motor de producción de vídeos
 
-Este repositorio produce los vídeos de **¡Lo Pillo!** (Instagram @lopillociencia, YouTube @lopillo, TikTok). Una tarea programada abre una sesión nueva cada día que sigue este documento para crear un vídeo y dejarlo en Metricool pendiente de aprobación.
+Este repositorio produce los vídeos de **¡Lo Pillo!** (Instagram @lopillociencia, YouTube @lopillo, TikTok). Una tarea programada abre una sesión nueva cada día que sigue este documento para crear un vídeo y dejarlo programado en Metricool con publicación automática.
 
 ## La marca
 
@@ -99,7 +99,7 @@ Revisado el 17/11/2026 con búsquedas sobre los Shorts, Reels y TikTok de curios
 - Redes: Instagram (`type: REEL`), TikTok y YouTube (`type: short`, `madeForKids: false`, categoría `EDUCATION`).
 - Marca siempre el contenido como generado con IA: `isAiGenerated` (Instagram), `isAigc` (TikTok), `isAiGeneratedContent` (YouTube).
 - **Hora:** consulta `getBestTimeToPostByNetwork` para la semana; por ahora la mejor franja es **10:00** (y 18:00 como segunda opción).
-- **El dueño publica a mano** hasta que diga lo contrario. El plan de Metricool es gratuito y no tiene flujo de aprobación (`createScheduledPostForReview` da error 403), así que usa `createScheduledPost` con `draft: false` y `autoPublish: false`: a la hora programada Metricool envía un aviso al móvil del dueño, que revisa el vídeo y lo publica desde la app.
+- **Publicación automática (pedido del dueño el 19/11):** usa `createScheduledPost` con `draft: false` y **`autoPublish: true`**, así Metricool publica solo a la hora programada. En TikTok, si la cuenta lo exige, el vídeo puede quedar «esperando confirmación» en la app. Antes publicaba él a mano, pero el aviso al móvil no llegó a publicar nada.
 - Texto: gancho + pregunta para comentarios + fuentes + aviso + 6–8 hashtags.
 
 ## Cadencia y capacidad
