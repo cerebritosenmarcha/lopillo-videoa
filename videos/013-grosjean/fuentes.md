@@ -1,0 +1,27 @@
+# Fuentes — 013 28 segundos dentro del fuego: el halo que odiaba le salvó (Romain Grosjean, F1, 2020)
+
+- **El choque** (Gran Premio de Baréin, 29/11/2020, primera vuelta, Haas):
+  - Según la investigación de la FIA, chocó contra el guardarraíl triple a 192 km/h con un pico de 67 G.
+  - El coche se partió en dos y se incendió porque se soltó la tapa de inspección del depósito.
+  - https://www.skysports.com/f1/news/12433/12237161/romain-grosjean-accident-findings-published-by-fia-with-fiery-bahrain-gp-crash-measured-at-67g
+  - https://www.motorsportmagazine.com/articles/single-seaters/f1/romain-grosjean-crash-report-why-haas-caught-fire-changes-to-come
+  - https://www.autosport.com/f1/news/grosjeans-fiery-bahrain-crash-report-reveals-how-fuel-escaped/5595414/
+- **27 segundos en el fuego:** la FIA dice que salió solo a los 27 s; otras fuentes (ESPN) dan 28 s. Usamos el dato de la FIA.
+  - https://global.espn.com/racing/f1/story/_/id/44617489/five-years-2020-f1-bahrain-grand-prix-tech-saved-romain-grosjean-life
+- **El rescate:**
+  - El coche médico (el doctor Ian Roberts y el piloto Alan van der Merwe) llegó unos 9 s después del impacto.
+  - Un comisario usó el extintor y Grosjean trepó por encima del guardarraíl.
+  - Sufrió quemaduras en las manos y el visor se le derritió.
+  - https://www.motorsport.com/f1/news/medical-car-grosjean-crash-bahrain/4919707/
+  - https://the-race.com/formula-1/his-visor-was-melted-f1-medic-describes-grosjeans-escape/
+  - https://www.formula1.com/en/latest/article/crazy-ive-not-seen-fire-like-that-before-medical-car-team-describe-scene.5ICsLmBlqXDeoeqTMb9G15
+- **El halo:**
+  - En 2017 Grosjean dijo que votaría en contra y lo llamó pesado y feo.
+  - Tras el accidente dijo que era «lo mejor que hemos traído a la Fórmula 1» y que sin él no estaría aquí. La FIA concluyó que el halo funcionó según lo previsto.
+  - https://www.formula1.com/en/latest/article/grosjean-describes-halo-as-greatest-thing-from-hospital-bed-saying-he.5MK7YgW3eTYADMLzifORes
+  - https://au.motorsport.com/f1/news/grosjean-would-vote-against-introduction-of-halo-802943/2991217/
+  - https://www.planetf1.com/features/romain-grosjean-halo-debate
+- **Datos descartados:**
+  - Los 53 G de `deportes.md`: la FIA da 67 G.
+  - Los 221 km/h que circulan: la FIA da 192 km/h.
+  - Lo del mono «diseñado para 18 segundos»: no está confirmado.

@@ -88,12 +88,12 @@ Ya hecho: **006 · Dick Fosbury** (el hombre que saltó de espaldas).
 ## 6. 28 segundos dentro del fuego: el arco que le salvó la vida
 - **Deporte y año:** Fórmula 1. Gran Premio de Baréin, 29/11/2020.
 - **Protagonista:** Romain Grosjean (Haas).
-- **Qué ocurrió:** chocó contra el guardarraíl con unos 53 G de fuerza. El coche se partió en dos y se incendió. Salió por su propio pie tras unos 28 segundos entre las llamas, con quemaduras en las manos.
+- **Qué ocurrió:** chocó contra el guardarraíl a 192 km/h con 67 G (investigación de la FIA). El coche se partió en dos y se incendió. Salió por su propio pie tras unos 28 segundos entre las llamas, con quemaduras en las manos.
 - **Por qué es extraordinario:** el halo, el arco de titanio sobre la cabeza que muchos criticaban, apartó el guardarraíl de su cabeza. Ross Brawn dijo que «no hay duda» de que le salvó.
 - **Dato sorprendente:** su mono ignífugo estaba diseñado para aguantar unos 18 segundos de fuego.
 - **Potencial visual 3D:** el coche entra en el guardarraíl y el halo lo abre como una cuña. La bola de fuego llega a cámara lenta, la cámara entra en la cabina y sales trepando.
 - **Gancho:** «28 segundos dentro de una bola de fuego… y salió andando».
-- **Ojo:** unas fuentes dan 27 segundos y otras 28. La cifra de 67 G que circula no está confirmada: usa 53 G.
+- **Ojo:** la FIA da 27 segundos y otras fuentes 28. La FIA midió 67 G y 192 km/h (corregido el 20/11 tras revisar el informe).
 - **Puntuación:** V5 S4 E5 C4 Vi5.
 - **Fuentes:**
   - https://www.planetf1.com/features/romain-grosjean-2020-bahrain-grand-prix-crash
