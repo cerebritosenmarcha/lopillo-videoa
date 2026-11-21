@@ -1,0 +1,23 @@
+# Fuentes — 014 Saltó tan lejos que el medidor no llegaba (Bob Beamon, longitud, México 1968)
+
+- **El salto** (final olímpica, 18/10/1968, primer intento):
+  - 8,90 m, 55 cm más que el récord mundial anterior, 8,35 m (compartido por Ralph Boston e Igor Ter-Ovanesyan).
+  - https://olympics.com/en/news/classics-finals-the-measuring-device-wasn-t-long-enough-for-bob-beamon
+  - https://worldathletics.org/news/feature/bob-beamon-890m-long-jump-world-record-50th-a
+  - https://www.olympedia.org/results/60712
+- **El medidor óptico** se salió del raíl antes de llegar a la marca. Midieron a mano, con cinta, y tardaron unos 20 minutos.
+  - https://olympics.com/en/news/classics-finals-the-measuring-device-wasn-t-long-enough-for-bob-beamon
+  - https://www.skysports.com/olympics/news/15234/12363353/bob-beamon-olympic-long-jumper-on-incredible-world-record-jump-in-1968-and-why-he-protested
+- **De rodillas:** no estaba acostumbrado a los metros. Cuando le dijeron que eran 29 pies y 2½ pulgadas, cayó de rodillas y tuvieron que ayudarle a levantarse.
+  - https://vault.si.com/vault/1968/12/23/the-unbelievable-moment
+  - https://www.britannica.com/biography/Bob-Beamon
+- **El récord duró casi 23 años**, hasta los 8,95 m de Mike Powell en 1991.
+  - https://vault.si.com/vault/1991/09/09/great-leap-forward-mike-powell-broke-bob-beamons-storied-long-jump-record
+  - https://worldathletics.org/news/feature/bob-beamon-890m-long-jump-world-record-50th-a
+- **La altitud y el viento:**
+  - México está a 2.240 m de altitud.
+  - El viento era de 2,0 m/s, justo el límite legal (World Athletics y Olympedia).
+  - Se dice con cautela que ayudó: no hay una cifra exacta y fiable de cuánto.
+- **Datos descartados:**
+  - Que fuera «cataplejía»: es una interpretación posterior.
+  - El número de zancadas y la altura del vuelo: no están confirmados.
