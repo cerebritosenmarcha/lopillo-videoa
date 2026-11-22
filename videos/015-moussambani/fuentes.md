@@ -1,0 +1,23 @@
+# Fuentes — 015 Nadó solo unos 100 libres olímpicos (Eric Moussambani, Sídney 2000)
+
+- **La serie** (19/09/2000, 100 m libres, Sídney):
+  - Sus dos rivales fueron descalificados por salida nula y nadó solo ante el público.
+  - https://guinnessworldrecords.com/world-records/76757-slowest-olympic-heat-winner
+  - https://www.olympedia.org/athletes/93469
+  - https://www.nbcsports.com/olympics/news/eric-moussambani-eel-swimming-olympics
+- **1:52,72**: el tiempo más lento de la historia olímpica en esa prueba, y aun así ganó su serie (Guinness: «slowest Olympic heat winner»).
+  - https://guinnessworldrecords.com/world-records/76757-slowest-olympic-heat-winner
+  - https://nzherald.co.nz/sport/swimming-20-years-on-the-story-of-eric-the-eel-moussambani/2MUVXES7ILIIPWG3PYKJMPC4X4
+- **Su preparación:**
+  - Llevaba unos 8 meses nadando y entrenaba en un lago y en la piscina de un hotel de Malabo.
+  - Nunca había visto una piscina olímpica de 50 m.
+  - Fue con plaza de invitación (*wildcard*).
+  - https://www.mentalfloss.com/article/31329/olympic-swimmer-whod-never-been-olympic-size-pool
+  - https://www.news24.com/sport/other-sport/watersport/twenty-years-after-his-olympic-splash-eric-the-eel-looks-back-20200918
+- **En el segundo largo** se quedó sin fuerzas y le flojearon las piernas. El público le animó hasta la pared.
+  - https://www.mentalfloss.com/article/31329/olympic-swimmer-whod-never-been-olympic-size-pool
+  - https://www.espn.com/oly/summer00/swimming/s/2000/0920/760807.html
+- **Años después** fue seleccionador nacional de natación de Guinea Ecuatorial.
+  - https://www.news24.com/sport/other-sport/watersport/twenty-years-after-his-olympic-splash-eric-the-eel-looks-back-20200918
+  - https://www.africanews.com/2020/09/18/how-eric-the-eel-transformed-swimming-in-equatorial-guinea/
+- **Datos descartados:** lo que medía la piscina del hotel (las fuentes dan 12, 13 o 20 m) y el número exacto de espectadores.
