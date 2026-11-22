@@ -13,9 +13,9 @@ Este repositorio produce los vídeos de **¡Lo Pillo!** (Instagram @lopillocienc
 
 **Estilo de historia encadenada** (aprobado por el dueño el 17/11/2026). Referencias: `videos/003-alarma`, `004-deja-vu`, `005-horas-sueno`, `002-movil-una-semana` y, para historias del deporte, `006-fosbury` (el protagonista es el deportista, el escenario evoluciona alrededor y el salto/movimiento se anima con `pose()`), todos con `story.html` y `plan.md`.
 
-1. **Vertical 1080×1920, 30 fps. Duración: entre 50 y 60 s por lo general, y nunca más de 1 min 5 s (65 s).**
+1. **Vertical 1080×1920, 30 fps. Duración (cambiada el 22/11 por los datos, con permiso del dueño: «haz lo que sea necesario» para llegar a millones): entre 30 y 40 s, y nunca más de 45 s.** La gente ve de media 20–33 s, así que un vídeo más corto se ve entero más veces y el algoritmo lo reparte más. Menos escenas (unas 7–8), sin relleno.
 2. **Un protagonista:** «tú», el muñeco naranja (`human(0xff9a4a,1.6)` con ojos), el mismo en todos los vídeos y durante todo el vídeo. Todo le pasa a él.
-3. **Reacción en cadena:** cada escena **provoca** la siguiente (el reloj interno da la orden → sale la hormona → viaja por la sangre…). Nada aparece sin causa. Unas **10–12 escenas** de unos 5 s.
+3. **Reacción en cadena:** cada escena **provoca** la siguiente (el reloj interno da la orden → sale la hormona → viaja por la sangre…). Nada aparece sin causa. Unas **7–8 escenas** de unos 4–5 s.
 4. **Una sola toma continua:** sin cortes ni destellos. La cámara se mueve siempre y conecta las escenas con travelling, seguimiento, zoom continuo o transformación. Los escenarios evolucionan; no se salta de un sitio a otro sin mostrar cómo se llega.
    - **Entrar en el cuerpo o la cabeza:** zoom continuo. La cabeza se vuelve transparente, dentro hay una copia en miniatura del interior (escala `KM=0.05`), la cámara se acerca de forma exponencial y, en el instante en que encaja, pasa al interior a tamaño real (mira `dive`/`camIn` en `003-alarma/story.html`).
    - **Salir:** el zoom inverso (`LOUT`, como en el 004 y el 002) o un fundido de la energía que llena la pantalla (003).
@@ -47,7 +47,7 @@ Combina todo esto en los momentos clave de cada vídeo (referencias: `videos/008
 - Voz del **Narrador** en ElevenLabs (ID en `assets/voces.json`, clave `narrador`): chico de unos 24 años, alegre y simpático.
 - Modelo `eleven_v3`, después acelerado un **25 %** (`TEMPO = 1.25` en `tts.py`). El narrador va rápido y con frases densas.
 - La clave de ElevenLabs la inyecta el proxy del entorno: no hace falta ni se debe escribir en ningún archivo.
-- Guion: frases cortas, como se habla («Tranquilo, que te lo explico»), muchas cosas concretas por frase para que haya figuras que mostrar. Con `eleven_v3` + 25 % de velocidad salen unos 21 caracteres por segundo: apunta a **1.050–1.250 caracteres** (50–60 s) y **nunca más de 1.380** (65 s). Comprueba la duración real que imprime `tts.py`; si pasa de 65 s, recorta el guion y vuelve a generar la voz.
+- Guion: frases cortas, como se habla («Tranquilo, que te lo explico»), muchas cosas concretas por frase para que haya figuras que mostrar. Con `eleven_v3` + 25 % de velocidad salen unos 21 caracteres por segundo: apunta a **620–800 caracteres** (30–40 s) y **nunca más de 900** (45 s). Comprueba la duración real que imprime `tts.py`; si pasa de 45 s, recorta el guion y vuelve a generar la voz.
 
 ## Rigor (obligatorio)
 
@@ -80,6 +80,24 @@ Combina todo esto en los momentos clave de cada vídeo (referencias: `videos/008
 
 ## Qué funciona (para elegir y escribir temas)
 
+**Datos reales (22/11/2026, Metricool).** Visualizaciones en Instagram:
+
+| Vídeo | Instagram | TikTok | Tiempo medio visto |
+|---|---|---|---|
+| Bradbury («el más lento ganó el oro») | **17.576** | 4.985 | 32 s |
+| Kanakuri | 2.031 | — | 25 s |
+| Fosbury | 1.795 | — | 33 s |
+| Tenis | 1.729 | 217 | 20 s |
+| Roberto Carlos | 1.679 | 856 | 18 s |
+
+Lo que tiene Bradbury y conviene repetir en cada vídeo:
+- **Premisa de una frase, absurda y comprensible sin saber nada del deporte.** «El más lento ganó el oro». Si el tema no se puede contar así, busca el ángulo que sí se pueda o deja el tema para más tarde.
+- **El texto grande del primer segundo dice esa premisa tal cual**, por ejemplo «EL MÁS LENTO… GANÓ EL ORO». No pongas una cifra suelta que no se entiende sin contexto.
+- **Pregunta de debate al final**, de las que dividen a la gente y provocan comentarios: «¿Mérito o suerte?», «¿Lo celebrarías o te daría vergüenza?». Evita preguntas abiertas y flojas como «¿Qué opinas?».
+- **Perdedor que gana, suerte o giro emocional.** Pesa más que lo épico o lo técnico.
+- **Portada:** pasa `videoCoverMilliseconds` en `createScheduledPost` con el fotograma más impactante, con el personaje y el texto grande a la vista.
+
+
 Revisado el 17/11/2026 con búsquedas sobre los Shorts, Reels y TikTok de curiosidades y ciencia sin cara. No hay rankings oficiales, así que se trata como orientación, y manda nuestra propia analítica en cuanto haya datos.
 - **Formatos que más se repiten entre los vídeos virales:**
   - «¿Qué pasaría si…?» (hipótesis imposibles de física o del espacio).
@@ -98,13 +116,19 @@ Revisado el 17/11/2026 con búsquedas sobre los Shorts, Reels y TikTok de curios
 - Marca `blogId` **8128189**, zona horaria **Europe/Madrid**.
 - Redes: Instagram (`type: REEL`), TikTok y YouTube (`type: short`, `madeForKids: false`, categoría `EDUCATION`).
 - Marca siempre el contenido como generado con IA: `isAiGenerated` (Instagram), `isAigc` (TikTok), `isAiGeneratedContent` (YouTube).
-- **Hora:** consulta `getBestTimeToPostByNetwork` para la semana; por ahora la mejor franja es **10:00** (y 18:00 como segunda opción).
+- **Hora:** consulta `getBestTimeToPostByNetwork` para la semana; las mejores franjas son **10:00** y **18:00** (datos de Instagram del 22/11).
 - **Publicación automática (pedido del dueño el 19/11):** usa `createScheduledPost` con `draft: false` y **`autoPublish: true`**, así Metricool publica solo a la hora programada. En TikTok, si la cuenta lo exige, el vídeo puede quedar «esperando confirmación» en la app. Antes publicaba él a mano, pero el aviso al móvil no llegó a publicar nada.
-- Texto: gancho + pregunta para comentarios + fuentes + aviso + 6–8 hashtags.
+- Texto de la publicación (corto: la primera línea es lo único que se ve sin desplegar):
+  1. La premisa en una frase con un emoji.
+  2. La pregunta de debate.
+  3. «📚 Fuentes:» con 2 o 3 fuentes.
+  4. El aviso.
+  5. De 4 a 5 hashtags (uno amplio como #deportes, otro del deporte y otro del protagonista).
+- Título de YouTube: la premisa en forma de pregunta o afirmación imposible, sin terminar en «(y su física)» ni en coletillas parecidas.
 
 ## Cadencia y capacidad
 
-- **Un vídeo al día, publicado a las 10:00** (Reels + TikTok + Shorts), todos los días que permita la capacidad de ElevenLabs.
-- **Margen de 3 días (pedido del dueño el 18/11):** siempre debe haber unos 3 vídeos programados por delante. La tarea diaria produce uno nuevo cada día para el siguiente día libre de `publicados.md`.
+- **Dos vídeos al día (desde el 23/11, para tener más oportunidades de que uno se haga viral): a las 10:00 y a las 18:00** (Reels + TikTok + Shorts), mientras lo permita el cupo de ElevenLabs. Con vídeos de 30–40 s cada uno gasta unos 800 caracteres.
+- **Margen de 3 días (pedido del dueño el 18/11):** siempre debe haber unos 3 vídeos programados por delante. La tarea diaria produce dos vídeos nuevos cada día para los siguientes huecos libres (10:00 o 18:00) de `publicados.md`.
 - Antes de grabar la voz, consulta los caracteres disponibles (`curl -sS https://api.elevenlabs.io/v1/user/subscription`: `character_limit - character_count`). Si quedan menos de 2.000, no produzcas: avisa en el resumen de que el cupo del mes se ha agotado y de la fecha de renovación (`next_character_count_reset_unix`).
 - Más adelante, 2 vídeos largos de YouTube por semana (pendiente de definir formato).
